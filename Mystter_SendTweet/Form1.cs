@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using CoreTweet;
 
 namespace Mystter_SendTweet {
@@ -8,89 +12,103 @@ namespace Mystter_SendTweet {
             InitializeComponent();
         }
 
+        Settings settings = new Settings();
+        Tokens tokens;
+
         #region Form
 
         private void Form1_Load(object sender, EventArgs e) {
+            LoadSettings();
             SettingsInit();
             TwitterInit();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            settings.Location = Location;
             settings.TopMost = TopMost;
-            settings.Location = this.Location;
-            settings.SelectedItem = toolStripComboBox1.SelectedItem.ToString();
-            Settings.Save(settings);
+            settings.SelectedItem = accountsComboBox.SelectedItem.ToString();
+            SaveSettings();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            Disabled(button1);
+        private void Form1_LocationChanged(object sender, EventArgs e) {
+            ChangeLocation(Location);
+        }
+
+        private void sendBtn_Click(object sender, EventArgs e) {
+            Disabled(sendBtn);
             SendTweet(richTextBox1.Text);
-            Enabled(button1);
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-            var selected = toolStripComboBox1.SelectedItem.ToString();
-            if (selected == "Add account") {
-                toolStripComboBox1.SelectedItem = settings.SelectedItem;
-                AddAccount();
-            } else {
-                tokens = GetAccountTokens(toolStripComboBox1.SelectedItem.ToString());
-            }
+            Enabled(sendBtn);
         }
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
             if (e.Control && e.KeyCode == Keys.Enter) {
-                button1.PerformClick();
+                sendBtn.PerformClick();
             }
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
             var length = richTextBox1.TextLength;
-            label1.Text = length.ToString();
+            lengthLabel1.Text = length.ToString();
             if (length <= 140) {
-                label1.ForeColor = System.Drawing.SystemColors.WindowText;
+                lengthLabel1.ForeColor = System.Drawing.SystemColors.WindowText;
             } else if (length > 140) {
-                label1.ForeColor = System.Drawing.Color.Red;
+                lengthLabel1.ForeColor = System.Drawing.Color.Red;
             }
         }
 
         // Delete Last Tweet
-        private void button2_Click(object sender, EventArgs e) {
-            Disabled(button2);
+        private void deleteBtn_Click(object sender, EventArgs e) {
+            Disabled(deleteBtn);
             DeleteLatestTweet();
-            Enabled(button2);
+            Enabled(deleteBtn);
         }
 
         // Add account
-        private void addAccountToolStripMenuItem_Click(object sender, EventArgs e) {
-
+        private void addAccountMenuItem_Click(object sender, EventArgs e) {
+            AddAccount();
         }
-
+        
         // Switch account
-        private void toolStripComboBox1_Click(object sender, EventArgs e) {
-
+        private void accountsComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            var selected = accountsComboBox.SelectedItem.ToString();
+            tokens = GetAccountTokens(selected);
+            ChangeSelectedItem(selected);
         }
 
         // Top Most
-        private void topMostToolStripMenuItem_Click(object sender, EventArgs e) {
-            TopMost = topMostToolStripMenuItem.Checked;
+        private void topMostMenuItem_Click(object sender, EventArgs e) {
+            ChangeTopMost(topMostMenuItem.Checked);
         }
         
         // Word Wrap
-        private void wordWrapToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void wordWrapMenuItem_Click(object sender, EventArgs e) {
 
         }
 
         #endregion
 
-        Settings settings = new Settings();
-        Tokens tokens;
+        private void ChangeSelectedItem(string item) {
+            accountsComboBox.SelectedItem = item;
+            settings.SelectedItem = item;
+            SaveSettings();
+        }
+
+        private void ChangeTopMost(bool top) {
+            TopMost = top;
+            settings.TopMost = top;
+            topMostMenuItem.Checked = top;
+            SaveSettings();
+        }
+
+        private void ChangeLocation(Point location) {
+            Location = location;
+            settings.Location = location;
+            SaveSettings();
+        }
 
         private void SettingsInit() {
-            settings = Settings.Load();
-            TopMost = settings.TopMost;
-            topMostToolStripMenuItem.Checked = TopMost;
-            Location = settings.Location;
+            ChangeTopMost(settings.TopMost);
+            ChangeLocation(settings.Location);
         }
 
         private void TwitterInit() {
@@ -98,12 +116,33 @@ namespace Mystter_SendTweet {
                 for (int i = 0; i < settings.Twitter.Count; i++) {
                     var account = new Account();
                     account = settings.Twitter[i];
-                    toolStripComboBox1.Items.Add(account.ScreenName);
+                    accountsComboBox.Items.Add(account.ScreenName);
                 }
-                toolStripComboBox1.SelectedItem = settings.SelectedItem;
+                accountsComboBox.SelectedItem = settings.SelectedItem;
                 tokens = GetAccountTokens(settings.SelectedItem);
             } else {
                 AddAccount();
+            }
+        }
+
+        string SettingsFile = Information.Title + ".xml";
+
+        private void SaveSettings() {
+            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            StreamWriter writer = new StreamWriter(SettingsFile, false, Encoding.UTF8);
+            serializer.Serialize(writer, settings);
+            writer.Close();
+        }
+
+        private void LoadSettings() {
+            if (File.Exists(SettingsFile)) {
+                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                StreamReader reader = new StreamReader(SettingsFile);
+                settings = (Settings)serializer.Deserialize(reader);
+                reader.Close();
+            } else {
+                SaveSettings();
+                LoadSettings();
             }
         }
 
@@ -116,7 +155,7 @@ namespace Mystter_SendTweet {
         }
 
         private void SetStatusMessage(string msg) {
-            toolStripStatusLabel1.Text = msg;
+            statusLabel1.Text = msg;
         }
 
         private void DeleteLatestTweet() {
@@ -140,12 +179,12 @@ namespace Mystter_SendTweet {
             account.AccessSecret = secret;
             account.ScreenName = screen;
             account.UserId = id;
-            settings.Twitter.Add(account);
 
-            Settings.Save(settings);
+            settings.Twitter.Add(account);
             
-            toolStripComboBox1.Items.Add(screen);
-            toolStripComboBox1.SelectedItem = screen;
+            accountsComboBox.Items.Add(screen);
+
+            ChangeSelectedItem(screen);
         }
 
         private Tokens GetAccountTokens(string screen) {
@@ -180,6 +219,7 @@ namespace Mystter_SendTweet {
                 Tokens _tokens = s.GetTokens(form.PIN);
                 SetAccountTokens(_tokens);
             }
+            form.Dispose();
         }
 
         private void SendTweet(string msg) {
@@ -187,10 +227,11 @@ namespace Mystter_SendTweet {
                 MessageBox.Show("Tweet is too long!");
                 return;
             }
-            if (msg.Length < 1) {
+            if (IsEmpty(msg)) {
                 MessageBox.Show("Tweet is too short!");
                 return;
             }
+
             try {
                 tokens.Statuses.Update(status: msg);
             } catch (TwitterException ex) {
@@ -204,8 +245,20 @@ namespace Mystter_SendTweet {
                 MessageBox.Show("Unknown Exception!");
                 throw;
             }
+
             richTextBox1.Text = "";
             richTextBox1.Focus();
+        }
+
+        private bool IsEmpty(string str) {
+            str = str.Replace(" ", "");
+            str = str.Replace("　", "");
+            str = str.Replace("\r\n", "");
+            if (str.Length == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
