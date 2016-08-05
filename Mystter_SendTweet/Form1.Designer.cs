@@ -25,22 +25,22 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.sendBtn = new System.Windows.Forms.Button();
+            this.lengthLabel1 = new System.Windows.Forms.Label();
+            this.lengthLabel2 = new System.Windows.Forms.Label();
+            this.lengthLabel3 = new System.Windows.Forms.Label();
+            this.deleteBtn = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.topMostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountsMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAccountMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountsComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.settingsMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
+            this.topMostMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wordWrapMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,158 +57,159 @@
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
-            // button1
+            // sendBtn
             // 
-            this.button1.Location = new System.Drawing.Point(326, 215);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.sendBtn.Location = new System.Drawing.Point(326, 215);
+            this.sendBtn.Name = "sendBtn";
+            this.sendBtn.Size = new System.Drawing.Size(75, 23);
+            this.sendBtn.TabIndex = 2;
+            this.sendBtn.Text = "Send";
+            this.sendBtn.UseVisualStyleBackColor = true;
+            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
             // 
-            // label1
+            // lengthLabel1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(192, 219);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 23);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "0";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lengthLabel1.BackColor = System.Drawing.SystemColors.Control;
+            this.lengthLabel1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lengthLabel1.Location = new System.Drawing.Point(192, 219);
+            this.lengthLabel1.Name = "lengthLabel1";
+            this.lengthLabel1.Size = new System.Drawing.Size(73, 23);
+            this.lengthLabel1.TabIndex = 3;
+            this.lengthLabel1.Text = "0";
+            this.lengthLabel1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label2
+            // lengthLabel2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(263, 219);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(19, 19);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "/";
+            this.lengthLabel2.AutoSize = true;
+            this.lengthLabel2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lengthLabel2.Location = new System.Drawing.Point(263, 219);
+            this.lengthLabel2.Name = "lengthLabel2";
+            this.lengthLabel2.Size = new System.Drawing.Size(19, 19);
+            this.lengthLabel2.TabIndex = 4;
+            this.lengthLabel2.Text = "/";
             // 
-            // label3
+            // lengthLabel3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(281, 219);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 19);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "140";
+            this.lengthLabel3.AutoSize = true;
+            this.lengthLabel3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lengthLabel3.Location = new System.Drawing.Point(281, 219);
+            this.lengthLabel3.Name = "lengthLabel3";
+            this.lengthLabel3.Size = new System.Drawing.Size(39, 19);
+            this.lengthLabel3.TabIndex = 5;
+            this.lengthLabel3.Text = "140";
             // 
-            // button2
+            // deleteBtn
             // 
-            this.button2.Location = new System.Drawing.Point(12, 215);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Delete Last Tweet";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.deleteBtn.Location = new System.Drawing.Point(12, 215);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(123, 23);
+            this.deleteBtn.TabIndex = 7;
+            this.deleteBtn.Text = "Delete Last Tweet";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.statusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 247);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(413, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // statusLabel1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.statusLabel1.Name = "statusLabel1";
+            this.statusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.accountsToolStripMenuItem,
-            this.settingsToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.accountsMenuTitle,
+            this.settingsMenuTitle,
+            this.helpMenuTitle});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(413, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // accountsToolStripMenuItem
+            // accountsMenuTitle
             // 
-            this.accountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addAccountToolStripMenuItem,
-            this.toolStripComboBox1});
-            this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.accountsToolStripMenuItem.Text = "Accounts";
+            this.accountsMenuTitle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addAccountMenuItem,
+            this.accountsComboBox});
+            this.accountsMenuTitle.Name = "accountsMenuTitle";
+            this.accountsMenuTitle.Size = new System.Drawing.Size(69, 20);
+            this.accountsMenuTitle.Text = "Accounts";
             // 
-            // addAccountToolStripMenuItem
+            // addAccountMenuItem
             // 
-            this.addAccountToolStripMenuItem.Name = "addAccountToolStripMenuItem";
-            this.addAccountToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.addAccountToolStripMenuItem.Text = "Add account";
-            this.addAccountToolStripMenuItem.Click += new System.EventHandler(this.addAccountToolStripMenuItem_Click);
+            this.addAccountMenuItem.Name = "addAccountMenuItem";
+            this.addAccountMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.addAccountMenuItem.Text = "Add account";
+            this.addAccountMenuItem.Click += new System.EventHandler(this.addAccountMenuItem_Click);
             // 
-            // toolStripComboBox1
+            // accountsComboBox
             // 
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 23);
-            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
+            this.accountsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accountsComboBox.Name = "accountsComboBox";
+            this.accountsComboBox.Size = new System.Drawing.Size(121, 23);
+            this.accountsComboBox.Click += new System.EventHandler(this.accountsComboBox_Click);
             // 
-            // settingsToolStripMenuItem
+            // settingsMenuTitle
             // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.topMostToolStripMenuItem,
-            this.wordWrapToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsMenuTitle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.topMostMenuItem,
+            this.wordWrapMenuItem});
+            this.settingsMenuTitle.Name = "settingsMenuTitle";
+            this.settingsMenuTitle.Size = new System.Drawing.Size(61, 20);
+            this.settingsMenuTitle.Text = "Settings";
             // 
-            // topMostToolStripMenuItem
+            // topMostMenuItem
             // 
-            this.topMostToolStripMenuItem.CheckOnClick = true;
-            this.topMostToolStripMenuItem.Name = "topMostToolStripMenuItem";
-            this.topMostToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.topMostToolStripMenuItem.Text = "Top Most";
-            this.topMostToolStripMenuItem.Click += new System.EventHandler(this.topMostToolStripMenuItem_Click);
+            this.topMostMenuItem.CheckOnClick = true;
+            this.topMostMenuItem.Name = "topMostMenuItem";
+            this.topMostMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.topMostMenuItem.Text = "Top Most";
+            this.topMostMenuItem.Click += new System.EventHandler(this.topMostMenuItem_Click);
             // 
-            // wordWrapToolStripMenuItem
+            // wordWrapMenuItem
             // 
-            this.wordWrapToolStripMenuItem.CheckOnClick = true;
-            this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
-            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.wordWrapToolStripMenuItem.Text = "Word Wrap";
-            this.wordWrapToolStripMenuItem.Click += new System.EventHandler(this.wordWrapToolStripMenuItem_Click);
+            this.wordWrapMenuItem.CheckOnClick = true;
+            this.wordWrapMenuItem.Name = "wordWrapMenuItem";
+            this.wordWrapMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wordWrapMenuItem.Text = "Word Wrap";
+            this.wordWrapMenuItem.Click += new System.EventHandler(this.wordWrapMenuItem_Click);
             // 
-            // helpToolStripMenuItem
+            // helpMenuTitle
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpMenuTitle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutMenuItem});
+            this.helpMenuTitle.Name = "helpMenuTitle";
+            this.helpMenuTitle.Size = new System.Drawing.Size(44, 20);
+            this.helpMenuTitle.Text = "Help";
             // 
-            // aboutToolStripMenuItem
+            // aboutMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutMenuItem.Name = "aboutMenuItem";
+            this.aboutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutMenuItem.Text = "About";
             // 
             // Form1
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.sendBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 269);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.deleteBtn);
+            this.Controls.Add(this.lengthLabel3);
+            this.Controls.Add(this.lengthLabel2);
+            this.Controls.Add(this.lengthLabel1);
+            this.Controls.Add(this.sendBtn);
             this.Controls.Add(this.richTextBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -230,22 +231,22 @@
 
         #endregion
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button sendBtn;
+        private System.Windows.Forms.Label lengthLabel1;
+        private System.Windows.Forms.Label lengthLabel2;
+        private System.Windows.Forms.Label lengthLabel3;
+        private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addAccountToolStripMenuItem;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem topMostToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wordWrapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accountsMenuTitle;
+        private System.Windows.Forms.ToolStripMenuItem addAccountMenuItem;
+        private System.Windows.Forms.ToolStripComboBox accountsComboBox;
+        private System.Windows.Forms.ToolStripMenuItem settingsMenuTitle;
+        private System.Windows.Forms.ToolStripMenuItem topMostMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wordWrapMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpMenuTitle;
+        private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
     }
 }
 
