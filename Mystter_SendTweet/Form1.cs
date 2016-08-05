@@ -18,26 +18,25 @@ namespace Mystter_SendTweet {
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
             settings.TopMost = TopMost;
             settings.Location = this.Location;
-            settings.SelectedItem = comboBox1.SelectedItem.ToString();
+            settings.SelectedItem = toolStripComboBox1.SelectedItem.ToString();
             Settings.Save(settings);
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            button1.Enabled = false;
-            SendTweet();
-            button1.Enabled = true;
+            Disabled(button1);
+            SendTweet(richTextBox1.Text);
+            Enabled(button1);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-            var selected = comboBox1.SelectedItem.ToString();
+            var selected = toolStripComboBox1.SelectedItem.ToString();
             if (selected == "Add account") {
-                comboBox1.SelectedItem = settings.SelectedItem;
+                toolStripComboBox1.SelectedItem = settings.SelectedItem;
                 AddAccount();
             } else {
-                tokens = GetAccountTokens(comboBox1.SelectedItem.ToString());
+                tokens = GetAccountTokens(toolStripComboBox1.SelectedItem.ToString());
             }
         }
-
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
             if (e.Control && e.KeyCode == Keys.Enter) {
@@ -55,11 +54,30 @@ namespace Mystter_SendTweet {
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e) {
-            TopMost = checkBox1.Checked;
+        // Delete Last Tweet
+        private void button2_Click(object sender, EventArgs e) {
+            Disabled(button2);
+            DeleteLatestTweet();
+            Enabled(button2);
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        // Add account
+        private void addAccountToolStripMenuItem_Click(object sender, EventArgs e) {
+
+        }
+
+        // Switch account
+        private void toolStripComboBox1_Click(object sender, EventArgs e) {
+
+        }
+
+        // Top Most
+        private void topMostToolStripMenuItem_Click(object sender, EventArgs e) {
+            TopMost = topMostToolStripMenuItem.Checked;
+        }
+        
+        // Word Wrap
+        private void wordWrapToolStripMenuItem_Click(object sender, EventArgs e) {
 
         }
 
@@ -71,7 +89,7 @@ namespace Mystter_SendTweet {
         private void SettingsInit() {
             settings = Settings.Load();
             TopMost = settings.TopMost;
-            checkBox1.Checked = this.TopMost;
+            topMostToolStripMenuItem.Checked = TopMost;
             Location = settings.Location;
         }
 
@@ -80,18 +98,30 @@ namespace Mystter_SendTweet {
                 for (int i = 0; i < settings.Twitter.Count; i++) {
                     var account = new Account();
                     account = settings.Twitter[i];
-                    comboBox1.Items.Add(account.ScreenName);
+                    toolStripComboBox1.Items.Add(account.ScreenName);
                 }
-                comboBox1.SelectedItem = settings.SelectedItem;
+                toolStripComboBox1.SelectedItem = settings.SelectedItem;
                 tokens = GetAccountTokens(settings.SelectedItem);
             } else {
                 AddAccount();
             }
         }
 
+        private void Disabled(Button btn) {
+            btn.Enabled = false;
+        }
+
+        private void Enabled(Button btn) {
+            btn.Enabled = true;
+        }
+
+        private void SetStatusMessage(string msg) {
+            toolStripStatusLabel1.Text = msg;
+        }
+
         private void DeleteLatestTweet() {
             var latest = tokens.Account.UpdateProfile().Status;
-            tokens.Statuses.Destroy(latest);
+            tokens.Statuses.Destroy(latest.Id);
         }
 
         private void SetAccountTokens(Tokens _tokens) {
@@ -113,9 +143,9 @@ namespace Mystter_SendTweet {
             settings.Twitter.Add(account);
 
             Settings.Save(settings);
-
-            comboBox1.Items.Add(screen);
-            comboBox1.SelectedItem = screen;
+            
+            toolStripComboBox1.Items.Add(screen);
+            toolStripComboBox1.SelectedItem = screen;
         }
 
         private Tokens GetAccountTokens(string screen) {
@@ -152,8 +182,7 @@ namespace Mystter_SendTweet {
             }
         }
 
-        private void SendTweet() {
-            var msg = richTextBox1.Text;
+        private void SendTweet(string msg) {
             if (msg.Length > 140) {
                 MessageBox.Show("Tweet is too long!");
                 return;
@@ -169,8 +198,10 @@ namespace Mystter_SendTweet {
                     MessageBox.Show("Status is a duplicate!");
                     return;
                 }
+                MessageBox.Show("Twitter Exception!");
                 throw;
             } catch {
+                MessageBox.Show("Unknown Exception!");
                 throw;
             }
             richTextBox1.Text = "";
