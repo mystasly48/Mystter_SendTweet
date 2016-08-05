@@ -27,6 +27,7 @@ namespace Mystter_SendTweet {
             settings.Location = Location;
             settings.TopMost = TopMost;
             settings.SelectedItem = accountsComboBox.SelectedItem.ToString();
+            settings.WordWrap = richTextBox1.WordWrap;
             SaveSettings();
         }
 
@@ -82,7 +83,7 @@ namespace Mystter_SendTweet {
         
         // Word Wrap
         private void wordWrapMenuItem_Click(object sender, EventArgs e) {
-
+            ChangeWordWrap(wordWrapMenuItem.Checked);
         }
 
         #endregion
@@ -95,8 +96,15 @@ namespace Mystter_SendTweet {
 
         private void ChangeTopMost(bool top) {
             TopMost = top;
-            settings.TopMost = top;
             topMostMenuItem.Checked = top;
+            settings.TopMost = top;
+            SaveSettings();
+        }
+
+        private void ChangeWordWrap(bool wrap) {
+            richTextBox1.WordWrap = wrap;
+            wordWrapMenuItem.Checked = wrap;
+            settings.WordWrap = wrap;
             SaveSettings();
         }
 
@@ -109,6 +117,7 @@ namespace Mystter_SendTweet {
         private void SettingsInit() {
             ChangeTopMost(settings.TopMost);
             ChangeLocation(settings.Location);
+            ChangeWordWrap(settings.WordWrap);
         }
 
         private void TwitterInit() {
