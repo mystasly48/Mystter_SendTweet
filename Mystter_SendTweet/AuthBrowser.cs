@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mystter_SendTweet {
@@ -17,6 +10,7 @@ namespace Mystter_SendTweet {
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
+            //MessageBox.Show(webBrowser1.Url.OriginalString);
             if (webBrowser1.Url.OriginalString == "https://api.twitter.com/oauth/authorize") {
                 Regex r = new Regex(@"<CODE>(\d+)</CODE>");
                 Match m = r.Match(webBrowser1.DocumentText);
