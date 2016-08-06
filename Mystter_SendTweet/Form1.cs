@@ -36,9 +36,9 @@ namespace Mystter_SendTweet {
         }
 
         private void sendBtn_Click(object sender, EventArgs e) {
-            Disabled(sendBtn);
+            DisabledButton(sendBtn);
             SendTweet(richTextBox1.Text);
-            Enabled(sendBtn);
+            EnabledButton(sendBtn);
         }
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
@@ -59,9 +59,9 @@ namespace Mystter_SendTweet {
 
         // Delete Last Tweet
         private void deleteBtn_Click(object sender, EventArgs e) {
-            Disabled(deleteBtn);
+            DisabledButton(deleteBtn);
             DeleteLatestTweet();
-            Enabled(deleteBtn);
+            EnabledButton(deleteBtn);
         }
 
         // Add account
@@ -155,11 +155,11 @@ namespace Mystter_SendTweet {
             }
         }
 
-        private void Disabled(Button btn) {
+        private void DisabledButton(Button btn) {
             btn.Enabled = false;
         }
 
-        private void Enabled(Button btn) {
+        private void EnabledButton(Button btn) {
             btn.Enabled = true;
         }
 
