@@ -51,9 +51,9 @@ namespace Mystter_SendTweet {
             var length = richTextBox1.TextLength;
             lengthLabel1.Text = length.ToString();
             if (length <= 140) {
-                lengthLabel1.ForeColor = System.Drawing.SystemColors.WindowText;
+                lengthLabel1.ForeColor = SystemColors.WindowText;
             } else if (length > 140) {
-                lengthLabel1.ForeColor = System.Drawing.Color.Red;
+                lengthLabel1.ForeColor = Color.Red;
             }
         }
 
