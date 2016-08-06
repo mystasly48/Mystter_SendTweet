@@ -5,7 +5,7 @@ namespace Mystter_SendTweet {
     public class Settings {
         public bool TopMost = false;
         public bool WordWrap = true;
-        public Point Location = new Point(0, 0);
+        public Point Location = new Point(200, 100);
         public string SelectedItem;
         public List<Account> Twitter = new List<Account>();
     }
