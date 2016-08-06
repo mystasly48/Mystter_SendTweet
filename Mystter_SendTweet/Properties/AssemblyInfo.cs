@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("Mystter - Send Tweet")]
-[assembly: AssemblyDescription("you can easy to tweet")]
+[assembly: AssemblyDescription("Easy to tweet, and switch multiple accounts.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mystter")]
+[assembly: AssemblyCompany("Maisu")]
+[assembly: AssemblyProduct("Mystter - Send Tweet")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
