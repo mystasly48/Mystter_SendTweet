@@ -48,13 +48,7 @@ namespace Mystter_SendTweet {
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
-            var length = richTextBox1.TextLength;
-            lengthLabel1.Text = length.ToString();
-            if (length <= 140) {
-                lengthLabel1.ForeColor = SystemColors.WindowText;
-            } else if (length > 140) {
-                lengthLabel1.ForeColor = Color.Red;
-            }
+            IsTweetable();
         }
 
         // Delete Last Tweet
@@ -87,6 +81,20 @@ namespace Mystter_SendTweet {
         }
 
         #endregion
+
+        private void IsTweetable() {
+            var length = richTextBox1.TextLength;
+            lengthLabel1.Text = length.ToString();
+            if (length > 140) {
+                DisabledButton(sendBtn);
+                lengthLabel1.ForeColor = Color.Red;
+            } else if (length == 0) {
+                DisabledButton(sendBtn);
+            } else {
+                EnabledButton(sendBtn);
+                lengthLabel1.ForeColor = SystemColors.WindowText;
+            }
+        }
 
         private void ChangeSelectedItem(string item) {
             accountsComboBox.SelectedItem = item;
@@ -242,15 +250,13 @@ namespace Mystter_SendTweet {
         }
 
         private void SendTweet(string msg) {
-            if (msg.Length > 140) {
-                MessageBox.Show("Tweet is too long!");
-                return;
-            }
             if (IsEmpty(msg)) {
                 MessageBox.Show("Tweet is too short!");
                 return;
+            } else if (msg.Length > 140) {
+                MessageBox.Show("Tweet is too long!");
+                return;
             }
-
             try {
                 tokens.Statuses.Update(status: msg);
             } catch (TwitterException ex) {
@@ -264,7 +270,6 @@ namespace Mystter_SendTweet {
                 MessageBox.Show("Unknown Exception!");
                 throw;
             }
-
             richTextBox1.Text = "";
             richTextBox1.Focus();
         }
