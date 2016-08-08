@@ -168,8 +168,18 @@ namespace Mystter_SendTweet {
         }
 
         private void DeleteLatestTweet() {
+            var NL = Environment.NewLine;
             var latest = tokens.Account.UpdateProfile().Status;
-            tokens.Statuses.Destroy(latest.Id);
+            var msgResult = MessageBox.Show("Are you sure you want to delete this tweet?" + NL + "------------------------------" + NL + latest.Text + NL + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            switch (msgResult) {
+                case DialogResult.Yes:
+                    tokens.Statuses.Destroy(latest.Id);
+                    MessageBox.Show("Tweet has been deleted.", Information.Title);
+                    break;
+                case DialogResult.No:
+                    MessageBox.Show("Delete has been cancelled.", Information.Title);
+                    break;
+            }
         }
 
         private void SetAccountTokens(Tokens _tokens) {
