@@ -234,6 +234,7 @@ namespace Mystter_SendTweet {
         }
 
         private void AddAccount() {
+            START:
             AuthBrowser form = new AuthBrowser();
             var s = OAuth.Authorize(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret);
             form.URL = s.AuthorizeUri.AbsoluteUri;
@@ -241,6 +242,15 @@ namespace Mystter_SendTweet {
             if (form.Success) {
                 Tokens _tokens = s.GetTokens(form.PIN);
                 SetAccountTokens(_tokens);
+            } else if (settings.Twitter.Count == 0) {
+                var result = MessageBox.Show("There is no account. Please add twitter account." + NL + "If you select No, the application will exit.", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                switch (result) {
+                    case DialogResult.Yes:
+                        goto START;
+                    case DialogResult.No:
+                        Environment.Exit(0);
+                        break;
+                }
             }
             form.Dispose();
         }
