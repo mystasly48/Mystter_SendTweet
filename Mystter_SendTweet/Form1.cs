@@ -14,6 +14,7 @@ namespace Mystter_SendTweet {
 
         Settings settings = new Settings();
         Tokens tokens;
+        String NL = Environment.NewLine;
 
         #region Form
 
@@ -21,6 +22,7 @@ namespace Mystter_SendTweet {
             LoadSettings();
             SettingsInit();
             TwitterInit();
+            ActiveControl = richTextBox1;
         }
 
         private void Form1_LocationChanged(object sender, EventArgs e) {
@@ -77,12 +79,13 @@ namespace Mystter_SendTweet {
         #endregion
 
         private void IsTweetable() {
+            var text = richTextBox1.Text;
             var length = richTextBox1.TextLength;
             lengthLabel1.Text = length.ToString();
             if (length > 140) {
                 DisabledButton(sendBtn);
                 lengthLabel1.ForeColor = Color.Red;
-            } else if (length == 0) {
+            } else if (length == 0 || IsEmpty(text)) {
                 DisabledButton(sendBtn);
             } else {
                 EnabledButton(sendBtn);
@@ -170,7 +173,6 @@ namespace Mystter_SendTweet {
         }
 
         private void DeleteLatestTweet() {
-            var NL = Environment.NewLine;
             var latest = tokens.Account.UpdateProfile().Status;
             var msgResult = MessageBox.Show("Are you sure you want to delete this tweet?" + NL + "------------------------------" + NL + latest.Text + NL + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             switch (msgResult) {
@@ -271,7 +273,8 @@ namespace Mystter_SendTweet {
         private bool IsEmpty(string str) {
             str = str.Replace(" ", "");
             str = str.Replace("　", "");
-            str = str.Replace("\r\n", "");
+            str = str.Replace("\r", "");
+            str = str.Replace("\n", "");
             if (str.Length == 0) {
                 return true;
             } else {
