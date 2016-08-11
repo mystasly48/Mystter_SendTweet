@@ -23,16 +23,10 @@ namespace Mystter_SendTweet {
             TwitterInit();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
-            settings.Location = Location;
-            settings.TopMost = TopMost;
-            settings.SelectedItem = accountsComboBox.SelectedItem.ToString();
-            settings.WordWrap = richTextBox1.WordWrap;
-            SaveSettings();
-        }
-
         private void Form1_LocationChanged(object sender, EventArgs e) {
-            ChangeLocation(Location);
+            if (this.WindowState != FormWindowState.Minimized) {
+                ChangeLocation(Location);
+            }
         }
 
         private void sendBtn_Click(object sender, EventArgs e) {
