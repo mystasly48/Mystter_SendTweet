@@ -76,7 +76,15 @@ namespace Mystter_SendTweet {
             ChangeWordWrap(wordWrapMenuItem.Checked);
         }
 
+        // About
+        private void aboutMenuItem_Click(object sender, EventArgs e) {
+            AboutForm form = new AboutForm();
+            form.ShowDialog();
+        }
+
         #endregion
+
+        #region Method
 
         private void IsTweetable() {
             var text = richTextBox1.Text;
@@ -291,5 +299,7 @@ namespace Mystter_SendTweet {
                 return false;
             }
         }
+
+        #endregion
     }
 }

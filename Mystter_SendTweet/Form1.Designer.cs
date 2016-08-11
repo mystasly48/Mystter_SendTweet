@@ -172,7 +172,7 @@
             // 
             this.topMostMenuItem.CheckOnClick = true;
             this.topMostMenuItem.Name = "topMostMenuItem";
-            this.topMostMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.topMostMenuItem.Size = new System.Drawing.Size(152, 22);
             this.topMostMenuItem.Text = "Top Most";
             this.topMostMenuItem.Click += new System.EventHandler(this.topMostMenuItem_Click);
             // 
@@ -180,7 +180,7 @@
             // 
             this.wordWrapMenuItem.CheckOnClick = true;
             this.wordWrapMenuItem.Name = "wordWrapMenuItem";
-            this.wordWrapMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.wordWrapMenuItem.Size = new System.Drawing.Size(152, 22);
             this.wordWrapMenuItem.Text = "Word Wrap";
             this.wordWrapMenuItem.Click += new System.EventHandler(this.wordWrapMenuItem_Click);
             // 
@@ -195,8 +195,9 @@
             // aboutMenuItem
             // 
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutMenuItem.Text = "About";
+            this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             // 
             // Form1
             // 
