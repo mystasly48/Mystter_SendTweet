@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Mystter_SendTweet.Languages;
 
 namespace Mystter_SendTweet {
     public partial class AuthBrowser : Form {
@@ -10,7 +11,6 @@ namespace Mystter_SendTweet {
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
-            //MessageBox.Show(webBrowser1.Url.OriginalString);
             if (webBrowser1.Url.OriginalString == "https://api.twitter.com/oauth/authorize") {
                 Regex r = new Regex(@"<CODE>(\d+)</CODE>");
                 Match m = r.Match(webBrowser1.DocumentText);
@@ -27,6 +27,7 @@ namespace Mystter_SendTweet {
         public string URL { get; set; }
 
         private void AuthBrowser_Load(object sender, EventArgs e) {
+            this.Text = Information.TitleSimple + " - " + Resources.OAuth;
             webBrowser1.Navigate(new Uri(URL));
         }
 

@@ -39,15 +39,18 @@
             this.settingsMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
             this.topMostMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wordWrapMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languagesComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.helpMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.richTextBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
             this.richTextBox1.Location = new System.Drawing.Point(12, 27);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -71,7 +74,7 @@
             // lengthLabel1
             // 
             this.lengthLabel1.BackColor = System.Drawing.SystemColors.Control;
-            this.lengthLabel1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lengthLabel1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
             this.lengthLabel1.Location = new System.Drawing.Point(192, 219);
             this.lengthLabel1.Name = "lengthLabel1";
             this.lengthLabel1.Size = new System.Drawing.Size(73, 23);
@@ -82,7 +85,7 @@
             // lengthLabel2
             // 
             this.lengthLabel2.AutoSize = true;
-            this.lengthLabel2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lengthLabel2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
             this.lengthLabel2.Location = new System.Drawing.Point(263, 219);
             this.lengthLabel2.Name = "lengthLabel2";
             this.lengthLabel2.Size = new System.Drawing.Size(19, 19);
@@ -92,7 +95,7 @@
             // lengthLabel3
             // 
             this.lengthLabel3.AutoSize = true;
-            this.lengthLabel3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lengthLabel3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
             this.lengthLabel3.Location = new System.Drawing.Point(281, 219);
             this.lengthLabel3.Name = "lengthLabel3";
             this.lengthLabel3.Size = new System.Drawing.Size(39, 19);
@@ -129,7 +132,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.accountsMenuTitle,
             this.settingsMenuTitle,
-            this.helpMenuTitle});
+            this.helpMenuTitle,
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(413, 24);
@@ -163,7 +167,8 @@
             // 
             this.settingsMenuTitle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.topMostMenuItem,
-            this.wordWrapMenuItem});
+            this.wordWrapMenuItem,
+            this.languageMenuItem});
             this.settingsMenuTitle.Name = "settingsMenuTitle";
             this.settingsMenuTitle.Size = new System.Drawing.Size(61, 20);
             this.settingsMenuTitle.Text = "Settings";
@@ -172,7 +177,7 @@
             // 
             this.topMostMenuItem.CheckOnClick = true;
             this.topMostMenuItem.Name = "topMostMenuItem";
-            this.topMostMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.topMostMenuItem.Size = new System.Drawing.Size(134, 22);
             this.topMostMenuItem.Text = "Top Most";
             this.topMostMenuItem.Click += new System.EventHandler(this.topMostMenuItem_Click);
             // 
@@ -180,9 +185,24 @@
             // 
             this.wordWrapMenuItem.CheckOnClick = true;
             this.wordWrapMenuItem.Name = "wordWrapMenuItem";
-            this.wordWrapMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wordWrapMenuItem.Size = new System.Drawing.Size(134, 22);
             this.wordWrapMenuItem.Text = "Word Wrap";
             this.wordWrapMenuItem.Click += new System.EventHandler(this.wordWrapMenuItem_Click);
+            // 
+            // languageMenuItem
+            // 
+            this.languageMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.languagesComboBox});
+            this.languageMenuItem.Name = "languageMenuItem";
+            this.languageMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.languageMenuItem.Text = "Language";
+            // 
+            // languagesComboBox
+            // 
+            this.languagesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.languagesComboBox.Name = "languagesComboBox";
+            this.languagesComboBox.Size = new System.Drawing.Size(121, 23);
+            this.languagesComboBox.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
             // 
             // helpMenuTitle
             // 
@@ -195,9 +215,14 @@
             // aboutMenuItem
             // 
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutMenuItem.Text = "About";
             this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
             // 
             // Form1
             // 
@@ -249,6 +274,9 @@
         private System.Windows.Forms.ToolStripMenuItem wordWrapMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpMenuTitle;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem languageMenuItem;
+        private System.Windows.Forms.ToolStripComboBox languagesComboBox;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

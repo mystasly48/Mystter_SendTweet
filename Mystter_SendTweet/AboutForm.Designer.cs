@@ -27,8 +27,8 @@
             this.verLabelTitle = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.verLabel = new System.Windows.Forms.Label();
-            this.authorLabel = new System.Windows.Forms.Label();
-            this.authorLabelTitle = new System.Windows.Forms.Label();
+            this.developerLabel = new System.Windows.Forms.Label();
+            this.developerLabelTitle = new System.Windows.Forms.Label();
             this.repoLinkLabel = new System.Windows.Forms.LinkLabel();
             this.repoLinkLabelTitle = new System.Windows.Forms.Label();
             this.twitterLinkLabelTitle = new System.Windows.Forms.Label();
@@ -65,24 +65,24 @@
             this.verLabel.Size = new System.Drawing.Size(0, 24);
             this.verLabel.TabIndex = 2;
             // 
-            // authorLabel
+            // developerLabel
             // 
-            this.authorLabel.AutoSize = true;
-            this.authorLabel.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.authorLabel.Location = new System.Drawing.Point(156, 133);
-            this.authorLabel.Name = "authorLabel";
-            this.authorLabel.Size = new System.Drawing.Size(0, 24);
-            this.authorLabel.TabIndex = 4;
+            this.developerLabel.AutoSize = true;
+            this.developerLabel.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.developerLabel.Location = new System.Drawing.Point(156, 133);
+            this.developerLabel.Name = "developerLabel";
+            this.developerLabel.Size = new System.Drawing.Size(0, 24);
+            this.developerLabel.TabIndex = 4;
             // 
-            // authorLabelTitle
+            // developerLabelTitle
             // 
-            this.authorLabelTitle.AutoSize = true;
-            this.authorLabelTitle.Font = new System.Drawing.Font("Meiryo UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.authorLabelTitle.Location = new System.Drawing.Point(51, 131);
-            this.authorLabelTitle.Name = "authorLabelTitle";
-            this.authorLabelTitle.Size = new System.Drawing.Size(97, 26);
-            this.authorLabelTitle.TabIndex = 3;
-            this.authorLabelTitle.Text = "Author: ";
+            this.developerLabelTitle.AutoSize = true;
+            this.developerLabelTitle.Font = new System.Drawing.Font("Meiryo UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.developerLabelTitle.Location = new System.Drawing.Point(51, 131);
+            this.developerLabelTitle.Name = "developerLabelTitle";
+            this.developerLabelTitle.Size = new System.Drawing.Size(124, 26);
+            this.developerLabelTitle.TabIndex = 3;
+            this.developerLabelTitle.Text = "Developer:";
             // 
             // repoLinkLabel
             // 
@@ -110,9 +110,9 @@
             this.twitterLinkLabelTitle.Font = new System.Drawing.Font("Meiryo UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.twitterLinkLabelTitle.Location = new System.Drawing.Point(51, 245);
             this.twitterLinkLabelTitle.Name = "twitterLinkLabelTitle";
-            this.twitterLinkLabelTitle.Size = new System.Drawing.Size(173, 26);
+            this.twitterLinkLabelTitle.Size = new System.Drawing.Size(207, 26);
             this.twitterLinkLabelTitle.TabIndex = 8;
-            this.twitterLinkLabelTitle.Text = "Author\'s Twitter";
+            this.twitterLinkLabelTitle.Text = "Developer\'s Twitter";
             // 
             // twitterLinkLabel
             // 
@@ -133,8 +133,8 @@
             this.Controls.Add(this.twitterLinkLabel);
             this.Controls.Add(this.repoLinkLabelTitle);
             this.Controls.Add(this.repoLinkLabel);
-            this.Controls.Add(this.authorLabel);
-            this.Controls.Add(this.authorLabelTitle);
+            this.Controls.Add(this.developerLabel);
+            this.Controls.Add(this.developerLabelTitle);
             this.Controls.Add(this.verLabel);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.verLabelTitle);
@@ -158,8 +158,8 @@
         private System.Windows.Forms.Label verLabelTitle;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label verLabel;
-        private System.Windows.Forms.Label authorLabel;
-        private System.Windows.Forms.Label authorLabelTitle;
+        private System.Windows.Forms.Label developerLabel;
+        private System.Windows.Forms.Label developerLabelTitle;
         private System.Windows.Forms.LinkLabel repoLinkLabel;
         private System.Windows.Forms.Label repoLinkLabelTitle;
         private System.Windows.Forms.Label twitterLinkLabelTitle;

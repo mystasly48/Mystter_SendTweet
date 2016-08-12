@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using CoreTweet;
+using Mystter_SendTweet.Languages;
 
 namespace Mystter_SendTweet {
     public partial class Form1 : Form {
@@ -82,6 +85,13 @@ namespace Mystter_SendTweet {
             form.ShowDialog();
         }
 
+        // Language
+        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            var selected = languagesComboBox.SelectedIndex;
+            var lang = Localization.GetLanguageParent(selected);
+            ChangeLanguage(lang);
+        }
+
         #endregion
 
         #region Method
@@ -128,6 +138,7 @@ namespace Mystter_SendTweet {
         }
 
         private void SettingsInit() {
+            ChangeLanguage(settings.Language);
             ChangeTopMost(settings.TopMost);
             ChangeLocation(settings.Location);
             ChangeWordWrap(settings.WordWrap);
@@ -182,14 +193,14 @@ namespace Mystter_SendTweet {
 
         private void DeleteLatestTweet() {
             var latest = tokens.Account.UpdateProfile().Status;
-            var msgResult = MessageBox.Show("Are you sure you want to delete this tweet?" + NL + "------------------------------" + NL + latest.Text + NL + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var msgResult = MessageBox.Show(Resources.deleteComfirm + NL + "------------------------------" + NL + latest.Text + NL + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             switch (msgResult) {
                 case DialogResult.Yes:
                     tokens.Statuses.Destroy(latest.Id);
-                    MessageBox.Show("Tweet has been deleted.", Information.Title);
+                    MessageBox.Show(Resources.deleteYes, Information.Title);
                     break;
                 case DialogResult.No:
-                    MessageBox.Show("Delete has been cancelled.", Information.Title);
+                    MessageBox.Show(Resources.deleteNo, Information.Title);
                     break;
             }
         }
@@ -201,7 +212,7 @@ namespace Mystter_SendTweet {
             var id = _tokens.UserId;
 
             if (IsDuplicate(id)) {
-                MessageBox.Show("既に登録されています。");
+                MessageBox.Show(Resources.alreadyAdded);
                 return;
             }
 
@@ -251,7 +262,7 @@ namespace Mystter_SendTweet {
                 Tokens _tokens = s.GetTokens(form.PIN);
                 SetAccountTokens(_tokens);
             } else if (settings.Twitter.Count == 0) {
-                var result = MessageBox.Show("There is no account. Please add twitter account." + NL + "If you select No, the application will exit.", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                var result = MessageBox.Show(Resources.yetAdded1 + NL + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 switch (result) {
                     case DialogResult.Yes:
                         goto START;
@@ -265,23 +276,23 @@ namespace Mystter_SendTweet {
 
         private void SendTweet(string msg) {
             if (IsEmpty(msg)) {
-                MessageBox.Show("Tweet is too short!");
+                MessageBox.Show(Resources.tooShort);
                 return;
             } else if (msg.Length > 140) {
-                MessageBox.Show("Tweet is too long!");
+                MessageBox.Show(Resources.tooLong);
                 return;
             }
             try {
                 tokens.Statuses.Update(status: msg);
             } catch (TwitterException ex) {
                 if (ex.Message.Contains("Status is a duplicate")) {
-                    MessageBox.Show("Status is a duplicate!");
+                    MessageBox.Show(Resources.duplicate);
                     return;
                 }
-                MessageBox.Show("Twitter Exception!");
+                MessageBox.Show(Resources.TwitterException);
                 throw;
             } catch {
-                MessageBox.Show("Unknown Exception!");
+                MessageBox.Show(Resources.UnknownException);
                 throw;
             }
             richTextBox1.Text = "";
@@ -300,6 +311,31 @@ namespace Mystter_SendTweet {
             }
         }
 
+        private void ApplyLocalization() {
+            sendBtn.Text = Resources.sendBtn;
+            deleteBtn.Text = Resources.deleteBtn;
+            accountsMenuTitle.Text = Resources.accountMenuTitle;
+            addAccountMenuItem.Text = Resources.addAccountMenuItem;
+            settingsMenuTitle.Text = Resources.settingsMenuTitle;
+            topMostMenuItem.Text = Resources.topMostMenuItem;
+            wordWrapMenuItem.Text = Resources.wordWrapMenuItem;
+            helpMenuTitle.Text = Resources.helpMenuTitle;
+            aboutMenuItem.Text = Resources.aboutMenuItem;
+            languageMenuItem.Text = Resources.Language;
+            languagesComboBox.Items.Clear();
+            languagesComboBox.Items.Add(Resources.English);
+            languagesComboBox.Items.Add(Resources.Japanese);
+            languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
+        }
+
+        private void ChangeLanguage(string lang) {
+            if (Localization.ChangeLanguage(lang)) {
+                settings.Language = lang;
+                SaveSettings();
+                ApplyLocalization();
+            }
+        }
+        
         #endregion
     }
 }

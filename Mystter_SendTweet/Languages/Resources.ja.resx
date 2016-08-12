@@ -117,4 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="aboutMenuItem" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="accountMenuTitle" xml:space="preserve">
+    <value>アカウント</value>
+  </data>
+  <data name="addAccountMenuItem" xml:space="preserve">
+    <value>アカウントを追加</value>
+  </data>
+  <data name="alreadyAdded" xml:space="preserve">
+    <value>このアカウントは既に追加されています。</value>
+  </data>
+  <data name="deleteBtn" xml:space="preserve">
+    <value>最新のツイートを削除</value>
+  </data>
+  <data name="deleteComfirm" xml:space="preserve">
+    <value>本当にこのツイートを削除してもよろしいですか？</value>
+  </data>
+  <data name="deleteNo" xml:space="preserve">
+    <value>削除はキャンセルされました。</value>
+  </data>
+  <data name="deleteYes" xml:space="preserve">
+    <value>ツイートは削除されました。</value>
+  </data>
+  <data name="duplicate" xml:space="preserve">
+    <value>ツイートが重複しています。</value>
+  </data>
+  <data name="helpMenuTitle" xml:space="preserve">
+    <value>ヘルプ</value>
+  </data>
+  <data name="sendBtn" xml:space="preserve">
+    <value>ツイート</value>
+  </data>
+  <data name="settingsMenuTitle" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="tooLong" xml:space="preserve">
+    <value>ツイートが長すぎます！</value>
+  </data>
+  <data name="tooShort" xml:space="preserve">
+    <value>ツイートが短すぎます！</value>
+  </data>
+  <data name="topMostMenuItem" xml:space="preserve">
+    <value>最前面に表示</value>
+  </data>
+  <data name="TwitterException" xml:space="preserve">
+    <value>ツイッターで例外が発生しました。</value>
+  </data>
+  <data name="UnknownException" xml:space="preserve">
+    <value>不明な例外が発生しました。</value>
+  </data>
+  <data name="wordWrapMenuItem" xml:space="preserve">
+    <value>右端で折り返す</value>
+  </data>
+  <data name="yetAdded2" xml:space="preserve">
+    <value>いいえを選択した場合、アプリケーションは終了されます。</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="Developer" xml:space="preserve">
+    <value>開発者</value>
+  </data>
+  <data name="DeveloperTwitter" xml:space="preserve">
+    <value>開発者のツイッター</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>英語</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="OAuth" xml:space="preserve">
+    <value>認証</value>
+  </data>
+  <data name="ProjectRepository" xml:space="preserve">
+    <value>プロジェクトリポジトリ</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="yetAdded1" xml:space="preserve">
+    <value>アカウントが追加されていません。アカウントを追加してください。</value>
+  </data>
 </root>
