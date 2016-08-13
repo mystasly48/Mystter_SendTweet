@@ -112,10 +112,11 @@ namespace Mystter_SendTweet {
         }
 
         private void ChangeSelectedItem(string item) {
-            if (item != accountsComboBox.SelectedItem.ToString()) {
+            if (item != settings.SelectedItem) {
                 accountsComboBox.SelectedItem = item;
                 settings.SelectedItem = item;
                 SaveSettings();
+                Text = item + " / " + Information.Title;
             }
         }
 
@@ -168,7 +169,8 @@ namespace Mystter_SendTweet {
                     accountsComboBox.Items.Add(account.ScreenName);
                 }
                 tokens = GetAccountTokens(settings.SelectedItem);
-                ChangeSelectedItem(settings.SelectedItem);
+                accountsComboBox.SelectedItem = settings.SelectedItem;
+                Text = settings.SelectedItem + " / " + Information.Title;
             } else {
                 AddAccount();
             }

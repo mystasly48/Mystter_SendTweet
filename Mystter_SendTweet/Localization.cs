@@ -4,9 +4,11 @@ using Mystter_SendTweet.Languages;
 
 namespace Mystter_SendTweet {
     public static class Localization {
+        public static string CurrentLanguage;
         public static bool ChangeLanguage(string lang) {
-            if (lang != Thread.CurrentThread.CurrentUICulture.Parent.ToString()) {
+            if (lang != CurrentLanguage) {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+                CurrentLanguage = lang;
                 return true;
             } else {
                 return false;
