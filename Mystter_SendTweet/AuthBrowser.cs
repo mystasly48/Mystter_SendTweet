@@ -20,9 +20,9 @@ namespace Mystter_SendTweet {
             }
         }
 
-        public bool Success { get; set; }
+        public bool Success { get; private set; }
 
-        public string PIN { get; set; }
+        public string PIN { get; private set; }
 
         public string URL { get; set; }
 

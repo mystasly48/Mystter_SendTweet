@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using CoreTweet;
@@ -17,10 +15,10 @@ namespace Mystter_SendTweet {
 
         Settings settings = new Settings();
         Tokens tokens;
-        String NL = Environment.NewLine;
+        string NewLine = Environment.NewLine;
+        string SettingsFile = Information.Title + ".xml";
 
         #region Form
-
         private void Form1_Load(object sender, EventArgs e) {
             LoadSettings();
             SettingsInit();
@@ -29,7 +27,7 @@ namespace Mystter_SendTweet {
         }
 
         private void Form1_LocationChanged(object sender, EventArgs e) {
-            if (this.WindowState != FormWindowState.Minimized) {
+            if (WindowState != FormWindowState.Minimized) {
                 ChangeLocation(Location);
             }
         }
@@ -91,11 +89,9 @@ namespace Mystter_SendTweet {
             var lang = Localization.GetLanguageParent(selected);
             ChangeLanguage(lang);
         }
-
         #endregion
 
         #region Method
-
         private void IsTweetable() {
             var text = richTextBox1.Text;
             var length = richTextBox1.TextLength;
@@ -176,8 +172,6 @@ namespace Mystter_SendTweet {
             }
         }
 
-        string SettingsFile = Information.Title + ".xml";
-
         private void SaveSettings() {
             var serializer = new XmlSerializer(typeof(Settings));
             var writer = new StreamWriter(SettingsFile, false, Encoding.UTF8);
@@ -211,7 +205,7 @@ namespace Mystter_SendTweet {
 
         private void DeleteLatestTweet() {
             var latest = tokens.Account.UpdateProfile().Status;
-            var msgResult = MessageBox.Show(Resources.deleteComfirm + NL + "------------------------------" + NL + latest.Text + NL + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var msgResult = MessageBox.Show(Resources.deleteComfirm + NewLine + "------------------------------" + NewLine + latest.Text + NewLine + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             switch (msgResult) {
                 case DialogResult.Yes:
                     tokens.Statuses.Destroy(latest.Id);
@@ -280,7 +274,7 @@ namespace Mystter_SendTweet {
                 var _tokens = s.GetTokens(form.PIN);
                 SetAccountTokens(_tokens);
             } else if (settings.Twitter.Count == 0) {
-                var result = MessageBox.Show(Resources.yetAdded1 + NL + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 switch (result) {
                     case DialogResult.Yes:
                         goto START;
