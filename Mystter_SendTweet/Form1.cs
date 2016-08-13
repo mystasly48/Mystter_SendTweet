@@ -112,29 +112,45 @@ namespace Mystter_SendTweet {
         }
 
         private void ChangeSelectedItem(string item) {
-            accountsComboBox.SelectedItem = item;
-            settings.SelectedItem = item;
-            SaveSettings();
+            if (item != settings.SelectedItem) {
+                accountsComboBox.SelectedItem = item;
+                settings.SelectedItem = item;
+                SaveSettings();
+            }
         }
 
         private void ChangeTopMost(bool top) {
-            TopMost = top;
-            topMostMenuItem.Checked = top;
-            settings.TopMost = top;
-            SaveSettings();
+            if (top != settings.TopMost) {
+                TopMost = top;
+                topMostMenuItem.Checked = top;
+                settings.TopMost = top;
+                SaveSettings();
+            }
         }
 
         private void ChangeWordWrap(bool wrap) {
-            richTextBox1.WordWrap = wrap;
-            wordWrapMenuItem.Checked = wrap;
-            settings.WordWrap = wrap;
-            SaveSettings();
+            if (wrap != settings.WordWrap) {
+                richTextBox1.WordWrap = wrap;
+                wordWrapMenuItem.Checked = wrap;
+                settings.WordWrap = wrap;
+                SaveSettings();
+            }
         }
 
         private void ChangeLocation(Point location) {
-            Location = location;
-            settings.Location = location;
-            SaveSettings();
+            if (location != settings.Location) {
+                Location = location;
+                settings.Location = location;
+                SaveSettings();
+            }
+        }
+
+        private void ChangeLanguage(string lang) {
+            if (Localization.ChangeLanguage(lang)) {
+                settings.Language = lang;
+                SaveSettings();
+                ApplyLocalization();
+            }
         }
 
         private void SettingsInit() {
@@ -327,15 +343,6 @@ namespace Mystter_SendTweet {
             languagesComboBox.Items.Add(Resources.Japanese);
             languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
         }
-
-        private void ChangeLanguage(string lang) {
-            if (Localization.ChangeLanguage(lang)) {
-                settings.Language = lang;
-                SaveSettings();
-                ApplyLocalization();
-            }
-        }
-        
         #endregion
     }
 }
