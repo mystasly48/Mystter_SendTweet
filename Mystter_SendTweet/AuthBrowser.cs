@@ -12,11 +12,11 @@ namespace Mystter_SendTweet {
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
             if (webBrowser1.Url.OriginalString == "https://api.twitter.com/oauth/authorize") {
-                Regex r = new Regex(@"<CODE>(\d+)</CODE>");
-                Match m = r.Match(webBrowser1.DocumentText);
+                var r = new Regex(@"<CODE>(\d+)</CODE>");
+                var m = r.Match(webBrowser1.DocumentText);
                 PIN = m.Result("${1}");
                 Success = true;
-                this.Close();
+                Close();
             }
         }
 
@@ -27,7 +27,7 @@ namespace Mystter_SendTweet {
         public string URL { get; set; }
 
         private void AuthBrowser_Load(object sender, EventArgs e) {
-            this.Text = Information.TitleSimple + " - " + Resources.OAuth;
+            Text = Information.TitleSimple + " - " + Resources.OAuth;
             webBrowser1.Navigate(new Uri(URL));
         }
 

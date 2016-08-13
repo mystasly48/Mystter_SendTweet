@@ -81,7 +81,7 @@ namespace Mystter_SendTweet {
 
         // About
         private void aboutMenuItem_Click(object sender, EventArgs e) {
-            AboutForm form = new AboutForm();
+            var form = new AboutForm();
             form.ShowDialog();
         }
 
@@ -179,16 +179,16 @@ namespace Mystter_SendTweet {
         string SettingsFile = Information.Title + ".xml";
 
         private void SaveSettings() {
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-            StreamWriter writer = new StreamWriter(SettingsFile, false, Encoding.UTF8);
+            var serializer = new XmlSerializer(typeof(Settings));
+            var writer = new StreamWriter(SettingsFile, false, Encoding.UTF8);
             serializer.Serialize(writer, settings);
             writer.Close();
         }
 
         private void LoadSettings() {
             if (File.Exists(SettingsFile)) {
-                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-                StreamReader reader = new StreamReader(SettingsFile);
+                var serializer = new XmlSerializer(typeof(Settings));
+                var reader = new StreamReader(SettingsFile);
                 settings = (Settings)serializer.Deserialize(reader);
                 reader.Close();
             } else {
@@ -252,7 +252,7 @@ namespace Mystter_SendTweet {
             for (int i = 0; i < settings.Twitter.Count; i++) {
                 account = settings.Twitter[i];
                 if (account.ScreenName.Equals(screen)) {
-                    Tokens _tokens = Tokens.Create(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret, account.AccessToken, account.AccessSecret);
+                    var _tokens = Tokens.Create(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret, account.AccessToken, account.AccessSecret);
                     return _tokens;
                 }
             }
@@ -272,12 +272,12 @@ namespace Mystter_SendTweet {
 
         private void AddAccount() {
             START:
-            AuthBrowser form = new AuthBrowser();
+            var form = new AuthBrowser();
             var s = OAuth.Authorize(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret);
             form.URL = s.AuthorizeUri.AbsoluteUri;
             form.ShowDialog();
             if (form.Success) {
-                Tokens _tokens = s.GetTokens(form.PIN);
+                var _tokens = s.GetTokens(form.PIN);
                 SetAccountTokens(_tokens);
             } else if (settings.Twitter.Count == 0) {
                 var result = MessageBox.Show(Resources.yetAdded1 + NL + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
