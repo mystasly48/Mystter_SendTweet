@@ -112,7 +112,7 @@ namespace Mystter_SendTweet {
         }
 
         private void ChangeSelectedItem(string item) {
-            if (item != settings.SelectedItem) {
+            if (item != accountsComboBox.SelectedItem.ToString()) {
                 accountsComboBox.SelectedItem = item;
                 settings.SelectedItem = item;
                 SaveSettings();
@@ -120,7 +120,7 @@ namespace Mystter_SendTweet {
         }
 
         private void ChangeTopMost(bool top) {
-            if (top != settings.TopMost) {
+            if (top != TopMost) {
                 TopMost = top;
                 topMostMenuItem.Checked = top;
                 settings.TopMost = top;
@@ -129,7 +129,7 @@ namespace Mystter_SendTweet {
         }
 
         private void ChangeWordWrap(bool wrap) {
-            if (wrap != settings.WordWrap) {
+            if (wrap != richTextBox1.WordWrap) {
                 richTextBox1.WordWrap = wrap;
                 wordWrapMenuItem.Checked = wrap;
                 settings.WordWrap = wrap;
@@ -138,7 +138,7 @@ namespace Mystter_SendTweet {
         }
 
         private void ChangeLocation(Point location) {
-            if (location != settings.Location) {
+            if (location != Location) {
                 Location = location;
                 settings.Location = location;
                 SaveSettings();
@@ -167,8 +167,8 @@ namespace Mystter_SendTweet {
                     account = settings.Twitter[i];
                     accountsComboBox.Items.Add(account.ScreenName);
                 }
-                accountsComboBox.SelectedItem = settings.SelectedItem;
                 tokens = GetAccountTokens(settings.SelectedItem);
+                ChangeSelectedItem(settings.SelectedItem);
             } else {
                 AddAccount();
             }
