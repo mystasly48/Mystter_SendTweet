@@ -11,7 +11,7 @@ namespace Mystter_SendTweet {
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
-            if (webBrowser1.Url.OriginalString == "https://api.twitter.com/oauth/authorize") {
+            if (webBrowser1.Url.OriginalString == "https://api.twitter.com/oauth/authorize" || webBrowser1.Url.OriginalString == "https://twitter.com/oauth/authorize") {
                 var r = new Regex(@"<CODE>(\d+)</CODE>");
                 var m = r.Match(webBrowser1.DocumentText);
                 PIN = m.Result("${1}");
