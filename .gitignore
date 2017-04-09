@@ -253,4 +253,4 @@ paket-files/
 *.sln.iml
 
 # Option
-Mystter_SendTweet/SecretKeys.cs
+/Mystter_SendTweet/SecretKeys.cs
