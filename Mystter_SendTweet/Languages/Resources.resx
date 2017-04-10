@@ -204,4 +204,7 @@
   <data name="yetAdded2" xml:space="preserve">
     <value>If you select No, the application will exit.</value>
   </data>
+  <data name="networkNotAvailable" xml:space="preserve">
+    <value>An internet is not available.</value>
+  </data>
 </root>

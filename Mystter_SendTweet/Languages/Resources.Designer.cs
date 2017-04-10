@@ -205,6 +205,15 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   An internet is not available. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string networkNotAvailable {
+            get {
+                return ResourceManager.GetString("networkNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   OAuth に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string OAuth {

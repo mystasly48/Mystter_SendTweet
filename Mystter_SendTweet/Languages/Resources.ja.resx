@@ -204,4 +204,7 @@
   <data name="yetAdded1" xml:space="preserve">
     <value>アカウントが追加されていません。アカウントを追加してください。</value>
   </data>
+  <data name="networkNotAvailable" xml:space="preserve">
+    <value>インターネットに接続されていません。</value>
+  </data>
 </root>
