@@ -19,7 +19,7 @@ namespace Mystter_SendTweet.Languages {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -97,7 +97,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   This account has already been added. に類似しているローカライズされた文字列を検索します。
+        ///   This account has already added. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string alreadyAdded {
             get {
@@ -160,7 +160,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   Status is a duplicate! に類似しているローカライズされた文字列を検索します。
+        ///   Status is a duplicate. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string duplicate {
             get {
@@ -250,7 +250,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   Tweet is too long! に類似しているローカライズされた文字列を検索します。
+        ///   Tweet is too long. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string tooLong {
             get {
@@ -259,7 +259,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   Tweet is too short! に類似しているローカライズされた文字列を検索します。
+        ///   Tweet is too short. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string tooShort {
             get {
@@ -313,7 +313,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   There is no account. Please add twitter account. に類似しているローカライズされた文字列を検索します。
+        ///   There is no account. Please add a twitter account. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string yetAdded1 {
             get {
@@ -322,7 +322,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   If you select No, the application will exit. に類似しているローカライズされた文字列を検索します。
+        ///   This application will exit if you select No. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string yetAdded2 {
             get {

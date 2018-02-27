@@ -130,7 +130,7 @@
     <value>Add account</value>
   </data>
   <data name="alreadyAdded" xml:space="preserve">
-    <value>This account has already been added.</value>
+    <value>This account has already added.</value>
   </data>
   <data name="Developer" xml:space="preserve">
     <value>Developer</value>
@@ -151,7 +151,7 @@
     <value>Tweet has been deleted.</value>
   </data>
   <data name="duplicate" xml:space="preserve">
-    <value>Status is a duplicate!</value>
+    <value>Status is a duplicate.</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -178,10 +178,10 @@
     <value>Settings</value>
   </data>
   <data name="tooLong" xml:space="preserve">
-    <value>Tweet is too long!</value>
+    <value>Tweet is too long.</value>
   </data>
   <data name="tooShort" xml:space="preserve">
-    <value>Tweet is too short!</value>
+    <value>Tweet is too short.</value>
   </data>
   <data name="topMostMenuItem" xml:space="preserve">
     <value>Top Most</value>
@@ -199,10 +199,10 @@
     <value>Word Wrap</value>
   </data>
   <data name="yetAdded1" xml:space="preserve">
-    <value>There is no account. Please add twitter account.</value>
+    <value>There is no account. Please add a twitter account.</value>
   </data>
   <data name="yetAdded2" xml:space="preserve">
-    <value>If you select No, the application will exit.</value>
+    <value>This application will exit if you select No.</value>
   </data>
   <data name="networkNotAvailable" xml:space="preserve">
     <value>An internet is not available.</value>

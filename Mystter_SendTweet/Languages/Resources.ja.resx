@@ -154,10 +154,10 @@
     <value>設定</value>
   </data>
   <data name="tooLong" xml:space="preserve">
-    <value>ツイートが長すぎます！</value>
+    <value>ツイートが長すぎます。</value>
   </data>
   <data name="tooShort" xml:space="preserve">
-    <value>ツイートが短すぎます！</value>
+    <value>ツイートが短すぎます。</value>
   </data>
   <data name="topMostMenuItem" xml:space="preserve">
     <value>最前面に表示</value>
@@ -172,7 +172,7 @@
     <value>右端で折り返す</value>
   </data>
   <data name="yetAdded2" xml:space="preserve">
-    <value>いいえを選択した場合、アプリケーションは終了されます。</value>
+    <value>いいえを選択するとアプリケーションは終了されます。</value>
   </data>
   <data name="About" xml:space="preserve">
     <value>情報</value>
