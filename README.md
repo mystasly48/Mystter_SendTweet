@@ -14,3 +14,10 @@
 
 * Send image tweet.
 * Send video tweet.
+
+## Translation
+
+This application supports to Japanese and English.  
+We welcome your translation if you want to translate this application to your language.  
+So you create a new issue with the translate data such as raw text, text file or google spreadsheet etc... and we will add the language after a little checking with Google Translate!  
+Thank you for your cooperation!
