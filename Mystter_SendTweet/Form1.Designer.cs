@@ -49,12 +49,14 @@
       // 
       // richTextBox1
       // 
+      this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.richTextBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
-      this.richTextBox1.Location = new System.Drawing.Point(20, 40);
-      this.richTextBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+      this.richTextBox1.Location = new System.Drawing.Point(12, 27);
       this.richTextBox1.Name = "richTextBox1";
       this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-      this.richTextBox1.Size = new System.Drawing.Size(646, 271);
+      this.richTextBox1.Size = new System.Drawing.Size(389, 182);
       this.richTextBox1.TabIndex = 1;
       this.richTextBox1.Text = "";
       this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -62,11 +64,11 @@
       // 
       // sendBtn
       // 
+      this.sendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.sendBtn.Enabled = false;
-      this.sendBtn.Location = new System.Drawing.Point(543, 322);
-      this.sendBtn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+      this.sendBtn.Location = new System.Drawing.Point(326, 215);
       this.sendBtn.Name = "sendBtn";
-      this.sendBtn.Size = new System.Drawing.Size(125, 34);
+      this.sendBtn.Size = new System.Drawing.Size(75, 23);
       this.sendBtn.TabIndex = 2;
       this.sendBtn.Text = "Send";
       this.sendBtn.UseVisualStyleBackColor = true;
@@ -74,44 +76,45 @@
       // 
       // lengthLabel1
       // 
+      this.lengthLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.lengthLabel1.AutoSize = true;
       this.lengthLabel1.BackColor = System.Drawing.SystemColors.Control;
       this.lengthLabel1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel1.Location = new System.Drawing.Point(320, 328);
-      this.lengthLabel1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.lengthLabel1.Location = new System.Drawing.Point(245, 219);
       this.lengthLabel1.Name = "lengthLabel1";
-      this.lengthLabel1.Size = new System.Drawing.Size(122, 34);
+      this.lengthLabel1.Size = new System.Drawing.Size(19, 19);
       this.lengthLabel1.TabIndex = 3;
       this.lengthLabel1.Text = "0";
       this.lengthLabel1.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // lengthLabel2
       // 
+      this.lengthLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel2.AutoSize = true;
       this.lengthLabel2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel2.Location = new System.Drawing.Point(438, 328);
-      this.lengthLabel2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.lengthLabel2.Location = new System.Drawing.Point(263, 219);
       this.lengthLabel2.Name = "lengthLabel2";
-      this.lengthLabel2.Size = new System.Drawing.Size(28, 29);
+      this.lengthLabel2.Size = new System.Drawing.Size(19, 19);
       this.lengthLabel2.TabIndex = 4;
       this.lengthLabel2.Text = "/";
       // 
       // lengthLabel3
       // 
+      this.lengthLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel3.AutoSize = true;
       this.lengthLabel3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel3.Location = new System.Drawing.Point(468, 328);
-      this.lengthLabel3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.lengthLabel3.Location = new System.Drawing.Point(281, 219);
       this.lengthLabel3.Name = "lengthLabel3";
-      this.lengthLabel3.Size = new System.Drawing.Size(58, 29);
+      this.lengthLabel3.Size = new System.Drawing.Size(39, 19);
       this.lengthLabel3.TabIndex = 5;
       this.lengthLabel3.Text = "140";
       // 
       // deleteBtn
       // 
-      this.deleteBtn.Location = new System.Drawing.Point(20, 322);
-      this.deleteBtn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+      this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.deleteBtn.Location = new System.Drawing.Point(12, 215);
       this.deleteBtn.Name = "deleteBtn";
-      this.deleteBtn.Size = new System.Drawing.Size(205, 34);
+      this.deleteBtn.Size = new System.Drawing.Size(123, 23);
       this.deleteBtn.TabIndex = 7;
       this.deleteBtn.Text = "Delete Last Tweet";
       this.deleteBtn.UseVisualStyleBackColor = true;
@@ -122,10 +125,9 @@
       this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel1});
-      this.statusStrip1.Location = new System.Drawing.Point(0, 382);
+      this.statusStrip1.Location = new System.Drawing.Point(0, 247);
       this.statusStrip1.Name = "statusStrip1";
-      this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 23, 0);
-      this.statusStrip1.Size = new System.Drawing.Size(688, 22);
+      this.statusStrip1.Size = new System.Drawing.Size(413, 22);
       this.statusStrip1.TabIndex = 8;
       this.statusStrip1.Text = "statusStrip1";
       // 
@@ -143,8 +145,7 @@
             this.helpMenuTitle});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
-      this.menuStrip1.Size = new System.Drawing.Size(688, 35);
+      this.menuStrip1.Size = new System.Drawing.Size(413, 24);
       this.menuStrip1.TabIndex = 9;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -154,13 +155,13 @@
             this.addAccountMenuItem,
             this.accountsComboBox});
       this.accountsMenuTitle.Name = "accountsMenuTitle";
-      this.accountsMenuTitle.Size = new System.Drawing.Size(97, 29);
+      this.accountsMenuTitle.Size = new System.Drawing.Size(69, 20);
       this.accountsMenuTitle.Text = "Accounts";
       // 
       // addAccountMenuItem
       // 
       this.addAccountMenuItem.Name = "addAccountMenuItem";
-      this.addAccountMenuItem.Size = new System.Drawing.Size(210, 30);
+      this.addAccountMenuItem.Size = new System.Drawing.Size(181, 22);
       this.addAccountMenuItem.Text = "Add account";
       this.addAccountMenuItem.Click += new System.EventHandler(this.addAccountMenuItem_Click);
       // 
@@ -168,7 +169,7 @@
       // 
       this.accountsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.accountsComboBox.Name = "accountsComboBox";
-      this.accountsComboBox.Size = new System.Drawing.Size(121, 33);
+      this.accountsComboBox.Size = new System.Drawing.Size(121, 23);
       this.accountsComboBox.SelectedIndexChanged += new System.EventHandler(this.accountsComboBox_SelectedIndexChanged);
       // 
       // settingsMenuTitle
@@ -178,14 +179,14 @@
             this.wordWrapMenuItem,
             this.languageMenuItem});
       this.settingsMenuTitle.Name = "settingsMenuTitle";
-      this.settingsMenuTitle.Size = new System.Drawing.Size(88, 29);
+      this.settingsMenuTitle.Size = new System.Drawing.Size(61, 20);
       this.settingsMenuTitle.Text = "Settings";
       // 
       // topMostMenuItem
       // 
       this.topMostMenuItem.CheckOnClick = true;
       this.topMostMenuItem.Name = "topMostMenuItem";
-      this.topMostMenuItem.Size = new System.Drawing.Size(187, 30);
+      this.topMostMenuItem.Size = new System.Drawing.Size(134, 22);
       this.topMostMenuItem.Text = "Top Most";
       this.topMostMenuItem.Click += new System.EventHandler(this.topMostMenuItem_Click);
       // 
@@ -193,7 +194,7 @@
       // 
       this.wordWrapMenuItem.CheckOnClick = true;
       this.wordWrapMenuItem.Name = "wordWrapMenuItem";
-      this.wordWrapMenuItem.Size = new System.Drawing.Size(187, 30);
+      this.wordWrapMenuItem.Size = new System.Drawing.Size(134, 22);
       this.wordWrapMenuItem.Text = "Word Wrap";
       this.wordWrapMenuItem.Click += new System.EventHandler(this.wordWrapMenuItem_Click);
       // 
@@ -202,14 +203,14 @@
       this.languageMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languagesComboBox});
       this.languageMenuItem.Name = "languageMenuItem";
-      this.languageMenuItem.Size = new System.Drawing.Size(187, 30);
+      this.languageMenuItem.Size = new System.Drawing.Size(134, 22);
       this.languageMenuItem.Text = "Language";
       // 
       // languagesComboBox
       // 
       this.languagesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.languagesComboBox.Name = "languagesComboBox";
-      this.languagesComboBox.Size = new System.Drawing.Size(121, 33);
+      this.languagesComboBox.Size = new System.Drawing.Size(121, 23);
       this.languagesComboBox.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
       // 
       // helpMenuTitle
@@ -217,22 +218,22 @@
       this.helpMenuTitle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutMenuItem});
       this.helpMenuTitle.Name = "helpMenuTitle";
-      this.helpMenuTitle.Size = new System.Drawing.Size(61, 29);
+      this.helpMenuTitle.Size = new System.Drawing.Size(44, 20);
       this.helpMenuTitle.Text = "Help";
       // 
       // aboutMenuItem
       // 
       this.aboutMenuItem.Name = "aboutMenuItem";
-      this.aboutMenuItem.Size = new System.Drawing.Size(146, 30);
+      this.aboutMenuItem.Size = new System.Drawing.Size(107, 22);
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
       // 
       // Form1
       // 
       this.AcceptButton = this.sendBtn;
-      this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(688, 404);
+      this.ClientSize = new System.Drawing.Size(413, 269);
       this.Controls.Add(this.statusStrip1);
       this.Controls.Add(this.menuStrip1);
       this.Controls.Add(this.deleteBtn);
@@ -244,7 +245,6 @@
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.KeyPreview = true;
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
       this.MaximizeBox = false;
       this.Name = "Form1";
       this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
