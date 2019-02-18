@@ -41,6 +41,7 @@ namespace Mystter_SendTweet {
 
     private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
       if (e.Control && e.KeyCode == Keys.Enter) {
+        e.SuppressKeyPress = true;
         sendBtn.PerformClick();
       }
     }
