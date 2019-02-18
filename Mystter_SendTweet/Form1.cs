@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using CoreTweet;
 using Mystter_SendTweet.Languages;
 using System.Net.NetworkInformation;
+using System.Diagnostics;
 
 namespace Mystter_SendTweet {
   public partial class Form1 : Form {
@@ -90,6 +91,11 @@ namespace Mystter_SendTweet {
       var selected = languagesComboBox.SelectedIndex;
       var lang = Localization.GetLanguageParent(selected);
       ChangeLanguage(lang);
+    }
+
+    // Show Profile
+    private void showProfileMenuItem_Click(object sender, EventArgs e) {
+      Process.Start("https://twitter.com/" + settings.SelectedItem);
     }
     #endregion
 
