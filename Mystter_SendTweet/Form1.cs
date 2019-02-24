@@ -113,6 +113,7 @@ namespace Mystter_SendTweet {
       deleteBtn.Text = Resources.deleteBtn;
       accountsMenuTitle.Text = Resources.accountMenuTitle;
       addAccountMenuItem.Text = Resources.addAccountMenuItem;
+      showProfileMenuItem.Text = Resources.showProfileMenuItem;
       settingsMenuTitle.Text = Resources.settingsMenuTitle;
       topMostMenuItem.Text = Resources.topMostMenuItem;
       wordWrapMenuItem.Text = Resources.wordWrapMenuItem;

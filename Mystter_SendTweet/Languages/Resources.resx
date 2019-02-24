@@ -207,4 +207,7 @@
   <data name="networkNotAvailable" xml:space="preserve">
     <value>An internet is not available.</value>
   </data>
+  <data name="showProfileMenuItem" xml:space="preserve">
+    <value>Show profile</value>
+  </data>
 </root>

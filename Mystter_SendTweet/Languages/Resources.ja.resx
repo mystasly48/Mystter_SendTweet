@@ -207,4 +207,7 @@
   <data name="networkNotAvailable" xml:space="preserve">
     <value>インターネットに接続されていません。</value>
   </data>
+  <data name="showProfileMenuItem" xml:space="preserve">
+    <value>プロフィールを表示</value>
+  </data>
 </root>

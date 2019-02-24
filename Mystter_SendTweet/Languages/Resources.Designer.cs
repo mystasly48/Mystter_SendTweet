@@ -250,6 +250,15 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Show profile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string showProfileMenuItem {
+            get {
+                return ResourceManager.GetString("showProfileMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Tweet is too long. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string tooLong {
