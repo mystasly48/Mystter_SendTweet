@@ -29,13 +29,14 @@ namespace Mystter_SendTweet {
       ActiveControl = richTextBox1;
     }
 
-    private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+    private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
       SaveSettings();
     }
 
     private void Form1_LocationChanged(object sender, EventArgs e) {
       if (WindowState != FormWindowState.Minimized) {
         settings.Location = Location;
+        Console.WriteLine(Location);
       }
     }
 
@@ -153,8 +154,12 @@ namespace Mystter_SendTweet {
 
     private void ChangeLocation(Point location) {
       if (location != Location) {
-        Location = location;
-        settings.Location = location;
+        if (IsAccessibleForm(location, Size)) {
+          Location = location;
+        } else {
+          Location = new Point(200, 100);
+        }
+        settings.Location = Location;
       }
     }
 
@@ -183,6 +188,15 @@ namespace Mystter_SendTweet {
       ChangeTopMost(settings.TopMost);
       ChangeWordWrap(settings.WordWrap);
       ChangeLocation(settings.Location);
+    }
+
+    private bool IsAccessibleForm(Point location, Size size) {
+      foreach (Screen sc in Screen.AllScreens) {
+        if (sc.WorkingArea.Contains(new Rectangle(location, size))) {
+          return true;
+        }
+      }
+      return false;
     }
 
     #endregion

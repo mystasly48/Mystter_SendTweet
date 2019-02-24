@@ -35,6 +35,7 @@
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.accountsMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
       this.addAccountMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.showProfileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.accountsComboBox = new System.Windows.Forms.ToolStripComboBox();
       this.settingsMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
       this.topMostMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +44,6 @@
       this.languagesComboBox = new System.Windows.Forms.ToolStripComboBox();
       this.helpMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.showProfileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.statusStrip1.SuspendLayout();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -166,6 +166,13 @@
       this.addAccountMenuItem.Text = "Add account";
       this.addAccountMenuItem.Click += new System.EventHandler(this.addAccountMenuItem_Click);
       // 
+      // showProfileMenuItem
+      // 
+      this.showProfileMenuItem.Name = "showProfileMenuItem";
+      this.showProfileMenuItem.Size = new System.Drawing.Size(181, 22);
+      this.showProfileMenuItem.Text = "Show profile";
+      this.showProfileMenuItem.Click += new System.EventHandler(this.showProfileMenuItem_Click);
+      // 
       // accountsComboBox
       // 
       this.accountsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -229,13 +236,6 @@
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
       // 
-      // showProfileMenuItem
-      // 
-      this.showProfileMenuItem.Name = "showProfileMenuItem";
-      this.showProfileMenuItem.Size = new System.Drawing.Size(181, 22);
-      this.showProfileMenuItem.Text = "Show profile";
-      this.showProfileMenuItem.Click += new System.EventHandler(this.showProfileMenuItem_Click);
-      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -256,6 +256,7 @@
       this.Name = "Form1";
       this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
       this.Text = "Mystter - Send Tweet";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
       this.Load += new System.EventHandler(this.Form1_Load);
       this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
       this.statusStrip1.ResumeLayout(false);
