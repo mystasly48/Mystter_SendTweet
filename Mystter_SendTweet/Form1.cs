@@ -20,7 +20,7 @@ namespace Mystter_SendTweet {
     string NewLine = Environment.NewLine;
     string SettingsFile = Information.Title + ".xml";
 
-    #region Form
+    #region Form Controls
     private void Form1_Load(object sender, EventArgs e) {
       LoadSettings();
       SettingsInit();
@@ -28,9 +28,13 @@ namespace Mystter_SendTweet {
       ActiveControl = richTextBox1;
     }
 
+    private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+      SaveSettings();
+    }
+
     private void Form1_LocationChanged(object sender, EventArgs e) {
       if (WindowState != FormWindowState.Minimized) {
-        ChangeLocation(Location);
+        settings.Location = Location;
       }
     }
 
@@ -146,7 +150,6 @@ namespace Mystter_SendTweet {
       if (location != Location) {
         Location = location;
         settings.Location = location;
-        SaveSettings();
       }
     }
 
@@ -161,8 +164,8 @@ namespace Mystter_SendTweet {
     private void SettingsInit() {
       ChangeLanguage(settings.Language);
       ChangeTopMost(settings.TopMost);
-      ChangeLocation(settings.Location);
       ChangeWordWrap(settings.WordWrap);
+      ChangeLocation(settings.Location);
     }
 
     private void TwitterInit() {
