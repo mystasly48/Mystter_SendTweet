@@ -20,7 +20,8 @@ namespace Mystter_SendTweet {
     string NewLine = Environment.NewLine;
     string SettingsFile = Information.Title + ".xml";
 
-    #region Form Controls
+    #region Controls
+
     private void Form1_Load(object sender, EventArgs e) {
       LoadSettings();
       SettingsInit();
@@ -101,22 +102,26 @@ namespace Mystter_SendTweet {
     private void showProfileMenuItem_Click(object sender, EventArgs e) {
       Process.Start("https://twitter.com/" + settings.SelectedItem);
     }
+
     #endregion
 
-    #region Method
-    private void IsTweetable() {
-      var text = richTextBox1.Text;
-      var length = richTextBox1.TextLength;
-      lengthLabel1.Text = length.ToString();
-      if (length > 140) {
-        DisabledButton(sendBtn);
-        lengthLabel1.ForeColor = Color.Red;
-      } else if (length == 0 || IsEmpty(text)) {
-        DisabledButton(sendBtn);
-      } else {
-        EnabledButton(sendBtn);
-        lengthLabel1.ForeColor = SystemColors.WindowText;
-      }
+    #region Control Methods
+
+    private void ApplyLocalization() {
+      sendBtn.Text = Resources.sendBtn;
+      deleteBtn.Text = Resources.deleteBtn;
+      accountsMenuTitle.Text = Resources.accountMenuTitle;
+      addAccountMenuItem.Text = Resources.addAccountMenuItem;
+      settingsMenuTitle.Text = Resources.settingsMenuTitle;
+      topMostMenuItem.Text = Resources.topMostMenuItem;
+      wordWrapMenuItem.Text = Resources.wordWrapMenuItem;
+      helpMenuTitle.Text = Resources.helpMenuTitle;
+      aboutMenuItem.Text = Resources.aboutMenuItem;
+      languageMenuItem.Text = Resources.Language;
+      languagesComboBox.Items.Clear();
+      languagesComboBox.Items.Add(Resources.English);
+      languagesComboBox.Items.Add(Resources.Japanese);
+      languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
     }
 
     private void ChangeSelectedItem(string item) {
@@ -161,6 +166,18 @@ namespace Mystter_SendTweet {
       }
     }
 
+    private void DisabledButton(Button btn) {
+      btn.Enabled = false;
+    }
+
+    private void EnabledButton(Button btn) {
+      btn.Enabled = true;
+    }
+
+    private void SetStatusMessage(string msg) {
+      statusLabel1.Text = msg;
+    }
+
     private void SettingsInit() {
       ChangeLanguage(settings.Language);
       ChangeTopMost(settings.TopMost);
@@ -168,20 +185,9 @@ namespace Mystter_SendTweet {
       ChangeLocation(settings.Location);
     }
 
-    private void TwitterInit() {
-      if (settings.Twitter.Count > 0) {
-        for (int i = 0; i < settings.Twitter.Count; i++) {
-          var account = new Account();
-          account = settings.Twitter[i];
-          accountsComboBox.Items.Add(account.ScreenName);
-        }
-        tokens = GetAccountTokens(settings.SelectedItem);
-        accountsComboBox.SelectedItem = settings.SelectedItem;
-        Text = settings.SelectedItem + " / " + Information.Title;
-      } else {
-        AddAccount();
-      }
-    }
+    #endregion
+
+    #region Methods
 
     private void SaveSettings() {
       var serializer = new XmlSerializer(typeof(Settings));
@@ -202,16 +208,41 @@ namespace Mystter_SendTweet {
       }
     }
 
-    private void DisabledButton(Button btn) {
-      btn.Enabled = false;
+    private void TwitterInit() {
+      if (settings.Twitter.Count > 0) {
+        for (int i = 0; i < settings.Twitter.Count; i++) {
+          var account = new Account();
+          account = settings.Twitter[i];
+          accountsComboBox.Items.Add(account.ScreenName);
+        }
+        tokens = GetAccountTokens(settings.SelectedItem);
+        accountsComboBox.SelectedItem = settings.SelectedItem;
+        Text = settings.SelectedItem + " / " + Information.Title;
+      } else {
+        AddAccount();
+      }
     }
 
-    private void EnabledButton(Button btn) {
-      btn.Enabled = true;
-    }
-
-    private void SetStatusMessage(string msg) {
-      statusLabel1.Text = msg;
+    private void AddAccount() {
+      START:
+      var form = new AuthBrowser();
+      var s = OAuth.Authorize(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret);
+      form.URL = s.AuthorizeUri.AbsoluteUri;
+      form.ShowDialog();
+      if (form.Success) {
+        var _tokens = s.GetTokens(form.PIN);
+        SetAccountTokens(_tokens);
+      } else if (settings.Twitter.Count == 0) {
+        var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        switch (result) {
+          case DialogResult.Yes:
+            goto START;
+          case DialogResult.No:
+            Environment.Exit(0);
+            break;
+        }
+      }
+      form.Dispose();
     }
 
     private void DeleteLatestTweet() {
@@ -275,28 +306,6 @@ namespace Mystter_SendTweet {
       return false;
     }
 
-    private void AddAccount() {
-      START:
-      var form = new AuthBrowser();
-      var s = OAuth.Authorize(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret);
-      form.URL = s.AuthorizeUri.AbsoluteUri;
-      form.ShowDialog();
-      if (form.Success) {
-        var _tokens = s.GetTokens(form.PIN);
-        SetAccountTokens(_tokens);
-      } else if (settings.Twitter.Count == 0) {
-        var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-        switch (result) {
-          case DialogResult.Yes:
-            goto START;
-          case DialogResult.No:
-            Environment.Exit(0);
-            break;
-        }
-      }
-      form.Dispose();
-    }
-
     private void SendTweet(string msg) {
       if (!IsNetworkAvailable()) {
         MessageBox.Show(Resources.networkNotAvailable);
@@ -338,26 +347,25 @@ namespace Mystter_SendTweet {
       }
     }
 
-    private void ApplyLocalization() {
-      sendBtn.Text = Resources.sendBtn;
-      deleteBtn.Text = Resources.deleteBtn;
-      accountsMenuTitle.Text = Resources.accountMenuTitle;
-      addAccountMenuItem.Text = Resources.addAccountMenuItem;
-      settingsMenuTitle.Text = Resources.settingsMenuTitle;
-      topMostMenuItem.Text = Resources.topMostMenuItem;
-      wordWrapMenuItem.Text = Resources.wordWrapMenuItem;
-      helpMenuTitle.Text = Resources.helpMenuTitle;
-      aboutMenuItem.Text = Resources.aboutMenuItem;
-      languageMenuItem.Text = Resources.Language;
-      languagesComboBox.Items.Clear();
-      languagesComboBox.Items.Add(Resources.English);
-      languagesComboBox.Items.Add(Resources.Japanese);
-      languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
-    }
-
     private bool IsNetworkAvailable() {
       return NetworkInterface.GetIsNetworkAvailable();
     }
+
+    private void IsTweetable() {
+      var text = richTextBox1.Text;
+      var length = richTextBox1.TextLength;
+      lengthLabel1.Text = length.ToString();
+      if (length > 140) {
+        DisabledButton(sendBtn);
+        lengthLabel1.ForeColor = Color.Red;
+      } else if (length == 0 || IsEmpty(text)) {
+        DisabledButton(sendBtn);
+      } else {
+        EnabledButton(sendBtn);
+        lengthLabel1.ForeColor = SystemColors.WindowText;
+      }
+    }
+
     #endregion
   }
 }
