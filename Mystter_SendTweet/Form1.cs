@@ -185,6 +185,7 @@ namespace Mystter_SendTweet {
     }
 
     private void SettingsInit() {
+      richTextBox1.Font = new Font("Segoe UI", 12);
       ChangeLanguage(settings.Language);
       ChangeTopMost(settings.TopMost);
       ChangeWordWrap(settings.WordWrap);
