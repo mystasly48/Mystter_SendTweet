@@ -66,8 +66,8 @@
       this.richTextBox1.Size = new System.Drawing.Size(389, 182);
       this.richTextBox1.TabIndex = 1;
       this.richTextBox1.Text = "";
-      this.richTextBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.richTextBox1_DragDrop);
-      this.richTextBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.richTextBox1_DragEnter);
+      this.richTextBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.ImagesDragDrop);
+      this.richTextBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.ImagesDragEnter);
       this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
       this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
       // 
@@ -260,8 +260,8 @@
       this.imageList.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.imageList_ItemHover);
       this.imageList.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageList_ItemDoubleClick);
       this.imageList.ItemCollectionChanged += new Manina.Windows.Forms.ItemCollectionChangedEventHandler(this.imageList_ItemCollectionChanged);
-      this.imageList.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageList_DragDrop);
-      this.imageList.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageList_DragEnter);
+      this.imageList.DragDrop += new System.Windows.Forms.DragEventHandler(this.ImagesDragDrop);
+      this.imageList.DragEnter += new System.Windows.Forms.DragEventHandler(this.ImagesDragEnter);
       // 
       // imageListContextMenu
       // 

@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using System.Diagnostics;
 using Manina.Windows.Forms;
 using System.Linq;
+using ImageMagick;
 
 namespace Mystter_SendTweet {
   public partial class Form1 : Form {
@@ -106,11 +107,11 @@ namespace Mystter_SendTweet {
       Process.Start("https://twitter.com/" + settings.SelectedItem);
     }
 
-    private void richTextBox1_DragEnter(object sender, DragEventArgs e) {
+    private void ImagesDragEnter(object sender, DragEventArgs e) {
       if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
         var files = (string[])e.Data.GetData(DataFormats.FileDrop);
         foreach (var file in files) {
-          if (!File.Exists(file)) {
+          if(!File.Exists(file) || !IsSupportedImage(file)) {
             e.Effect = DragDropEffects.None;
             return;
           }
@@ -119,33 +120,7 @@ namespace Mystter_SendTweet {
       e.Effect = DragDropEffects.Copy;
     }
 
-    private void richTextBox1_DragDrop(object sender, DragEventArgs e) {
-      var files = (string[])e.Data.GetData(DataFormats.FileDrop);
-      if (files.Length + imageList.Items.Count > 4) {
-        MessageBox.Show(Resources.upTo4Images);
-      } else {
-        imageList.Items.AddRange(files);
-        ToggleImageListView(true);
-        IsTweetable();
-      }
-    }
-
-    // Same as richTextBox1_DragEnter
-    private void imageList_DragEnter(object sender, DragEventArgs e) {
-      if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
-        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
-        foreach (var file in files) {
-          if (!File.Exists(file)) {
-            e.Effect = DragDropEffects.None;
-            return;
-          }
-        }
-      }
-      e.Effect = DragDropEffects.Copy;
-    }
-
-    // Same as richTextBox1_DragDrop
-    private void imageList_DragDrop(object sender, DragEventArgs e) {
+    private void ImagesDragDrop(object sender, DragEventArgs e) {
       var files = (string[])e.Data.GetData(DataFormats.FileDrop);
       if (files.Length + imageList.Items.Count > 4) {
         MessageBox.Show(Resources.upTo4Images);
@@ -479,6 +454,23 @@ namespace Mystter_SendTweet {
       } else {
         EnabledButton(sendBtn);
         lengthLabel1.ForeColor = SystemColors.WindowText;
+      }
+    }
+
+    private bool IsSupportedImage(string path) {
+      try {
+        // I don't know the difference between Jpg and Jpeg.
+        // A lot of .jpg extention files are recognized as Jpeg.
+        MagickFormat format = new MagickImageInfo(path).Format;
+        if (format == MagickFormat.Jpg || format == MagickFormat.Jpeg || format == MagickFormat.Png || format == MagickFormat.Gif || format == MagickFormat.WebP) {
+          return true;
+        } else {
+          Console.WriteLine(format);
+          return false;
+        }
+      } catch {
+        Console.WriteLine(path);
+        return false;
       }
     }
 
