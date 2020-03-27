@@ -259,6 +259,7 @@
       this.imageList.UseWIC = true;
       this.imageList.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.imageList_ItemHover);
       this.imageList.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageList_ItemDoubleClick);
+      this.imageList.ItemCollectionChanged += new Manina.Windows.Forms.ItemCollectionChangedEventHandler(this.imageList_ItemCollectionChanged);
       this.imageList.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageList_DragDrop);
       this.imageList.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageList_DragEnter);
       // 
