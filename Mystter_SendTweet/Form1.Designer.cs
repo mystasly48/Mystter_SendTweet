@@ -44,6 +44,7 @@
       this.languagesComboBox = new System.Windows.Forms.ToolStripComboBox();
       this.helpMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.imageListView1 = new Manina.Windows.Forms.ImageListView();
       this.statusStrip1.SuspendLayout();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -67,7 +68,7 @@
       // 
       this.sendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.sendBtn.Enabled = false;
-      this.sendBtn.Location = new System.Drawing.Point(326, 215);
+      this.sendBtn.Location = new System.Drawing.Point(326, 321);
       this.sendBtn.Name = "sendBtn";
       this.sendBtn.Size = new System.Drawing.Size(75, 23);
       this.sendBtn.TabIndex = 2;
@@ -80,7 +81,7 @@
       this.lengthLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel1.BackColor = System.Drawing.SystemColors.Control;
       this.lengthLabel1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel1.Location = new System.Drawing.Point(141, 219);
+      this.lengthLabel1.Location = new System.Drawing.Point(141, 325);
       this.lengthLabel1.Name = "lengthLabel1";
       this.lengthLabel1.Size = new System.Drawing.Size(121, 29);
       this.lengthLabel1.TabIndex = 3;
@@ -92,7 +93,7 @@
       this.lengthLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel2.AutoSize = true;
       this.lengthLabel2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel2.Location = new System.Drawing.Point(263, 219);
+      this.lengthLabel2.Location = new System.Drawing.Point(263, 325);
       this.lengthLabel2.Name = "lengthLabel2";
       this.lengthLabel2.Size = new System.Drawing.Size(19, 19);
       this.lengthLabel2.TabIndex = 4;
@@ -103,7 +104,7 @@
       this.lengthLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel3.AutoSize = true;
       this.lengthLabel3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel3.Location = new System.Drawing.Point(281, 219);
+      this.lengthLabel3.Location = new System.Drawing.Point(281, 325);
       this.lengthLabel3.Name = "lengthLabel3";
       this.lengthLabel3.Size = new System.Drawing.Size(39, 19);
       this.lengthLabel3.TabIndex = 5;
@@ -112,7 +113,7 @@
       // deleteBtn
       // 
       this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.deleteBtn.Location = new System.Drawing.Point(12, 215);
+      this.deleteBtn.Location = new System.Drawing.Point(12, 321);
       this.deleteBtn.Name = "deleteBtn";
       this.deleteBtn.Size = new System.Drawing.Size(123, 23);
       this.deleteBtn.TabIndex = 7;
@@ -125,7 +126,7 @@
       this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel1});
-      this.statusStrip1.Location = new System.Drawing.Point(0, 247);
+      this.statusStrip1.Location = new System.Drawing.Point(0, 353);
       this.statusStrip1.Name = "statusStrip1";
       this.statusStrip1.Size = new System.Drawing.Size(413, 22);
       this.statusStrip1.TabIndex = 8;
@@ -236,11 +237,24 @@
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
       // 
+      // imageListView1
+      // 
+      this.imageListView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.imageListView1.Location = new System.Drawing.Point(12, 215);
+      this.imageListView1.Name = "imageListView1";
+      this.imageListView1.PersistentCacheDirectory = "";
+      this.imageListView1.PersistentCacheSize = ((long)(100));
+      this.imageListView1.Size = new System.Drawing.Size(386, 100);
+      this.imageListView1.TabIndex = 10;
+      this.imageListView1.UseWIC = true;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(413, 269);
+      this.ClientSize = new System.Drawing.Size(413, 375);
+      this.Controls.Add(this.imageListView1);
       this.Controls.Add(this.statusStrip1);
       this.Controls.Add(this.menuStrip1);
       this.Controls.Add(this.deleteBtn);
@@ -289,6 +303,7 @@
         private System.Windows.Forms.ToolStripMenuItem languageMenuItem;
         private System.Windows.Forms.ToolStripComboBox languagesComboBox;
     private System.Windows.Forms.ToolStripMenuItem showProfileMenuItem;
+    private Manina.Windows.Forms.ImageListView imageListView1;
   }
 }
 

@@ -201,6 +201,20 @@ namespace Mystter_SendTweet {
       return false;
     }
 
+    private void ToggleImageListView(bool show) {
+      if (show && !imageListView1.Visible) {
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+        Height += imageListView1.Height;
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
+        imageListView1.Visible = true;
+      } else if (!show && imageListView1.Visible) {
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+        Height -= imageListView1.Height;
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
+        imageListView1.Visible = false;
+      }
+    }
+
     #endregion
 
     #region Methods
