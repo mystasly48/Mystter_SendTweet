@@ -122,8 +122,7 @@ namespace Mystter_SendTweet {
     private void richTextBox1_DragDrop(object sender, DragEventArgs e) {
       var files = (string[])e.Data.GetData(DataFormats.FileDrop);
       if (files.Length + imageList.Items.Count > 4) {
-        // Needing localization.
-        MessageBox.Show("You can only upload up to 4 images.");
+        MessageBox.Show(Resources.upTo4Images);
       } else {
         imageList.Items.AddRange(files);
         ToggleImageListView(true);
@@ -149,8 +148,7 @@ namespace Mystter_SendTweet {
     private void imageList_DragDrop(object sender, DragEventArgs e) {
       var files = (string[])e.Data.GetData(DataFormats.FileDrop);
       if (files.Length + imageList.Items.Count > 4) {
-        // Needing localization.
-        MessageBox.Show("You can only upload up to 4 images.");
+        MessageBox.Show(Resources.upTo4Images);
       } else {
         imageList.Items.AddRange(files);
         ToggleImageListView(true);
@@ -205,6 +203,7 @@ namespace Mystter_SendTweet {
       languagesComboBox.Items.Add(Resources.English);
       languagesComboBox.Items.Add(Resources.Japanese);
       languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
+      removeContextMenuItem.Text = Resources.remove;
     }
 
     private void ChangeSelectedItem(string item) {

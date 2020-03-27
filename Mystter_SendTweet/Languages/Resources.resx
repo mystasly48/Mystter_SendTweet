@@ -210,4 +210,10 @@
   <data name="showProfileMenuItem" xml:space="preserve">
     <value>Show profile</value>
   </data>
+  <data name="upTo4Images" xml:space="preserve">
+    <value>You can only upload up to 4 images.</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
 </root>

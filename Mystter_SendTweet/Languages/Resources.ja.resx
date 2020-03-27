@@ -210,4 +210,10 @@
   <data name="showProfileMenuItem" xml:space="preserve">
     <value>プロフィールを表示</value>
   </data>
+  <data name="upTo4Images" xml:space="preserve">
+    <value>画像は４枚まで追加することができます。</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
 </root>
