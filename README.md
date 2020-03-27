@@ -2,17 +2,18 @@
 
 #### Easy to tweet, and switch multiple accounts.  
 
-![](https://raw.githubusercontent.com/mystasly48/Mystter_SendTweet/master/Screenshots/Main%20Form%20-%201.1.0.png)
+![](https://raw.githubusercontent.com/mystasly48/Mystter_SendTweet/master/Screenshots/Main_1.1.0.png)
+![](https://raw.githubusercontent.com/mystasly48/Mystter_SendTweet/master/Screenshots/Images_1.3.0.png)
 
 ## Features
 
 * Send tweet.
+* Send image tweet.
 * Delete latest tweet.
 * Switch multiple accounts.
 
 ## Planned for implement
 
-* Send image tweet.
 * Send video tweet.
 
 ## Translation
