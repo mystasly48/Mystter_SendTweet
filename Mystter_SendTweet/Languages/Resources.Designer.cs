@@ -232,6 +232,15 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Remove に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string remove {
+            get {
+                return ResourceManager.GetString("remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Send に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string sendBtn {
@@ -300,6 +309,15 @@ namespace Mystter_SendTweet.Languages {
         internal static string UnknownException {
             get {
                 return ResourceManager.GetString("UnknownException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   You can only upload up to 4 images. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string upTo4Images {
+            get {
+                return ResourceManager.GetString("upTo4Images", resourceCulture);
             }
         }
         

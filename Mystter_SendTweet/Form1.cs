@@ -8,6 +8,8 @@ using CoreTweet;
 using Mystter_SendTweet.Languages;
 using System.Net.NetworkInformation;
 using System.Diagnostics;
+using Manina.Windows.Forms;
+using System.Linq;
 
 namespace Mystter_SendTweet {
   public partial class Form1 : Form {
@@ -27,6 +29,7 @@ namespace Mystter_SendTweet {
       SettingsInit();
       TwitterInit();
       ActiveControl = richTextBox1;
+      ToggleImageListView(false);
     }
 
     private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
@@ -43,7 +46,6 @@ namespace Mystter_SendTweet {
     private void sendBtn_Click(object sender, EventArgs e) {
       DisabledButton(sendBtn);
       SendTweet(richTextBox1.Text);
-      EnabledButton(sendBtn);
     }
 
     private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
@@ -104,6 +106,83 @@ namespace Mystter_SendTweet {
       Process.Start("https://twitter.com/" + settings.SelectedItem);
     }
 
+    private void richTextBox1_DragEnter(object sender, DragEventArgs e) {
+      if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
+        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        foreach (var file in files) {
+          if (!File.Exists(file)) {
+            e.Effect = DragDropEffects.None;
+            return;
+          }
+        }
+      }
+      e.Effect = DragDropEffects.Copy;
+    }
+
+    private void richTextBox1_DragDrop(object sender, DragEventArgs e) {
+      var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+      if (files.Length + imageList.Items.Count > 4) {
+        MessageBox.Show(Resources.upTo4Images);
+      } else {
+        imageList.Items.AddRange(files);
+        ToggleImageListView(true);
+        IsTweetable();
+      }
+    }
+
+    // Same as richTextBox1_DragEnter
+    private void imageList_DragEnter(object sender, DragEventArgs e) {
+      if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
+        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        foreach (var file in files) {
+          if (!File.Exists(file)) {
+            e.Effect = DragDropEffects.None;
+            return;
+          }
+        }
+      }
+      e.Effect = DragDropEffects.Copy;
+    }
+
+    // Same as richTextBox1_DragDrop
+    private void imageList_DragDrop(object sender, DragEventArgs e) {
+      var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+      if (files.Length + imageList.Items.Count > 4) {
+        MessageBox.Show(Resources.upTo4Images);
+      } else {
+        imageList.Items.AddRange(files);
+        ToggleImageListView(true);
+        IsTweetable();
+      }
+    }
+
+    private void removeContextMenuItem_Click(object sender, EventArgs e) {
+      foreach (var selected in imageList.SelectedItems) {
+        imageList.Items.Remove(selected);
+      }
+    }
+
+    private void imageList_ItemHover(object sender, ItemHoverEventArgs e) {
+      removeContextMenuItem.Enabled = true;
+    }
+
+    private void imageListContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+      if (imageList.SelectedItems.Count > 0) {
+        removeContextMenuItem.Enabled = true;
+      } else {
+        removeContextMenuItem.Enabled = false;
+      }
+    }
+
+    private void imageList_ItemDoubleClick(object sender, ItemClickEventArgs e) {
+      Process.Start(Path.Combine(e.Item.FilePath, e.Item.FileName));
+    }
+
+    private void imageList_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs e) {
+      IsTweetable();
+      ToggleImageListView(imageList.Items.Count > 0);
+    }
+
     #endregion
 
     #region Control Methods
@@ -124,6 +203,7 @@ namespace Mystter_SendTweet {
       languagesComboBox.Items.Add(Resources.English);
       languagesComboBox.Items.Add(Resources.Japanese);
       languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
+      removeContextMenuItem.Text = Resources.remove;
     }
 
     private void ChangeSelectedItem(string item) {
@@ -199,6 +279,20 @@ namespace Mystter_SendTweet {
         }
       }
       return false;
+    }
+
+    private void ToggleImageListView(bool show) {
+      if (show && !imageList.Visible) {
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+        Height += imageList.Height;
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
+        imageList.Visible = true;
+      } else if (!show && imageList.Visible) {
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+        Height -= imageList.Height;
+        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
+        imageList.Visible = false;
+      }
     }
 
     #endregion
@@ -327,7 +421,7 @@ namespace Mystter_SendTweet {
         MessageBox.Show(Resources.networkNotAvailable);
         return;
       }
-      if (IsEmpty(msg)) {
+      if (IsEmpty(msg) && imageList.Items.Count == 0) {
         MessageBox.Show(Resources.tooShort);
         return;
       } else if (msg.Length > 140) {
@@ -335,7 +429,13 @@ namespace Mystter_SendTweet {
         return;
       }
       try {
-        tokens.Statuses.Update(status: msg);
+        if (imageList.Items.Count > 0) {
+          var ids = imageList.Items.Select(x => tokens.Media.Upload(new FileInfo(Path.Combine(x.FilePath, x.FileName))).MediaId);
+          tokens.Statuses.Update(status: msg, media_ids: ids);
+          imageList.Items.Clear();
+        } else {
+          tokens.Statuses.Update(status: msg);
+        }
       } catch (TwitterException ex) {
         if (ex.Message.Contains("Status is a duplicate")) {
           MessageBox.Show(Resources.duplicate);
@@ -374,7 +474,7 @@ namespace Mystter_SendTweet {
       if (length > 140) {
         DisabledButton(sendBtn);
         lengthLabel1.ForeColor = Color.Red;
-      } else if (length == 0 || IsEmpty(text)) {
+      } else if ((length == 0 || IsEmpty(text)) && imageList.Items.Count == 0) {
         DisabledButton(sendBtn);
       } else {
         EnabledButton(sendBtn);
