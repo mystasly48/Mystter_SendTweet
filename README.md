@@ -2,7 +2,8 @@
 
 #### Easy to tweet, and switch multiple accounts.  
 
-![](https://raw.githubusercontent.com/mystasly48/Mystter_SendTweet/master/Screenshots/Main_1.1.0.png)
+![](https://raw.githubusercontent.com/mystasly48/Mystter_SendTweet/master/Screenshots/Main_1.3.0.png)
+
 ![](https://raw.githubusercontent.com/mystasly48/Mystter_SendTweet/master/Screenshots/Images_1.3.0.png)
 
 ## Features
