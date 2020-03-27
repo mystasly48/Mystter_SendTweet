@@ -8,6 +8,7 @@ using CoreTweet;
 using Mystter_SendTweet.Languages;
 using System.Net.NetworkInformation;
 using System.Diagnostics;
+using Manina.Windows.Forms;
 
 namespace Mystter_SendTweet {
   public partial class Form1 : Form {
@@ -27,6 +28,7 @@ namespace Mystter_SendTweet {
       SettingsInit();
       TwitterInit();
       ActiveControl = richTextBox1;
+      ToggleImageListView(false);
     }
 
     private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
@@ -102,6 +104,84 @@ namespace Mystter_SendTweet {
     // Show Profile
     private void showProfileMenuItem_Click(object sender, EventArgs e) {
       Process.Start("https://twitter.com/" + settings.SelectedItem);
+    }
+
+    private void richTextBox1_DragEnter(object sender, DragEventArgs e) {
+      if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
+        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        foreach (var file in files) {
+          if (!File.Exists(file)) {
+            e.Effect = DragDropEffects.None;
+            return;
+          }
+        }
+      }
+      e.Effect = DragDropEffects.Copy;
+    }
+
+    private void richTextBox1_DragDrop(object sender, DragEventArgs e) {
+      var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+      if (files.Length + imageList.Items.Count > 4) {
+        // Needing localization.
+        MessageBox.Show("You can only upload up to 4 images.");
+      } else {
+        imageList.Items.AddRange(files);
+        ToggleImageListView(true);
+        IsTweetable();
+      }
+    }
+
+    // Same as richTextBox1_DragEnter
+    private void imageList_DragEnter(object sender, DragEventArgs e) {
+      if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
+        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        foreach (var file in files) {
+          if (!File.Exists(file)) {
+            e.Effect = DragDropEffects.None;
+            return;
+          }
+        }
+      }
+      e.Effect = DragDropEffects.Copy;
+    }
+
+    // Same as richTextBox1_DragDrop
+    private void imageList_DragDrop(object sender, DragEventArgs e) {
+      var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+      if (files.Length + imageList.Items.Count > 4) {
+        // Needing localization.
+        MessageBox.Show("You can only upload up to 4 images.");
+      } else {
+        imageList.Items.AddRange(files);
+        ToggleImageListView(true);
+        IsTweetable();
+      }
+    }
+
+    private void removeContextMenuItem_Click(object sender, EventArgs e) {
+      foreach (var selected in imageList.SelectedItems) {
+        imageList.Items.Remove(selected);
+      }
+      if (imageList.Items.Count == 0) {
+        ToggleImageListView(false);
+        IsTweetable();
+      }
+    }
+
+    private void imageList_ItemHover(object sender, ItemHoverEventArgs e) {
+      removeContextMenuItem.Enabled = true;
+    }
+
+    private void imageListContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+      if (imageList.SelectedItems.Count > 0) {
+        removeContextMenuItem.Enabled = true;
+      } else {
+        removeContextMenuItem.Enabled = false;
+      }
+    }
+
+    private void imageList_ItemDoubleClick(object sender, ItemClickEventArgs e) {
+      Process.Start(Path.Combine(e.Item.FilePath, e.Item.FileName));
     }
 
     #endregion
@@ -202,16 +282,16 @@ namespace Mystter_SendTweet {
     }
 
     private void ToggleImageListView(bool show) {
-      if (show && !imageListView1.Visible) {
+      if (show && !imageList.Visible) {
         richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
-        Height += imageListView1.Height;
+        Height += imageList.Height;
         richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
-        imageListView1.Visible = true;
-      } else if (!show && imageListView1.Visible) {
+        imageList.Visible = true;
+      } else if (!show && imageList.Visible) {
         richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
-        Height -= imageListView1.Height;
+        Height -= imageList.Height;
         richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
-        imageListView1.Visible = false;
+        imageList.Visible = false;
       }
     }
 

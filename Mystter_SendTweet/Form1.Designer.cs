@@ -23,6 +23,7 @@
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
       this.richTextBox1 = new System.Windows.Forms.RichTextBox();
       this.sendBtn = new System.Windows.Forms.Button();
@@ -44,13 +45,17 @@
       this.languagesComboBox = new System.Windows.Forms.ToolStripComboBox();
       this.helpMenuTitle = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.imageListView1 = new Manina.Windows.Forms.ImageListView();
+      this.imageList = new Manina.Windows.Forms.ImageListView();
+      this.imageListContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.removeContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.statusStrip1.SuspendLayout();
       this.menuStrip1.SuspendLayout();
+      this.imageListContextMenu.SuspendLayout();
       this.SuspendLayout();
       // 
       // richTextBox1
       // 
+      this.richTextBox1.AllowDrop = true;
       this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -61,6 +66,8 @@
       this.richTextBox1.Size = new System.Drawing.Size(389, 182);
       this.richTextBox1.TabIndex = 1;
       this.richTextBox1.Text = "";
+      this.richTextBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.richTextBox1_DragDrop);
+      this.richTextBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.richTextBox1_DragEnter);
       this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
       this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
       // 
@@ -237,24 +244,45 @@
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
       // 
-      // imageListView1
+      // imageList
       // 
-      this.imageListView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+      this.imageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.imageListView1.Location = new System.Drawing.Point(12, 215);
-      this.imageListView1.Name = "imageListView1";
-      this.imageListView1.PersistentCacheDirectory = "";
-      this.imageListView1.PersistentCacheSize = ((long)(100));
-      this.imageListView1.Size = new System.Drawing.Size(386, 100);
-      this.imageListView1.TabIndex = 10;
-      this.imageListView1.UseWIC = true;
+      this.imageList.ContextMenuStrip = this.imageListContextMenu;
+      this.imageList.Location = new System.Drawing.Point(12, 215);
+      this.imageList.Name = "imageList";
+      this.imageList.PersistentCacheDirectory = "";
+      this.imageList.PersistentCacheSize = ((long)(100));
+      this.imageList.Size = new System.Drawing.Size(386, 100);
+      this.imageList.TabIndex = 10;
+      this.imageList.ThumbnailSize = new System.Drawing.Size(70, 70);
+      this.imageList.UseWIC = true;
+      this.imageList.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.imageList_ItemHover);
+      this.imageList.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageList_ItemDoubleClick);
+      this.imageList.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageList_DragDrop);
+      this.imageList.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageList_DragEnter);
+      // 
+      // imageListContextMenu
+      // 
+      this.imageListContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeContextMenuItem});
+      this.imageListContextMenu.Name = "imageListContextMenu";
+      this.imageListContextMenu.Size = new System.Drawing.Size(117, 26);
+      this.imageListContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.imageListContextMenu_Opening);
+      // 
+      // removeContextMenuItem
+      // 
+      this.removeContextMenuItem.Name = "removeContextMenuItem";
+      this.removeContextMenuItem.Size = new System.Drawing.Size(116, 22);
+      this.removeContextMenuItem.Text = "Remove";
+      this.removeContextMenuItem.Click += new System.EventHandler(this.removeContextMenuItem_Click);
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(413, 375);
-      this.Controls.Add(this.imageListView1);
+      this.Controls.Add(this.imageList);
       this.Controls.Add(this.statusStrip1);
       this.Controls.Add(this.menuStrip1);
       this.Controls.Add(this.deleteBtn);
@@ -277,6 +305,7 @@
       this.statusStrip1.PerformLayout();
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
+      this.imageListContextMenu.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -303,7 +332,9 @@
         private System.Windows.Forms.ToolStripMenuItem languageMenuItem;
         private System.Windows.Forms.ToolStripComboBox languagesComboBox;
     private System.Windows.Forms.ToolStripMenuItem showProfileMenuItem;
-    private Manina.Windows.Forms.ImageListView imageListView1;
+    private Manina.Windows.Forms.ImageListView imageList;
+    private System.Windows.Forms.ContextMenuStrip imageListContextMenu;
+    private System.Windows.Forms.ToolStripMenuItem removeContextMenuItem;
   }
 }
 
