@@ -1,16 +1,17 @@
-﻿using System;
+﻿using CoreTweet;
+using ImageMagick;
+using Manina.Windows.Forms;
+using Mystter_SendTweet.Languages;
+using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using CoreTweet;
-using Mystter_SendTweet.Languages;
-using System.Net.NetworkInformation;
-using System.Diagnostics;
-using Manina.Windows.Forms;
-using System.Linq;
-using ImageMagick;
 
 namespace Mystter_SendTweet {
   public partial class Form1 : Form {
@@ -398,7 +399,7 @@ namespace Mystter_SendTweet {
       if (IsEmpty(msg) && imageList.Items.Count == 0) {
         MessageBox.Show(Resources.tooShort);
         return;
-      } else if (msg.Length > 140) {
+      } else if (GetLength(msg) > 140) {
         MessageBox.Show(Resources.tooLong);
         return;
       }
@@ -430,7 +431,7 @@ namespace Mystter_SendTweet {
       str = str.Replace("　", "");
       str = str.Replace("\r", "");
       str = str.Replace("\n", "");
-      if (str.Length == 0) {
+      if (GetLength(str) == 0) {
         return true;
       } else {
         return false;
@@ -443,7 +444,7 @@ namespace Mystter_SendTweet {
 
     private void IsTweetable() {
       var text = textBox1.Text;
-      var length = textBox1.TextLength;
+      var length = GetLength(textBox1.Text);
       lengthLabel1.Text = length.ToString();
       if (length > 140) {
         DisabledButton(sendBtn);
@@ -471,6 +472,10 @@ namespace Mystter_SendTweet {
         Console.WriteLine(path);
         return false;
       }
+    }
+
+    private int GetLength(string str) {
+      return new StringInfo(str).LengthInTextElements;
     }
 
     #endregion
