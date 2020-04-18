@@ -1,28 +1,28 @@
 ﻿namespace Mystter_SendTweet {
-    partial class AboutForm {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+  partial class AboutForm {
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing) {
+      if (disposing && (components != null)) {
+        components.Dispose();
+      }
+      base.Dispose(disposing);
+    }
 
-        #region Windows Form Designer generated code
+    #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent() {
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent() {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
       this.verLabelTitle = new System.Windows.Forms.Label();
       this.nameLabel = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
       // 
       // nameLabel
       // 
-      this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
       this.nameLabel.AutoSize = true;
       this.nameLabel.Font = new System.Drawing.Font("Meiryo UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -158,18 +158,18 @@
       this.ResumeLayout(false);
       this.PerformLayout();
 
-        }
-
-        #endregion
-
-        private System.Windows.Forms.Label verLabelTitle;
-        private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Label verLabel;
-        private System.Windows.Forms.Label developerLabel;
-        private System.Windows.Forms.Label developerLabelTitle;
-        private System.Windows.Forms.LinkLabel repoLinkLabel;
-        private System.Windows.Forms.Label repoLinkLabelTitle;
-        private System.Windows.Forms.Label twitterLinkLabelTitle;
-        private System.Windows.Forms.LinkLabel twitterLinkLabel;
     }
+
+    #endregion
+
+    private System.Windows.Forms.Label verLabelTitle;
+    private System.Windows.Forms.Label nameLabel;
+    private System.Windows.Forms.Label verLabel;
+    private System.Windows.Forms.Label developerLabel;
+    private System.Windows.Forms.Label developerLabelTitle;
+    private System.Windows.Forms.LinkLabel repoLinkLabel;
+    private System.Windows.Forms.Label repoLinkLabelTitle;
+    private System.Windows.Forms.Label twitterLinkLabelTitle;
+    private System.Windows.Forms.LinkLabel twitterLinkLabel;
+  }
 }

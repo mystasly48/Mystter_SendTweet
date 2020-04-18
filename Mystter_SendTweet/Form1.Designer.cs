@@ -1,28 +1,28 @@
 ﻿namespace Mystter_SendTweet {
-    partial class Form1 {
-        /// <summary>
-        /// 必要なデザイナー変数です。
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+  partial class Form1 {
+    /// <summary>
+    /// 必要なデザイナー変数です。
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// 使用中のリソースをすべてクリーンアップします。
-        /// </summary>
-        /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+    /// <summary>
+    /// 使用中のリソースをすべてクリーンアップします。
+    /// </summary>
+    /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+    protected override void Dispose(bool disposing) {
+      if (disposing && (components != null)) {
+        components.Dispose();
+      }
+      base.Dispose(disposing);
+    }
 
-        #region Windows フォーム デザイナーで生成されたコード
+    #region Windows フォーム デザイナーで生成されたコード
 
-        /// <summary>
-        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を
-        /// コード エディターで変更しないでください。
-        /// </summary>
-        private void InitializeComponent() {
+    /// <summary>
+    /// デザイナー サポートに必要なメソッドです。このメソッドの内容を
+    /// コード エディターで変更しないでください。
+    /// </summary>
+    private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
       this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -56,8 +56,8 @@
       // richTextBox1
       // 
       this.richTextBox1.AllowDrop = true;
-      this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+      this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
       this.richTextBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
       this.richTextBox1.Location = new System.Drawing.Point(12, 27);
@@ -246,7 +246,7 @@
       // 
       // imageList
       // 
-      this.imageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+      this.imageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
       this.imageList.ContextMenuStrip = this.imageListContextMenu;
       this.imageList.Location = new System.Drawing.Point(12, 215);
@@ -310,28 +310,28 @@
       this.ResumeLayout(false);
       this.PerformLayout();
 
-        }
+    }
 
-        #endregion
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button sendBtn;
-        private System.Windows.Forms.Label lengthLabel1;
-        private System.Windows.Forms.Label lengthLabel2;
-        private System.Windows.Forms.Label lengthLabel3;
-        private System.Windows.Forms.Button deleteBtn;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel statusLabel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem accountsMenuTitle;
-        private System.Windows.Forms.ToolStripMenuItem addAccountMenuItem;
-        private System.Windows.Forms.ToolStripComboBox accountsComboBox;
-        private System.Windows.Forms.ToolStripMenuItem settingsMenuTitle;
-        private System.Windows.Forms.ToolStripMenuItem topMostMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wordWrapMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpMenuTitle;
-        private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem languageMenuItem;
-        private System.Windows.Forms.ToolStripComboBox languagesComboBox;
+    #endregion
+    private System.Windows.Forms.RichTextBox richTextBox1;
+    private System.Windows.Forms.Button sendBtn;
+    private System.Windows.Forms.Label lengthLabel1;
+    private System.Windows.Forms.Label lengthLabel2;
+    private System.Windows.Forms.Label lengthLabel3;
+    private System.Windows.Forms.Button deleteBtn;
+    private System.Windows.Forms.StatusStrip statusStrip1;
+    private System.Windows.Forms.ToolStripStatusLabel statusLabel1;
+    private System.Windows.Forms.MenuStrip menuStrip1;
+    private System.Windows.Forms.ToolStripMenuItem accountsMenuTitle;
+    private System.Windows.Forms.ToolStripMenuItem addAccountMenuItem;
+    private System.Windows.Forms.ToolStripComboBox accountsComboBox;
+    private System.Windows.Forms.ToolStripMenuItem settingsMenuTitle;
+    private System.Windows.Forms.ToolStripMenuItem topMostMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem wordWrapMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem helpMenuTitle;
+    private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem languageMenuItem;
+    private System.Windows.Forms.ToolStripComboBox languagesComboBox;
     private System.Windows.Forms.ToolStripMenuItem showProfileMenuItem;
     private Manina.Windows.Forms.ImageListView imageList;
     private System.Windows.Forms.ContextMenuStrip imageListContextMenu;
