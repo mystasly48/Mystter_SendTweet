@@ -25,7 +25,7 @@
     private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-      this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+      this.textBox1 = new System.Windows.Forms.TextBox();
       this.sendBtn = new System.Windows.Forms.Button();
       this.lengthLabel1 = new System.Windows.Forms.Label();
       this.lengthLabel2 = new System.Windows.Forms.Label();
@@ -53,23 +53,23 @@
       this.imageListContextMenu.SuspendLayout();
       this.SuspendLayout();
       // 
-      // richTextBox1
+      // textBox1
       // 
-      this.richTextBox1.AllowDrop = true;
-      this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+      this.textBox1.AllowDrop = true;
+      this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.richTextBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
-      this.richTextBox1.Location = new System.Drawing.Point(12, 27);
-      this.richTextBox1.Name = "richTextBox1";
-      this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-      this.richTextBox1.Size = new System.Drawing.Size(389, 182);
-      this.richTextBox1.TabIndex = 1;
-      this.richTextBox1.Text = "";
-      this.richTextBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.ImagesDragDrop);
-      this.richTextBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.ImagesDragEnter);
-      this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-      this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
+      this.textBox1.Font = new System.Drawing.Font("Segoe UI Emoji", 12F);
+      this.textBox1.Location = new System.Drawing.Point(12, 27);
+      this.textBox1.Name = "textBox1";
+      this.textBox1.Multiline = true;
+      this.textBox1.Size = new System.Drawing.Size(389, 182);
+      this.textBox1.TabIndex = 1;
+      this.textBox1.Text = "";
+      this.textBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.ImagesDragDrop);
+      this.textBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.ImagesDragEnter);
+      this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+      this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
       // 
       // sendBtn
       // 
@@ -291,7 +291,7 @@
       this.Controls.Add(this.lengthLabel2);
       this.Controls.Add(this.lengthLabel1);
       this.Controls.Add(this.sendBtn);
-      this.Controls.Add(this.richTextBox1);
+      this.Controls.Add(this.textBox1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.KeyPreview = true;
       this.MainMenuStrip = this.menuStrip1;
@@ -313,7 +313,7 @@
     }
 
     #endregion
-    private System.Windows.Forms.RichTextBox richTextBox1;
+    private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Button sendBtn;
     private System.Windows.Forms.Label lengthLabel1;
     private System.Windows.Forms.Label lengthLabel2;

@@ -1,16 +1,17 @@
-﻿using System;
+﻿using CoreTweet;
+using ImageMagick;
+using Manina.Windows.Forms;
+using Mystter_SendTweet.Languages;
+using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using CoreTweet;
-using Mystter_SendTweet.Languages;
-using System.Net.NetworkInformation;
-using System.Diagnostics;
-using Manina.Windows.Forms;
-using System.Linq;
-using ImageMagick;
 
 namespace Mystter_SendTweet {
   public partial class Form1 : Form {
@@ -29,7 +30,7 @@ namespace Mystter_SendTweet {
       LoadSettings();
       SettingsInit();
       TwitterInit();
-      ActiveControl = richTextBox1;
+      ActiveControl = textBox1;
       ToggleImageListView(false);
     }
 
@@ -46,17 +47,17 @@ namespace Mystter_SendTweet {
 
     private void sendBtn_Click(object sender, EventArgs e) {
       DisabledButton(sendBtn);
-      SendTweet(richTextBox1.Text);
+      SendTweet(textBox1.Text);
     }
 
-    private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
+    private void textBox1_KeyDown(object sender, KeyEventArgs e) {
       if (e.Control && e.KeyCode == Keys.Enter) {
         e.SuppressKeyPress = true;
         sendBtn.PerformClick();
       }
     }
 
-    private void richTextBox1_TextChanged(object sender, EventArgs e) {
+    private void textBox1_TextChanged(object sender, EventArgs e) {
       IsTweetable();
     }
 
@@ -200,8 +201,8 @@ namespace Mystter_SendTweet {
     }
 
     private void ChangeWordWrap(bool wrap) {
-      if (wrap != richTextBox1.WordWrap) {
-        richTextBox1.WordWrap = wrap;
+      if (wrap != textBox1.WordWrap) {
+        textBox1.WordWrap = wrap;
         wordWrapMenuItem.Checked = wrap;
         settings.WordWrap = wrap;
         SaveSettings();
@@ -240,7 +241,6 @@ namespace Mystter_SendTweet {
     }
 
     private void SettingsInit() {
-      richTextBox1.Font = new Font("Segoe UI", 12);
       ChangeLanguage(settings.Language);
       ChangeTopMost(settings.TopMost);
       ChangeWordWrap(settings.WordWrap);
@@ -258,14 +258,14 @@ namespace Mystter_SendTweet {
 
     private void ToggleImageListView(bool show) {
       if (show && !imageList.Visible) {
-        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+        textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
         Height += imageList.Height;
-        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
+        textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
         imageList.Visible = true;
       } else if (!show && imageList.Visible) {
-        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+        textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
         Height -= imageList.Height;
-        richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
+        textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
         imageList.Visible = false;
       }
     }
@@ -399,7 +399,7 @@ namespace Mystter_SendTweet {
       if (IsEmpty(msg) && imageList.Items.Count == 0) {
         MessageBox.Show(Resources.tooShort);
         return;
-      } else if (msg.Length > 140) {
+      } else if (GetLength(msg) > 140) {
         MessageBox.Show(Resources.tooLong);
         return;
       }
@@ -422,8 +422,8 @@ namespace Mystter_SendTweet {
         MessageBox.Show(Resources.UnknownException);
         throw;
       }
-      richTextBox1.Text = "";
-      richTextBox1.Focus();
+      textBox1.Text = "";
+      textBox1.Focus();
     }
 
     private bool IsEmpty(string str) {
@@ -431,7 +431,7 @@ namespace Mystter_SendTweet {
       str = str.Replace("　", "");
       str = str.Replace("\r", "");
       str = str.Replace("\n", "");
-      if (str.Length == 0) {
+      if (GetLength(str) == 0) {
         return true;
       } else {
         return false;
@@ -443,8 +443,8 @@ namespace Mystter_SendTweet {
     }
 
     private void IsTweetable() {
-      var text = richTextBox1.Text;
-      var length = richTextBox1.TextLength;
+      var text = textBox1.Text;
+      var length = GetLength(textBox1.Text);
       lengthLabel1.Text = length.ToString();
       if (length > 140) {
         DisabledButton(sendBtn);
@@ -472,6 +472,10 @@ namespace Mystter_SendTweet {
         Console.WriteLine(path);
         return false;
       }
+    }
+
+    private int GetLength(string str) {
+      return new StringInfo(str).LengthInTextElements;
     }
 
     #endregion
