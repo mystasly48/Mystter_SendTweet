@@ -424,6 +424,7 @@ namespace Mystter_SendTweet {
       }
       textBox1.Text = "";
       textBox1.Focus();
+      IsTweetable();
     }
 
     private bool IsEmpty(string str) {
