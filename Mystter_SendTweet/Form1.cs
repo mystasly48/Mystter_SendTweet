@@ -201,12 +201,10 @@ namespace Mystter_SendTweet {
     }
 
     private void ChangeWordWrap(bool wrap) {
-      if (wrap != textBox1.WordWrap) {
-        textBox1.WordWrap = wrap;
-        wordWrapMenuItem.Checked = wrap;
-        settings.WordWrap = wrap;
-        SaveSettings();
-      }
+      textBox1.WordWrap = wrap;
+      wordWrapMenuItem.Checked = wrap;
+      settings.WordWrap = wrap;
+      SaveSettings();
     }
 
     private void ChangeLocation(Point location) {
