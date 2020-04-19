@@ -308,9 +308,8 @@ namespace Mystter_SendTweet {
 
     private void AddAccount() {
       START:
-      var form = new AuthBrowser();
       var s = OAuth.Authorize(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret);
-      form.URL = s.AuthorizeUri.AbsoluteUri;
+      var form = new AuthBrowser(s.AuthorizeUri.AbsoluteUri);
       form.ShowDialog();
       if (form.Success) {
         var _tokens = s.GetTokens(form.PIN);

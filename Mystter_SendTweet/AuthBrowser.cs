@@ -5,8 +5,9 @@ using Mystter_SendTweet.Languages;
 
 namespace Mystter_SendTweet {
   public partial class AuthBrowser : Form {
-    public AuthBrowser() {
+    public AuthBrowser(string URL) {
       InitializeComponent();
+      this.URL = URL;
       Success = false;
     }
 
@@ -24,7 +25,7 @@ namespace Mystter_SendTweet {
 
     public string PIN { get; private set; }
 
-    public string URL { get; set; }
+    public string URL { get; private set; }
 
     private void AuthBrowser_Load(object sender, EventArgs e) {
       Text = Information.TitleSimple + " - " + Resources.OAuth;
