@@ -25,6 +25,7 @@
     private void InitializeComponent() {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthBrowser));
       this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+      this.authorizingLabel = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // webBrowser1
@@ -33,15 +34,29 @@
       this.webBrowser1.Location = new System.Drawing.Point(0, 0);
       this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
       this.webBrowser1.Name = "webBrowser1";
+      this.webBrowser1.ScriptErrorsSuppressed = true;
       this.webBrowser1.Size = new System.Drawing.Size(555, 429);
       this.webBrowser1.TabIndex = 0;
       this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+      // 
+      // authorizingLabel
+      // 
+      this.authorizingLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.authorizingLabel.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.authorizingLabel.Location = new System.Drawing.Point(0, 0);
+      this.authorizingLabel.Name = "authorizingLabel";
+      this.authorizingLabel.Size = new System.Drawing.Size(555, 429);
+      this.authorizingLabel.TabIndex = 1;
+      this.authorizingLabel.Text = "Now authorizing...\r\nThis window will be closed shortly...";
+      this.authorizingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.authorizingLabel.Visible = false;
       // 
       // AuthBrowser
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(555, 429);
+      this.Controls.Add(this.authorizingLabel);
       this.Controls.Add(this.webBrowser1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "AuthBrowser";
@@ -57,5 +72,6 @@
     #endregion
 
     private System.Windows.Forms.WebBrowser webBrowser1;
+    private System.Windows.Forms.Label authorizingLabel;
   }
 }

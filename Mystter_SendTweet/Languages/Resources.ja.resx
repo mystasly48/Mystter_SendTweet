@@ -216,4 +216,10 @@
   <data name="remove" xml:space="preserve">
     <value>削除</value>
   </data>
+  <data name="Authorizing" xml:space="preserve">
+    <value>認証中です...</value>
+  </data>
+  <data name="WindowClosing" xml:space="preserve">
+    <value>このウィンドウはまもなく自動で閉じられます...</value>
+  </data>
 </root>

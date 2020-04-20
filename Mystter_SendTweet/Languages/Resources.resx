@@ -216,4 +216,10 @@
   <data name="remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="Authorizing" xml:space="preserve">
+    <value>Now authorizing...</value>
+  </data>
+  <data name="WindowClosing" xml:space="preserve">
+    <value>This window will be closed shortly...</value>
+  </data>
 </root>
