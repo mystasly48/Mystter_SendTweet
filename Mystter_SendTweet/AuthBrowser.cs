@@ -25,8 +25,10 @@ namespace Mystter_SendTweet {
       if (webBrowser1.Url.OriginalString == AuthUrl1 || webBrowser1.Url.OriginalString == AuthUrl2) {
         var r = new Regex(@"<CODE>(\d+)</CODE>");
         var m = r.Match(webBrowser1.DocumentText);
-        PIN = m.Result("${1}");
-        Success = true;
+        if (m != null) {
+          PIN = m.Result("${1}");
+          Success = true;
+        }
         authorizingLabel.Visible = true;
         webBrowser1.Visible = false;
         webBrowser1.Navigate(LogoutUrl);

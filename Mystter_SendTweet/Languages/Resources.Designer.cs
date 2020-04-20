@@ -187,6 +187,15 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Failed to add an account. Please check if your account is valid and try again later. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FailedToAddAccount {
+            get {
+                return ResourceManager.GetString("FailedToAddAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Help に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string helpMenuTitle {

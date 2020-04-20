@@ -222,4 +222,7 @@
   <data name="WindowClosing" xml:space="preserve">
     <value>This window will be closed shortly...</value>
   </data>
+  <data name="FailedToAddAccount" xml:space="preserve">
+    <value>Failed to add an account. Please check if your account is valid and try again later.</value>
+  </data>
 </root>

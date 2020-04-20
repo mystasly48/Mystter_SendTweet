@@ -323,6 +323,8 @@ namespace Mystter_SendTweet {
             Environment.Exit(0);
             break;
         }
+      } else {
+        MessageBox.Show(Resources.FailedToAddAccount);
       }
       form.Dispose();
     }

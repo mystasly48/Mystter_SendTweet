@@ -222,4 +222,7 @@
   <data name="WindowClosing" xml:space="preserve">
     <value>このウィンドウはまもなく自動で閉じられます...</value>
   </data>
+  <data name="FailedToAddAccount" xml:space="preserve">
+    <value>アカウントの追加に失敗しました。アカウントが有効であることを確認してください。</value>
+  </data>
 </root>
