@@ -187,7 +187,7 @@ namespace Mystter_SendTweet {
         accountsComboBox.SelectedItem = item;
         settings.SelectedItem = item;
         SaveSettings();
-        Text = item + " / " + Information.Title;
+        Text = item + " / " + Information.TitleSimple;
       }
     }
 
@@ -300,7 +300,7 @@ namespace Mystter_SendTweet {
         }
         tokens = GetAccountTokens(settings.SelectedItem);
         accountsComboBox.SelectedItem = settings.SelectedItem;
-        Text = settings.SelectedItem + " / " + Information.Title;
+        Text = settings.SelectedItem + " / " + Information.TitleSimple;
       } else {
         AddAccount();
       }
@@ -315,7 +315,7 @@ namespace Mystter_SendTweet {
         var _tokens = s.GetTokens(form.PIN);
         SetAccountTokens(_tokens);
       } else if (settings.Twitter.Count == 0) {
-        var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.TitleSimple, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
         switch (result) {
           case DialogResult.Yes:
             goto START;
@@ -331,14 +331,14 @@ namespace Mystter_SendTweet {
 
     private void DeleteLatestTweet() {
       var latest = tokens.Account.UpdateProfile().Status;
-      var msgResult = MessageBox.Show(Resources.deleteComfirm + NewLine + "------------------------------" + NewLine + latest.Text + NewLine + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      var msgResult = MessageBox.Show(Resources.deleteComfirm + NewLine + "------------------------------" + NewLine + latest.Text + NewLine + "------------------------------", Information.TitleSimple, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
       switch (msgResult) {
         case DialogResult.Yes:
           tokens.Statuses.Destroy(latest.Id);
-          MessageBox.Show(Resources.deleteYes, Information.Title);
+          MessageBox.Show(Resources.deleteYes, Information.TitleSimple);
           break;
         case DialogResult.No:
-          MessageBox.Show(Resources.deleteNo, Information.Title);
+          MessageBox.Show(Resources.deleteNo, Information.TitleSimple);
           break;
       }
     }

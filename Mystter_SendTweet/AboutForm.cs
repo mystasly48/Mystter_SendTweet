@@ -31,7 +31,7 @@ namespace Mystter_SendTweet {
     }
 
     private void ApplyLocalization() {
-      this.Text = Information.Title + " - " + Resources.About;
+      this.Text = Information.TitleSimple + " - " + Resources.About;
       verLabelTitle.Text = Resources.Version + ":";
       developerLabelTitle.Text = Resources.Developer + ":";
       repoLinkLabelTitle.Text = Resources.ProjectRepository + ":";

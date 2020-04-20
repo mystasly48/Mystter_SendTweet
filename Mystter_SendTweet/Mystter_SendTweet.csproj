@@ -165,7 +165,6 @@
     <Content Include="Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TwitterLogo.ico" />
     <Content Include="お読みください.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
