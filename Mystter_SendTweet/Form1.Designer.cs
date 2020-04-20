@@ -56,19 +56,18 @@
       // textBox1
       // 
       this.textBox1.AllowDrop = true;
-      this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox1.Font = new System.Drawing.Font("Segoe UI Emoji", 12F);
       this.textBox1.Location = new System.Drawing.Point(12, 27);
-      this.textBox1.Name = "textBox1";
       this.textBox1.Multiline = true;
+      this.textBox1.Name = "textBox1";
       this.textBox1.Size = new System.Drawing.Size(389, 182);
       this.textBox1.TabIndex = 1;
-      this.textBox1.Text = "";
+      this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
       this.textBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.ImagesDragDrop);
       this.textBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.ImagesDragEnter);
-      this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
       this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
       // 
       // sendBtn
@@ -246,7 +245,7 @@
       // 
       // imageList
       // 
-      this.imageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+      this.imageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.imageList.ContextMenuStrip = this.imageListContextMenu;
       this.imageList.Location = new System.Drawing.Point(12, 215);

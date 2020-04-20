@@ -33,6 +33,8 @@
       this.repoLinkLabelTitle = new System.Windows.Forms.Label();
       this.twitterLinkLabelTitle = new System.Windows.Forms.Label();
       this.twitterLinkLabel = new System.Windows.Forms.LinkLabel();
+      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.SuspendLayout();
       // 
       // verLabelTitle
@@ -47,11 +49,11 @@
       // 
       // nameLabel
       // 
-      this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+      this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.nameLabel.AutoSize = true;
       this.nameLabel.Font = new System.Drawing.Font("Meiryo UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-      this.nameLabel.Location = new System.Drawing.Point(27, 19);
+      this.nameLabel.Location = new System.Drawing.Point(48, 21);
       this.nameLabel.Name = "nameLabel";
       this.nameLabel.Size = new System.Drawing.Size(436, 47);
       this.nameLabel.TabIndex = 1;
@@ -131,11 +133,22 @@
       this.twitterLinkLabel.Text = "https://twitter.com/30msl";
       this.twitterLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.twitterLinkLabel_LinkClicked);
       // 
+      // pictureBox1
+      // 
+      this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+      this.pictureBox1.Location = new System.Drawing.Point(6, 23);
+      this.pictureBox1.Name = "pictureBox1";
+      this.pictureBox1.Size = new System.Drawing.Size(45, 45);
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pictureBox1.TabIndex = 9;
+      this.pictureBox1.TabStop = false;
+      // 
       // AboutForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 11F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(484, 309);
+      this.ClientSize = new System.Drawing.Size(535, 320);
+      this.Controls.Add(this.pictureBox1);
       this.Controls.Add(this.twitterLinkLabelTitle);
       this.Controls.Add(this.twitterLinkLabel);
       this.Controls.Add(this.repoLinkLabelTitle);
@@ -146,6 +159,7 @@
       this.Controls.Add(this.nameLabel);
       this.Controls.Add(this.verLabelTitle);
       this.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MaximizeBox = false;
       this.MinimizeBox = false;
@@ -155,6 +169,7 @@
       this.Text = "Mystter - About";
       this.TopMost = true;
       this.Load += new System.EventHandler(this.AboutForm_Load);
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -171,5 +186,6 @@
     private System.Windows.Forms.Label repoLinkLabelTitle;
     private System.Windows.Forms.Label twitterLinkLabelTitle;
     private System.Windows.Forms.LinkLabel twitterLinkLabel;
+    private System.Windows.Forms.PictureBox pictureBox1;
   }
 }
