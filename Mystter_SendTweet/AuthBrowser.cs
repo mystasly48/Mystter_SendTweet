@@ -45,7 +45,7 @@ namespace Mystter_SendTweet {
     }
 
     private void AuthBrowser_Load(object sender, EventArgs e) {
-      Text = Information.TitleSimple + " - " + Resources.OAuth;
+      Text = Information.Title + " - " + Resources.OAuth;
       webBrowser1.Navigate(URL);
     }
 
