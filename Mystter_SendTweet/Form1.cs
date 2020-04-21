@@ -112,7 +112,7 @@ namespace Mystter_SendTweet {
       if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
         var files = (string[])e.Data.GetData(DataFormats.FileDrop);
         foreach (var file in files) {
-          if(!File.Exists(file) || !IsSupportedImage(file)) {
+          if (!File.Exists(file) || !IsSupportedImage(file)) {
             e.Effect = DragDropEffects.None;
             return;
           }
