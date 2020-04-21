@@ -1,10 +1,14 @@
-﻿namespace Mystter_SendTweet {
+﻿using System;
+using System.IO;
+
+namespace Mystter_SendTweet {
   public class Information {
-    public const string Title = "Mystter - Send Tweet";
-    public const string TitleSimple = "Mystter";
-    public const string Version = "1.3.3";
-    public const string Developer = "Mystasly";
-    public const string Repository = "https://github.com/mystasly48/Mystter_SendTweet";
-    public const string Twitter = "https://twitter.com/30msl";
+    public static readonly string Title = "Mystter";
+    public static readonly string Version = "1.4.0";
+    public static readonly string Developer = "Mystasly";
+    public static readonly string Repository = "https://github.com/mystasly48/Mystter_SendTweet";
+    public static readonly string Twitter = "https://twitter.com/30msl";
+    public static readonly string SettingsFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+    public static readonly string SettingsFile = Path.Combine(SettingsFolder, "Settings.xml");
   }
 }

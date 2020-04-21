@@ -1,6 +1,6 @@
-﻿Mystter - Send Tweet.exe.config は、
+﻿Mystter.exe.config は、
 言語ファイルに関する情報が保存されている構成ファイルです。
-Mystter - Send Tweet.xml は、
+%AppData%/Mystter/Settings.xml は、
 ユーザー情報やアプリケーション情報が保存されている設定ファイルです。
 
 構成ファイルや設定ファイルを書き換えてしまいますと、

@@ -22,7 +22,6 @@ namespace Mystter_SendTweet {
     Settings settings = new Settings();
     Tokens tokens;
     string NewLine = Environment.NewLine;
-    string SettingsFile = Information.Title + ".xml";
 
     #region Controls
 
@@ -187,7 +186,7 @@ namespace Mystter_SendTweet {
         accountsComboBox.SelectedItem = item;
         settings.SelectedItem = item;
         SaveSettings();
-        Text = item + " / " + Information.TitleSimple;
+        Text = item + " / " + Information.Title;
       }
     }
 
@@ -274,15 +273,15 @@ namespace Mystter_SendTweet {
 
     private void SaveSettings() {
       var serializer = new XmlSerializer(typeof(Settings));
-      var writer = new StreamWriter(SettingsFile, false, Encoding.UTF8);
+      var writer = new StreamWriter(Information.SettingsFile, false, Encoding.UTF8);
       serializer.Serialize(writer, settings);
       writer.Close();
     }
 
     private void LoadSettings() {
-      if (File.Exists(SettingsFile)) {
+      if (File.Exists(Information.SettingsFile)) {
         var serializer = new XmlSerializer(typeof(Settings));
-        var reader = new StreamReader(SettingsFile);
+        var reader = new StreamReader(Information.SettingsFile);
         settings = (Settings)serializer.Deserialize(reader);
         reader.Close();
       } else {
@@ -300,7 +299,7 @@ namespace Mystter_SendTweet {
         }
         tokens = GetAccountTokens(settings.SelectedItem);
         accountsComboBox.SelectedItem = settings.SelectedItem;
-        Text = settings.SelectedItem + " / " + Information.TitleSimple;
+        Text = settings.SelectedItem + " / " + Information.Title;
       } else {
         AddAccount();
       }
@@ -315,7 +314,7 @@ namespace Mystter_SendTweet {
         var _tokens = s.GetTokens(form.PIN);
         SetAccountTokens(_tokens);
       } else if (settings.Twitter.Count == 0) {
-        var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.TitleSimple, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
         switch (result) {
           case DialogResult.Yes:
             goto START;
@@ -331,14 +330,14 @@ namespace Mystter_SendTweet {
 
     private void DeleteLatestTweet() {
       var latest = tokens.Account.UpdateProfile().Status;
-      var msgResult = MessageBox.Show(Resources.deleteComfirm + NewLine + "------------------------------" + NewLine + latest.Text + NewLine + "------------------------------", Information.TitleSimple, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      var msgResult = MessageBox.Show(Resources.deleteComfirm + NewLine + "------------------------------" + NewLine + latest.Text + NewLine + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
       switch (msgResult) {
         case DialogResult.Yes:
           tokens.Statuses.Destroy(latest.Id);
-          MessageBox.Show(Resources.deleteYes, Information.TitleSimple);
+          MessageBox.Show(Resources.deleteYes, Information.Title);
           break;
         case DialogResult.No:
-          MessageBox.Show(Resources.deleteNo, Information.TitleSimple);
+          MessageBox.Show(Resources.deleteNo, Information.Title);
           break;
       }
     }
