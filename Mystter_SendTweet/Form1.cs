@@ -285,9 +285,14 @@ namespace Mystter_SendTweet {
         settings = (Settings)serializer.Deserialize(reader);
         reader.Close();
       } else {
+        CreateSettingsFolder();
         SaveSettings();
         LoadSettings();
       }
+    }
+
+    private void CreateSettingsFolder() {
+      Directory.CreateDirectory(Information.SettingsFolder);
     }
 
     private void TwitterInit() {
