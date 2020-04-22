@@ -60,10 +60,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox1.Font = new System.Drawing.Font("Segoe UI Emoji", 12F);
-      this.textBox1.Location = new System.Drawing.Point(12, 27);
+      this.textBox1.Location = new System.Drawing.Point(20, 40);
+      this.textBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
       this.textBox1.Multiline = true;
       this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(389, 182);
+      this.textBox1.Size = new System.Drawing.Size(646, 271);
       this.textBox1.TabIndex = 1;
       this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
       this.textBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.ImagesDragDrop);
@@ -74,9 +75,10 @@
       // 
       this.sendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.sendBtn.Enabled = false;
-      this.sendBtn.Location = new System.Drawing.Point(326, 321);
+      this.sendBtn.Location = new System.Drawing.Point(543, 482);
+      this.sendBtn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
       this.sendBtn.Name = "sendBtn";
-      this.sendBtn.Size = new System.Drawing.Size(75, 23);
+      this.sendBtn.Size = new System.Drawing.Size(125, 34);
       this.sendBtn.TabIndex = 2;
       this.sendBtn.Text = "Send";
       this.sendBtn.UseVisualStyleBackColor = true;
@@ -87,9 +89,10 @@
       this.lengthLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel1.BackColor = System.Drawing.SystemColors.Control;
       this.lengthLabel1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel1.Location = new System.Drawing.Point(141, 325);
+      this.lengthLabel1.Location = new System.Drawing.Point(235, 488);
+      this.lengthLabel1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
       this.lengthLabel1.Name = "lengthLabel1";
-      this.lengthLabel1.Size = new System.Drawing.Size(121, 29);
+      this.lengthLabel1.Size = new System.Drawing.Size(202, 44);
       this.lengthLabel1.TabIndex = 3;
       this.lengthLabel1.Text = "0";
       this.lengthLabel1.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -99,7 +102,8 @@
       this.lengthLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel2.AutoSize = true;
       this.lengthLabel2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel2.Location = new System.Drawing.Point(263, 325);
+      this.lengthLabel2.Location = new System.Drawing.Point(438, 488);
+      this.lengthLabel2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
       this.lengthLabel2.Name = "lengthLabel2";
       this.lengthLabel2.Size = new System.Drawing.Size(19, 19);
       this.lengthLabel2.TabIndex = 4;
@@ -110,7 +114,8 @@
       this.lengthLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel3.AutoSize = true;
       this.lengthLabel3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel3.Location = new System.Drawing.Point(281, 325);
+      this.lengthLabel3.Location = new System.Drawing.Point(468, 488);
+      this.lengthLabel3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
       this.lengthLabel3.Name = "lengthLabel3";
       this.lengthLabel3.Size = new System.Drawing.Size(39, 19);
       this.lengthLabel3.TabIndex = 5;
@@ -119,9 +124,10 @@
       // deleteBtn
       // 
       this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.deleteBtn.Location = new System.Drawing.Point(12, 321);
+      this.deleteBtn.Location = new System.Drawing.Point(20, 482);
+      this.deleteBtn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
       this.deleteBtn.Name = "deleteBtn";
-      this.deleteBtn.Size = new System.Drawing.Size(123, 23);
+      this.deleteBtn.Size = new System.Drawing.Size(205, 34);
       this.deleteBtn.TabIndex = 7;
       this.deleteBtn.Text = "Delete Last Tweet";
       this.deleteBtn.UseVisualStyleBackColor = true;
@@ -132,9 +138,10 @@
       this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel1});
-      this.statusStrip1.Location = new System.Drawing.Point(0, 353);
+      this.statusStrip1.Location = new System.Drawing.Point(0, 540);
       this.statusStrip1.Name = "statusStrip1";
-      this.statusStrip1.Size = new System.Drawing.Size(413, 22);
+      this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 23, 0);
+      this.statusStrip1.Size = new System.Drawing.Size(688, 22);
       this.statusStrip1.TabIndex = 8;
       this.statusStrip1.Text = "statusStrip1";
       // 
@@ -152,7 +159,8 @@
             this.helpMenuTitle});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(413, 24);
+      this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
+      this.menuStrip1.Size = new System.Drawing.Size(688, 25);
       this.menuStrip1.TabIndex = 9;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -163,7 +171,7 @@
             this.showProfileMenuItem,
             this.accountsComboBox});
       this.accountsMenuTitle.Name = "accountsMenuTitle";
-      this.accountsMenuTitle.Size = new System.Drawing.Size(69, 20);
+      this.accountsMenuTitle.Size = new System.Drawing.Size(69, 19);
       this.accountsMenuTitle.Text = "Accounts";
       // 
       // addAccountMenuItem
@@ -194,7 +202,7 @@
             this.wordWrapMenuItem,
             this.languageMenuItem});
       this.settingsMenuTitle.Name = "settingsMenuTitle";
-      this.settingsMenuTitle.Size = new System.Drawing.Size(61, 20);
+      this.settingsMenuTitle.Size = new System.Drawing.Size(61, 19);
       this.settingsMenuTitle.Text = "Settings";
       // 
       // topMostMenuItem
@@ -233,7 +241,7 @@
       this.helpMenuTitle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutMenuItem});
       this.helpMenuTitle.Name = "helpMenuTitle";
-      this.helpMenuTitle.Size = new System.Drawing.Size(44, 20);
+      this.helpMenuTitle.Size = new System.Drawing.Size(44, 19);
       this.helpMenuTitle.Text = "Help";
       // 
       // aboutMenuItem
@@ -248,11 +256,12 @@
       this.imageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.imageList.ContextMenuStrip = this.imageListContextMenu;
-      this.imageList.Location = new System.Drawing.Point(12, 215);
+      this.imageList.Location = new System.Drawing.Point(20, 322);
+      this.imageList.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
       this.imageList.Name = "imageList";
       this.imageList.PersistentCacheDirectory = "";
       this.imageList.PersistentCacheSize = ((long)(100));
-      this.imageList.Size = new System.Drawing.Size(386, 100);
+      this.imageList.Size = new System.Drawing.Size(643, 150);
       this.imageList.TabIndex = 10;
       this.imageList.ThumbnailSize = new System.Drawing.Size(70, 70);
       this.imageList.UseWIC = true;
@@ -279,9 +288,9 @@
       // 
       // Form1
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(413, 375);
+      this.ClientSize = new System.Drawing.Size(688, 562);
       this.Controls.Add(this.imageList);
       this.Controls.Add(this.statusStrip1);
       this.Controls.Add(this.menuStrip1);
@@ -294,6 +303,7 @@
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.KeyPreview = true;
       this.MainMenuStrip = this.menuStrip1;
+      this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
       this.MaximizeBox = false;
       this.Name = "Form1";
       this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
