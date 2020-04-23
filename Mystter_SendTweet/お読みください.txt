@@ -17,13 +17,16 @@
 ・SelectedItem: 選択中のアカウントのScreenName
 ・Language: 言語
 ・Account: ユーザーのTwitterデータ
-・ScreenName: ユーザーのID
-・UserId: ユーザーの内部ID
-・AccessToken
-・AccessSecret
+  ・ScreenName: ユーザーのID
+  ・UserId: ユーザーの内部ID
+  ・AccessToken
+  ・AccessSecret
 
 他人の AccessToken, AccessSecret を設定ファイルに書き込むことで、
 本アプリケーションの操作範囲内で何でもできるようになります。
 すなわち、アカウント情報の変更やダイレクトメッセージへのアクセスはできませんが、
 ツイートの投稿や過去ツイートの全削除はされてしまいます。
 ですので、絶対に設定ファイルは他者に送信しないでください。
+AccessToken や AccessSecret の意味について詳しく知りたい方は以下をご参照ください。
+https://developer.twitter.com/en/docs/basics/authentication/oauth-1-0a/obtaining-user-access-tokens
+https://developer.twitter.com/en/docs/basics/authentication/faq
