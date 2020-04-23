@@ -127,7 +127,7 @@
     <value>Accounts</value>
   </data>
   <data name="addAccountMenuItem" xml:space="preserve">
-    <value>Add account</value>
+    <value>Add an account</value>
   </data>
   <data name="alreadyAdded" xml:space="preserve">
     <value>This account has already added.</value>
@@ -224,5 +224,11 @@
   </data>
   <data name="FailedToAddAccount" xml:space="preserve">
     <value>Failed to add an account. Please check if your account is valid and try again later.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="LogoutConfirm" xml:space="preserve">
+    <value>Do you want to remove the selected account from the list?</value>
   </data>
 </root>

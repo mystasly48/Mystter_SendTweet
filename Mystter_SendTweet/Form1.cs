@@ -40,7 +40,6 @@ namespace Mystter_SendTweet {
     private void Form1_LocationChanged(object sender, EventArgs e) {
       if (WindowState != FormWindowState.Minimized) {
         settings.Location = Location;
-        Console.WriteLine(Location);
       }
     }
 
@@ -75,7 +74,6 @@ namespace Mystter_SendTweet {
     // Switch account
     private void accountsComboBox_SelectedIndexChanged(object sender, EventArgs e) {
       var selected = accountsComboBox.SelectedItem.ToString();
-      tokens = GetAccountTokens(selected);
       ChangeSelectedItem(selected);
     }
 
@@ -105,6 +103,33 @@ namespace Mystter_SendTweet {
     // Show Profile
     private void showProfileMenuItem_Click(object sender, EventArgs e) {
       Process.Start("https://twitter.com/" + settings.SelectedItem);
+    }
+
+    // Logout @ScreenName
+    private void logoutMenuItem_Click(object sender, EventArgs e) {
+      var result = YesNoDialog(Resources.LogoutConfirm);
+      if (!result)
+        return;
+
+      var selected = settings.SelectedItem;
+      for (int i = 0; i < settings.Twitter.Count; i++) {
+        if (settings.Twitter[i].ScreenName == selected) {
+          settings.Twitter.RemoveAt(i);
+          accountsComboBox.Items.RemoveAt(i);
+          break;
+        }
+      }
+
+      var next = settings.Twitter.Where(x => x.ScreenName != selected).FirstOrDefault();
+      ChangeSelectedItem(next?.ScreenName);
+
+      if (next == null) {
+        if (IsRetryAddingAccount()) {
+          AddAccount();
+        } else {
+          Environment.Exit(0);
+        }
+      }
     }
 
     private void ImagesDragEnter(object sender, DragEventArgs e) {
@@ -179,15 +204,20 @@ namespace Mystter_SendTweet {
       languagesComboBox.Items.Add(Resources.Japanese);
       languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
       removeContextMenuItem.Text = Resources.remove;
+      UpdateLogoutMenu();
+    }
+
+    private void UpdateLogoutMenu() {
+      logoutMenuItem.Text = Resources.Logout + " @" + settings.SelectedItem;
     }
 
     private void ChangeSelectedItem(string item) {
-      if (item != settings.SelectedItem) {
-        accountsComboBox.SelectedItem = item;
-        settings.SelectedItem = item;
-        SaveSettings();
-        Text = item + " / " + Information.Title;
-      }
+      accountsComboBox.SelectedItem = item;
+      settings.SelectedItem = item;
+      UpdateLogoutMenu();
+      tokens = GetAccountTokens(item);
+      SaveSettings();
+      Text = item + " / " + Information.Title;
     }
 
     private void ChangeTopMost(bool top) {
@@ -303,8 +333,7 @@ namespace Mystter_SendTweet {
           accountsComboBox.Items.Add(account.ScreenName);
         }
         tokens = GetAccountTokens(settings.SelectedItem);
-        accountsComboBox.SelectedItem = settings.SelectedItem;
-        Text = settings.SelectedItem + " / " + Information.Title;
+        ChangeSelectedItem(settings.SelectedItem);
       } else {
         AddAccount();
       }
@@ -319,18 +348,31 @@ namespace Mystter_SendTweet {
         var _tokens = s.GetTokens(form.PIN);
         SetAccountTokens(_tokens);
       } else if (settings.Twitter.Count == 0) {
-        var result = MessageBox.Show(Resources.yetAdded1 + NewLine + Resources.yetAdded2, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-        switch (result) {
-          case DialogResult.Yes:
-            goto START;
-          case DialogResult.No:
-            Environment.Exit(0);
-            break;
+        if (IsRetryAddingAccount()) {
+          goto START;
+        } else {
+          Environment.Exit(0);
         }
       } else {
         MessageBox.Show(Resources.FailedToAddAccount);
       }
       form.Dispose();
+    }
+
+    private bool IsRetryAddingAccount() {
+      return YesNoDialog(Resources.yetAdded1 + NewLine + Resources.yetAdded2);
+    }
+
+    private bool YesNoDialog(string message) {
+      var result = MessageBox.Show(message, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      switch (result) {
+        case DialogResult.Yes:
+          return true;
+        case DialogResult.No:
+          return false;
+        default:
+          return false;
+      }
     }
 
     private void DeleteLatestTweet() {
@@ -483,5 +525,7 @@ namespace Mystter_SendTweet {
     }
 
     #endregion
+
+
   }
 }

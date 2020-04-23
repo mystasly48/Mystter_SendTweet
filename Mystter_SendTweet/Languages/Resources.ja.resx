@@ -225,4 +225,10 @@
   <data name="FailedToAddAccount" xml:space="preserve">
     <value>アカウントの追加に失敗しました。アカウントが有効であることを確認してください。</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="LogoutConfirm" xml:space="preserve">
+    <value>選択中のアカウントを一覧から削除しますか？</value>
+  </data>
 </root>
