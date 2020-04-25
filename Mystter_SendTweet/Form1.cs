@@ -200,9 +200,9 @@ namespace Mystter_SendTweet {
       aboutMenuItem.Text = Resources.aboutMenuItem;
       languageMenuItem.Text = Resources.Language;
       languagesComboBox.Items.Clear();
-      languagesComboBox.Items.Add(Resources.English);
-      languagesComboBox.Items.Add(Resources.Japanese);
-      languagesComboBox.SelectedItem = Localization.GetLanguageFullName(Localization.CurrentLanguage);
+      languagesComboBox.Items.Add(Resources.English + " (English)");
+      languagesComboBox.Items.Add(Resources.Japanese + " (日本語)");
+      languagesComboBox.SelectedIndex = Localization.GetLanguageIndex(Localization.CurrentLanguage);
       removeContextMenuItem.Text = Resources.remove;
       UpdateLogoutMenu();
     }
