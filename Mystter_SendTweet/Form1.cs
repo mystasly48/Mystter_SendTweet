@@ -303,17 +303,17 @@ namespace Mystter_SendTweet {
 
     private void SaveSettings() {
       var serializer = new XmlSerializer(typeof(Settings));
-      var writer = new StreamWriter(Information.SettingsFile, false, Encoding.UTF8);
-      serializer.Serialize(writer, settings);
-      writer.Close();
+      using (var writer = new StreamWriter(Information.SettingsFile, false, Encoding.UTF8)) {
+        serializer.Serialize(writer, settings);
+      }
     }
 
     private void LoadSettings() {
       if (File.Exists(Information.SettingsFile)) {
         var serializer = new XmlSerializer(typeof(Settings));
-        var reader = new StreamReader(Information.SettingsFile);
-        settings = (Settings)serializer.Deserialize(reader);
-        reader.Close();
+        using (var reader = new StreamReader(Information.SettingsFile)) {
+          settings = (Settings)serializer.Deserialize(reader);
+        }
       } else {
         CreateSettingsFolder();
         SaveSettings();
