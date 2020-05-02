@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mystter_SendTweet", "Mystter_SendTweet\Mystter_SendTweet.csproj", "{9F3C8D62-3C6F-4FA3-A9B6-30A6B88AA5CB}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MystterSetup", "Setup\Setup.vdproj", "{3C32369E-BF89-48A5-AE09-3DA5D3736FD6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
