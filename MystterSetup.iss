@@ -1,12 +1,14 @@
 #define MyAppName "Mystter"
-#define MyAppVersion "1.4.1"
+#define MyAppVersion "1.4.2"
 #define MyAppPublisher "Maisu"
 #define MyAppExeName MyAppName + ".exe"
 #define MyAppReleaseDir ".\Releases"
+#define MyAppId "20B10983-E290-46CD-A001-FADDE32D57E2"
 
 [Setup]
 AppCopyright=Copyright (C) 2016-2020 {#MyAppPublisher}
-AppId={{20B10983-E290-46CD-A001-FADDE32D57E2}
+AppId={#MyAppId}
+AppMutex={#MyAppId}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
@@ -40,4 +42,3 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
