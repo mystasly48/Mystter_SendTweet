@@ -115,6 +115,24 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for Updates.
+        /// </summary>
+        internal static string checkForUpdates {
+            get {
+                return ResourceManager.GetString("checkForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking for updates....
+        /// </summary>
+        internal static string checkingForUpdates {
+            get {
+                return ResourceManager.GetString("checkingForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Last Tweet.
         /// </summary>
         internal static string deleteBtn {
@@ -223,6 +241,24 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Later.
+        /// </summary>
+        internal static string Later {
+            get {
+                return ResourceManager.GetString("Later", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Version: {version}.
+        /// </summary>
+        internal static string latestVersionLabel {
+            get {
+                return ResourceManager.GetString("latestVersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log out.
         /// </summary>
         internal static string Logout {
@@ -259,11 +295,29 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are up to date..
+        /// </summary>
+        internal static string onTheLatestLabel {
+            get {
+                return ResourceManager.GetString("onTheLatestLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Repository.
         /// </summary>
         internal static string ProjectRepository {
             get {
                 return ResourceManager.GetString("ProjectRepository", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release notes.
+        /// </summary>
+        internal static string ReleaseNotes {
+            get {
+                return ResourceManager.GetString("ReleaseNotes", resourceCulture);
             }
         }
         
@@ -345,6 +399,24 @@ namespace Mystter_SendTweet.Languages {
         internal static string UnknownException {
             get {
                 return ResourceManager.GetString("UnknownException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updates Available!.
+        /// </summary>
+        internal static string updatesAvailableLabel {
+            get {
+                return ResourceManager.GetString("updatesAvailableLabel", resourceCulture);
             }
         }
         
