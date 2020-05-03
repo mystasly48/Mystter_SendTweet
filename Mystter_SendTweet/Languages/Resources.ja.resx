@@ -231,4 +231,28 @@
   <data name="LogoutConfirm" xml:space="preserve">
     <value>選択中のアカウントを一覧から削除しますか？</value>
   </data>
+  <data name="latestVersionLabel" xml:space="preserve">
+    <value>最新版： {version}</value>
+  </data>
+  <data name="onTheLatestLabel" xml:space="preserve">
+    <value>最新版を利用中です。</value>
+  </data>
+  <data name="ReleaseNotes" xml:space="preserve">
+    <value>リリースノート</value>
+  </data>
+  <data name="updatesAvailableLabel" xml:space="preserve">
+    <value>更新が利用可能です！</value>
+  </data>
+  <data name="checkForUpdates" xml:space="preserve">
+    <value>更新を確認</value>
+  </data>
+  <data name="checkingForUpdates" xml:space="preserve">
+    <value>更新を確認しています...</value>
+  </data>
+  <data name="Later" xml:space="preserve">
+    <value>後で</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
 </root>

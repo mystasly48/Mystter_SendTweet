@@ -183,6 +183,19 @@ namespace Mystter_SendTweet {
       ToggleImageListView(imageList.Items.Count > 0);
     }
 
+    private void checkForUpdatesMenuItem_Click(object sender, EventArgs e) {
+      var updatesForm = new CheckingUpdatesForm();
+      updatesForm.ShowDialog();
+      var updater = updatesForm.Updater;
+      if (updater.IsLatestVersion) {
+        var form = new UpdatesUnavailableForm(updater.LatestRelease);
+        form.ShowDialog();
+      } else {
+        var form = new UpdatesAvailableForm(updater);
+        form.ShowDialog();
+      }
+    }
+
     #endregion
 
     #region Control Methods
@@ -204,6 +217,7 @@ namespace Mystter_SendTweet {
       languagesComboBox.Items.Add(Resources.Japanese + " (日本語)");
       languagesComboBox.SelectedIndex = Localization.GetLanguageIndex(Localization.CurrentLanguage);
       removeContextMenuItem.Text = Resources.remove;
+      checkForUpdatesMenuItem.Text = Resources.checkForUpdates;
       UpdateLogoutMenu();
     }
 
@@ -523,9 +537,6 @@ namespace Mystter_SendTweet {
     private int GetLength(string str) {
       return new StringInfo(str).LengthInTextElements;
     }
-
     #endregion
-
-
   }
 }

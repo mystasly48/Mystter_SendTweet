@@ -231,4 +231,28 @@
   <data name="LogoutConfirm" xml:space="preserve">
     <value>Do you want to remove the selected account from the list?</value>
   </data>
+  <data name="latestVersionLabel" xml:space="preserve">
+    <value>Latest Version: {version}</value>
+  </data>
+  <data name="onTheLatestLabel" xml:space="preserve">
+    <value>You are up to date.</value>
+  </data>
+  <data name="ReleaseNotes" xml:space="preserve">
+    <value>Release notes</value>
+  </data>
+  <data name="updatesAvailableLabel" xml:space="preserve">
+    <value>Updates Available!</value>
+  </data>
+  <data name="checkForUpdates" xml:space="preserve">
+    <value>Check for Updates</value>
+  </data>
+  <data name="checkingForUpdates" xml:space="preserve">
+    <value>Checking for updates...</value>
+  </data>
+  <data name="Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>
