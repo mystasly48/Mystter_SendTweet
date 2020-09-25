@@ -1,50 +1,45 @@
 ﻿using CoreTweet;
-using ImageMagick;
 using Manina.Windows.Forms;
+using Mystter_SendTweet.Entities;
+using Mystter_SendTweet.Helpers;
 using Mystter_SendTweet.Languages;
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace Mystter_SendTweet {
-  public partial class Form1 : Form {
-    public Form1() {
+  public partial class MainForm : Form {
+    public MainForm() {
       InitializeComponent();
     }
 
-    Settings settings = new Settings();
-    Tokens tokens;
-    string NewLine = Environment.NewLine;
+    private Settings settings;
 
     #region Controls
 
-    private void Form1_Load(object sender, EventArgs e) {
-      LoadSettings();
+    private void MainForm_Load(object sender, EventArgs e) {
+      settings = Settings.Load();
       SettingsInit();
       TwitterInit();
       ActiveControl = textBox1;
       ToggleImageListView(false);
     }
 
-    private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
-      SaveSettings();
+    private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
+      settings.Save();
     }
 
-    private void Form1_LocationChanged(object sender, EventArgs e) {
+    private void MainForm_LocationChanged(object sender, EventArgs e) {
       if (WindowState != FormWindowState.Minimized) {
         settings.Location = Location;
       }
     }
 
     private void sendBtn_Click(object sender, EventArgs e) {
-      DisabledButton(sendBtn);
+      sendBtn.Enabled = false;
       SendTweet(textBox1.Text);
     }
 
@@ -61,19 +56,19 @@ namespace Mystter_SendTweet {
 
     // Delete Last Tweet
     private void deleteBtn_Click(object sender, EventArgs e) {
-      DisabledButton(deleteBtn);
+      deleteBtn.Enabled = false;
       DeleteLatestTweet();
-      EnabledButton(deleteBtn);
+      deleteBtn.Enabled = true;
     }
 
     // Add account
     private void addAccountMenuItem_Click(object sender, EventArgs e) {
-      AddAccount();
+      settings.AccountSwitcher.Add();
     }
 
     // Switch account
     private void accountsComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-      var selected = accountsComboBox.SelectedItem.ToString();
+      var selected = (Account)accountsComboBox.SelectedItem;
       ChangeSelectedItem(selected);
     }
 
@@ -102,12 +97,12 @@ namespace Mystter_SendTweet {
 
     // Show Profile
     private void showProfileMenuItem_Click(object sender, EventArgs e) {
-      Process.Start("https://twitter.com/" + settings.SelectedItem);
+      Process.Start(settings.AccountSwitcher.SelectedAccount.ProfileUrl);
     }
 
     // Logout @ScreenName
     private void logoutMenuItem_Click(object sender, EventArgs e) {
-      var result = YesNoDialog(Resources.LogoutConfirm);
+      var result = MessageHelper.ShowYesNoDialog(Resources.LogoutConfirm);
       if (!result)
         return;
 
@@ -136,7 +131,7 @@ namespace Mystter_SendTweet {
       if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
         var files = (string[])e.Data.GetData(DataFormats.FileDrop);
         foreach (var file in files) {
-          if (!File.Exists(file) || !IsSupportedImage(file)) {
+          if (!File.Exists(file) || !ImageHelper.IsSupported(file)) {
             e.Effect = DragDropEffects.None;
             return;
           }
@@ -222,16 +217,15 @@ namespace Mystter_SendTweet {
     }
 
     private void UpdateLogoutMenu() {
-      logoutMenuItem.Text = Resources.Logout + " @" + settings.SelectedItem;
+      logoutMenuItem.Text = Resources.Logout + " " + settings.AccountSwitcher.SelectedAccount.ScreenNameWithAt;
     }
 
-    private void ChangeSelectedItem(string item) {
-      accountsComboBox.SelectedItem = item;
-      settings.SelectedItem = item;
+    private void ChangeSelectedItem(Account account) {
+      accountsComboBox.SelectedItem = account;
+      settings.AccountSwitcher.SelectedAccount = account;
+      settings.Save();
       UpdateLogoutMenu();
-      tokens = GetAccountTokens(item);
-      SaveSettings();
-      Text = item + " / " + Information.Title;
+      Text = account.ScreenName + " / " + Information.Title;
     }
 
     private void ChangeTopMost(bool top) {
@@ -239,7 +233,7 @@ namespace Mystter_SendTweet {
         TopMost = top;
         topMostMenuItem.Checked = top;
         settings.TopMost = top;
-        SaveSettings();
+        settings.Save();
       }
     }
 
@@ -247,7 +241,7 @@ namespace Mystter_SendTweet {
       textBox1.WordWrap = wrap;
       wordWrapMenuItem.Checked = wrap;
       settings.WordWrap = wrap;
-      SaveSettings();
+      settings.Save();
     }
 
     private void ChangeLocation(Point location) {
@@ -255,7 +249,7 @@ namespace Mystter_SendTweet {
         if (IsAccessibleForm(location, Size)) {
           Location = location;
         } else {
-          Location = new Point(200, 100);
+          Location = Settings.DefaultLocation;
         }
         settings.Location = Location;
       }
@@ -264,21 +258,9 @@ namespace Mystter_SendTweet {
     private void ChangeLanguage(string lang) {
       if (Localization.ChangeLanguage(lang)) {
         settings.Language = lang;
-        SaveSettings();
+        settings.Save();
         ApplyLocalization();
       }
-    }
-
-    private void DisabledButton(Button btn) {
-      btn.Enabled = false;
-    }
-
-    private void EnabledButton(Button btn) {
-      btn.Enabled = true;
-    }
-
-    private void SetStatusMessage(string msg) {
-      statusLabel1.Text = msg;
     }
 
     private void SettingsInit() {
@@ -313,32 +295,6 @@ namespace Mystter_SendTweet {
 
     #endregion
 
-    #region Methods
-
-    private void SaveSettings() {
-      var serializer = new XmlSerializer(typeof(Settings));
-      using (var writer = new StreamWriter(Information.SettingsFile, false, Encoding.UTF8)) {
-        serializer.Serialize(writer, settings);
-      }
-    }
-
-    private void LoadSettings() {
-      if (File.Exists(Information.SettingsFile)) {
-        var serializer = new XmlSerializer(typeof(Settings));
-        using (var reader = new StreamReader(Information.SettingsFile)) {
-          settings = (Settings)serializer.Deserialize(reader);
-        }
-      } else {
-        CreateSettingsFolder();
-        SaveSettings();
-        LoadSettings();
-      }
-    }
-
-    private void CreateSettingsFolder() {
-      Directory.CreateDirectory(Information.SettingsFolder);
-    }
-
     private void TwitterInit() {
       if (settings.Twitter.Count > 0) {
         for (int i = 0; i < settings.Twitter.Count; i++) {
@@ -353,45 +309,14 @@ namespace Mystter_SendTweet {
       }
     }
 
-    private void AddAccount() {
-      START:
-      var s = OAuth.Authorize(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret);
-      var form = new AuthBrowser(s.AuthorizeUri.AbsoluteUri + "&lang=" + Localization.CurrentLanguage);
-      form.ShowDialog();
-      if (form.Success) {
-        var _tokens = s.GetTokens(form.PIN);
-        SetAccountTokens(_tokens);
-      } else if (settings.Twitter.Count == 0) {
-        if (IsRetryAddingAccount()) {
-          goto START;
-        } else {
-          Environment.Exit(0);
-        }
-      } else {
-        MessageBox.Show(Resources.FailedToAddAccount);
-      }
-      form.Dispose();
-    }
-
-    private bool IsRetryAddingAccount() {
-      return YesNoDialog(Resources.yetAdded1 + NewLine + Resources.yetAdded2);
-    }
-
-    private bool YesNoDialog(string message) {
-      var result = MessageBox.Show(message, Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-      switch (result) {
-        case DialogResult.Yes:
-          return true;
-        case DialogResult.No:
-          return false;
-        default:
-          return false;
-      }
-    }
-
     private void DeleteLatestTweet() {
       var latest = tokens.Account.UpdateProfile().Status;
-      var msgResult = MessageBox.Show(Resources.deleteComfirm + NewLine + "------------------------------" + NewLine + latest.Text + NewLine + "------------------------------", Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      var msgResult = MessageBox.Show(
+        Resources.deleteComfirm + Environment.NewLine
+        + "------------------------------" + Environment.NewLine +
+        latest.Text + Environment.NewLine +
+        "------------------------------",
+        Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
       switch (msgResult) {
         case DialogResult.Yes:
           tokens.Statuses.Destroy(latest.Id);
@@ -403,62 +328,15 @@ namespace Mystter_SendTweet {
       }
     }
 
-    private void SetAccountTokens(Tokens _tokens) {
-      var token = _tokens.AccessToken;
-      var secret = _tokens.AccessTokenSecret;
-      var screen = _tokens.ScreenName;
-      var id = _tokens.UserId;
-
-      if (IsDuplicate(id)) {
-        MessageBox.Show(Resources.alreadyAdded);
-        return;
-      }
-
-      var account = new Account();
-      account.AccessToken = token;
-      account.AccessSecret = secret;
-      account.ScreenName = screen;
-      account.UserId = id;
-
-      settings.Twitter.Add(account);
-
-      accountsComboBox.Items.Add(screen);
-
-      ChangeSelectedItem(screen);
-    }
-
-    private Tokens GetAccountTokens(string screen) {
-      var account = new Account();
-      for (int i = 0; i < settings.Twitter.Count; i++) {
-        account = settings.Twitter[i];
-        if (account.ScreenName.Equals(screen)) {
-          var _tokens = Tokens.Create(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret, account.AccessToken, account.AccessSecret);
-          return _tokens;
-        }
-      }
-      return null;
-    }
-
-    private bool IsDuplicate(long userId) {
-      var account = new Account();
-      for (int i = 0; i < settings.Twitter.Count; i++) {
-        account = settings.Twitter[i];
-        if (account.UserId == userId) {
-          return true;
-        }
-      }
-      return false;
-    }
-
     private void SendTweet(string msg) {
-      if (!IsNetworkAvailable()) {
+      if (!NetworkHelper.IsAvailable()) {
         MessageBox.Show(Resources.networkNotAvailable);
         return;
       }
-      if (IsEmpty(msg) && imageList.Items.Count == 0) {
+      if (TweetHelper.IsEmpty(msg) && imageList.Items.Count == 0) {
         MessageBox.Show(Resources.tooShort);
         return;
-      } else if (GetLength(msg) > 140) {
+      } else if (TweetHelper.GetLength(msg) > 140) {
         MessageBox.Show(Resources.tooLong);
         return;
       }
@@ -486,57 +364,19 @@ namespace Mystter_SendTweet {
       IsTweetable();
     }
 
-    private bool IsEmpty(string str) {
-      str = str.Replace(" ", "");
-      str = str.Replace("　", "");
-      str = str.Replace("\r", "");
-      str = str.Replace("\n", "");
-      if (GetLength(str) == 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    private bool IsNetworkAvailable() {
-      return NetworkInterface.GetIsNetworkAvailable();
-    }
-
     private void IsTweetable() {
       var text = textBox1.Text;
-      var length = GetLength(textBox1.Text);
+      var length = TweetHelper.GetLength(textBox1.Text);
       lengthLabel1.Text = length.ToString();
       if (length > 140) {
-        DisabledButton(sendBtn);
+        sendBtn.Enabled = false;
         lengthLabel1.ForeColor = Color.Red;
-      } else if ((length == 0 || IsEmpty(text)) && imageList.Items.Count == 0) {
-        DisabledButton(sendBtn);
+      } else if ((length == 0 || TweetHelper.IsEmpty(text)) && imageList.Items.Count == 0) {
+        sendBtn.Enabled = false;
       } else {
-        EnabledButton(sendBtn);
+        sendBtn.Enabled = true;
         lengthLabel1.ForeColor = SystemColors.WindowText;
       }
     }
-
-    private bool IsSupportedImage(string path) {
-      try {
-        // I don't know the difference between Jpg and Jpeg.
-        // A lot of .jpg extention files are recognized as Jpeg.
-        MagickFormat format = new MagickImageInfo(path).Format;
-        if (format == MagickFormat.Jpg || format == MagickFormat.Jpeg || format == MagickFormat.Png || format == MagickFormat.Gif || format == MagickFormat.WebP) {
-          return true;
-        } else {
-          Console.WriteLine(format);
-          return false;
-        }
-      } catch {
-        Console.WriteLine(path);
-        return false;
-      }
-    }
-
-    private int GetLength(string str) {
-      return new StringInfo(str).LengthInTextElements;
-    }
-    #endregion
   }
 }
