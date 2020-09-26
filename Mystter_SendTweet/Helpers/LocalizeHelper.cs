@@ -3,8 +3,8 @@ using System.Threading;
 using Mystter_SendTweet.Languages;
 
 namespace Mystter_SendTweet {
-  public static class Localization {
-    public static string CurrentLanguage;
+  public static class LocalizeHelper {
+    public static string CurrentLanguage { get; private set; }
     public static bool ChangeLanguage(string lang) {
       if (lang != CurrentLanguage) {
         Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
