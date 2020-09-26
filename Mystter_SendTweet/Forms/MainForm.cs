@@ -18,14 +18,12 @@ namespace Mystter_SendTweet {
 
     private Settings settings;
 
-    #region Controls
-
     private void MainForm_Load(object sender, EventArgs e) {
       settings = Settings.Load();
       SettingsInit();
       TwitterInit();
       ActiveControl = textBox1;
-      ToggleImageListView(false);
+      EnableImageListView(false);
     }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
@@ -34,6 +32,7 @@ namespace Mystter_SendTweet {
 
     private void MainForm_LocationChanged(object sender, EventArgs e) {
       if (WindowState != FormWindowState.Minimized) {
+        // don't save the settings every time because the event is invoked frequently
         settings.Location = Location;
       }
     }
@@ -41,6 +40,7 @@ namespace Mystter_SendTweet {
     private void sendBtn_Click(object sender, EventArgs e) {
       sendBtn.Enabled = false;
       SendTweet(textBox1.Text);
+      // sendBtn will be enabled in SendTweet
     }
 
     private void textBox1_KeyDown(object sender, KeyEventArgs e) {
@@ -51,7 +51,7 @@ namespace Mystter_SendTweet {
     }
 
     private void textBox1_TextChanged(object sender, EventArgs e) {
-      IsTweetable();
+      UpdateTweetableStatus();
     }
 
     // Delete Last Tweet
@@ -64,12 +64,13 @@ namespace Mystter_SendTweet {
     // Add account
     private void addAccountMenuItem_Click(object sender, EventArgs e) {
       settings.AccountSwitcher.Add();
+      settings.Save();
     }
 
     // Switch account
     private void accountsComboBox_SelectedIndexChanged(object sender, EventArgs e) {
       var selected = (Account)accountsComboBox.SelectedItem;
-      ChangeSelectedItem(selected);
+      ChangeSelectedAccount(selected);
     }
 
     // Top Most
@@ -91,7 +92,7 @@ namespace Mystter_SendTweet {
     // Language
     private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e) {
       var selected = languagesComboBox.SelectedIndex;
-      var lang = Localization.GetLanguageParent(selected);
+      var lang = LocalizeHelper.GetLanguageParent(selected);
       ChangeLanguage(lang);
     }
 
@@ -102,29 +103,13 @@ namespace Mystter_SendTweet {
 
     // Logout @ScreenName
     private void logoutMenuItem_Click(object sender, EventArgs e) {
-      var result = MessageHelper.ShowYesNoDialog(Resources.LogoutConfirm);
+      var result = MessageHelper.ShowYesNo(Resources.LogoutConfirm);
       if (!result)
         return;
 
-      var selected = settings.SelectedItem;
-      for (int i = 0; i < settings.Twitter.Count; i++) {
-        if (settings.Twitter[i].ScreenName == selected) {
-          settings.Twitter.RemoveAt(i);
-          accountsComboBox.Items.RemoveAt(i);
-          break;
-        }
-      }
-
-      var next = settings.Twitter.Where(x => x.ScreenName != selected).FirstOrDefault();
-      ChangeSelectedItem(next?.ScreenName);
-
-      if (next == null) {
-        if (IsRetryAddingAccount()) {
-          AddAccount();
-        } else {
-          Environment.Exit(0);
-        }
-      }
+      settings.AccountSwitcher.Remove(settings.AccountSwitcher.SelectedAccount);
+      settings.Save();
+      ChangeSelectedAccount(settings.AccountSwitcher.SelectedAccount);
     }
 
     private void ImagesDragEnter(object sender, DragEventArgs e) {
@@ -143,11 +128,11 @@ namespace Mystter_SendTweet {
     private void ImagesDragDrop(object sender, DragEventArgs e) {
       var files = (string[])e.Data.GetData(DataFormats.FileDrop);
       if (files.Length + imageList.Items.Count > 4) {
-        MessageBox.Show(Resources.upTo4Images);
+        MessageHelper.Show(Resources.upTo4Images);
       } else {
         imageList.Items.AddRange(files);
-        ToggleImageListView(true);
-        IsTweetable();
+        EnableImageListView(true);
+        UpdateTweetableStatus();
       }
     }
 
@@ -174,8 +159,8 @@ namespace Mystter_SendTweet {
     }
 
     private void imageList_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs e) {
-      IsTweetable();
-      ToggleImageListView(imageList.Items.Count > 0);
+      UpdateTweetableStatus();
+      EnableImageListView(imageList.Items.Count > 0);
     }
 
     private void checkForUpdatesMenuItem_Click(object sender, EventArgs e) {
@@ -190,10 +175,6 @@ namespace Mystter_SendTweet {
         form.ShowDialog();
       }
     }
-
-    #endregion
-
-    #region Control Methods
 
     private void ApplyLocalization() {
       sendBtn.Text = Resources.sendBtn;
@@ -210,22 +191,37 @@ namespace Mystter_SendTweet {
       languagesComboBox.Items.Clear();
       languagesComboBox.Items.Add(Resources.English + " (English)");
       languagesComboBox.Items.Add(Resources.Japanese + " (日本語)");
-      languagesComboBox.SelectedIndex = Localization.GetLanguageIndex(Localization.CurrentLanguage);
+      languagesComboBox.SelectedIndex = LocalizeHelper.GetLanguageIndex(LocalizeHelper.CurrentLanguage);
       removeContextMenuItem.Text = Resources.remove;
       checkForUpdatesMenuItem.Text = Resources.checkForUpdates;
       UpdateLogoutMenu();
     }
 
     private void UpdateLogoutMenu() {
-      logoutMenuItem.Text = Resources.Logout + " " + settings.AccountSwitcher.SelectedAccount.ScreenNameWithAt;
+      if (settings.AccountSwitcher.Accounts.Count == 0 || settings.AccountSwitcher.SelectedAccount == null) {
+        logoutMenuItem.Text = Resources.Logout;
+        logoutMenuItem.Enabled = false;
+      } else {
+        logoutMenuItem.Text = Resources.Logout + " " + settings.AccountSwitcher.SelectedAccount.ScreenNameWithAt;
+        logoutMenuItem.Enabled = true;
+      }
     }
 
-    private void ChangeSelectedItem(Account account) {
+    private void UpdateFormTitle() {
+      Text = settings.AccountSwitcher.SelectedAccount.ScreenName + " / " + Information.Title;
+    }
+
+    private void UpdateAccountsList() {
+      accountsComboBox.Items.AddRange(settings.AccountSwitcher.Accounts.ToArray());
+      ChangeSelectedAccount(settings.AccountSwitcher.SelectedAccount);
+    }
+
+    private void ChangeSelectedAccount(Account account) {
       accountsComboBox.SelectedItem = account;
       settings.AccountSwitcher.SelectedAccount = account;
       settings.Save();
       UpdateLogoutMenu();
-      Text = account.ScreenName + " / " + Information.Title;
+      UpdateFormTitle();
     }
 
     private void ChangeTopMost(bool top) {
@@ -252,11 +248,12 @@ namespace Mystter_SendTweet {
           Location = Settings.DefaultLocation;
         }
         settings.Location = Location;
+        settings.Save();
       }
     }
 
     private void ChangeLanguage(string lang) {
-      if (Localization.ChangeLanguage(lang)) {
+      if (LocalizeHelper.ChangeLanguage(lang)) {
         settings.Language = lang;
         settings.Save();
         ApplyLocalization();
@@ -279,7 +276,7 @@ namespace Mystter_SendTweet {
       return false;
     }
 
-    private void ToggleImageListView(bool show) {
+    private void EnableImageListView(bool show) {
       if (show && !imageList.Visible) {
         textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
         Height += imageList.Height;
@@ -293,54 +290,42 @@ namespace Mystter_SendTweet {
       }
     }
 
-    #endregion
-
     private void TwitterInit() {
-      if (settings.Twitter.Count > 0) {
-        for (int i = 0; i < settings.Twitter.Count; i++) {
-          var account = new Account();
-          account = settings.Twitter[i];
-          accountsComboBox.Items.Add(account.ScreenName);
-        }
-        tokens = GetAccountTokens(settings.SelectedItem);
-        ChangeSelectedItem(settings.SelectedItem);
+      if (settings.AccountSwitcher.Accounts.Count > 0) {
+        UpdateAccountsList();
       } else {
-        AddAccount();
+        settings.AccountSwitcher.Add();
+        settings.Save();
+        UpdateAccountsList();
       }
     }
 
     private void DeleteLatestTweet() {
+      var tokens = settings.AccountSwitcher.SelectedTokens;
       var latest = tokens.Account.UpdateProfile().Status;
-      var msgResult = MessageBox.Show(
-        Resources.deleteComfirm + Environment.NewLine
-        + "------------------------------" + Environment.NewLine +
-        latest.Text + Environment.NewLine +
-        "------------------------------",
-        Information.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-      switch (msgResult) {
-        case DialogResult.Yes:
-          tokens.Statuses.Destroy(latest.Id);
-          MessageBox.Show(Resources.deleteYes, Information.Title);
-          break;
-        case DialogResult.No:
-          MessageBox.Show(Resources.deleteNo, Information.Title);
-          break;
+      var result = MessageHelper.ShowYesNo(Resources.deleteComfirm, latest.Text);
+      if (result) {
+        tokens.Statuses.Destroy(latest.Id);
+        MessageHelper.Show(Resources.deleteYes);
+      } else {
+        MessageHelper.Show(Resources.deleteNo);
       }
     }
 
     private void SendTweet(string msg) {
       if (!NetworkHelper.IsAvailable()) {
-        MessageBox.Show(Resources.networkNotAvailable);
+        MessageHelper.Show(Resources.networkNotAvailable);
         return;
       }
       if (TweetHelper.IsEmpty(msg) && imageList.Items.Count == 0) {
-        MessageBox.Show(Resources.tooShort);
+        MessageHelper.Show(Resources.tooShort);
         return;
       } else if (TweetHelper.GetLength(msg) > 140) {
-        MessageBox.Show(Resources.tooLong);
+        MessageHelper.Show(Resources.tooLong);
         return;
       }
       try {
+        var tokens = settings.AccountSwitcher.SelectedTokens;
         if (imageList.Items.Count > 0) {
           var ids = imageList.Items.Select(x => tokens.Media.Upload(new FileInfo(Path.Combine(x.FilePath, x.FileName))).MediaId);
           tokens.Statuses.Update(status: msg, media_ids: ids);
@@ -350,32 +335,36 @@ namespace Mystter_SendTweet {
         }
       } catch (TwitterException ex) {
         if (ex.Message.Contains("Status is a duplicate")) {
-          MessageBox.Show(Resources.duplicate);
+          MessageHelper.Show(Resources.duplicate);
           return;
         }
-        MessageBox.Show(Resources.TwitterException);
+        MessageHelper.Show(Resources.TwitterException);
         throw;
       } catch {
-        MessageBox.Show(Resources.UnknownException);
+        MessageHelper.Show(Resources.UnknownException);
         throw;
       }
-      textBox1.Text = "";
+      textBox1.Clear();
       textBox1.Focus();
-      IsTweetable();
+      UpdateTweetableStatus();
     }
 
-    private void IsTweetable() {
+    private TweetableStatus UpdateTweetableStatus() {
       var text = textBox1.Text;
       var length = TweetHelper.GetLength(textBox1.Text);
       lengthLabel1.Text = length.ToString();
       if (length > 140) {
         sendBtn.Enabled = false;
         lengthLabel1.ForeColor = Color.Red;
-      } else if ((length == 0 || TweetHelper.IsEmpty(text)) && imageList.Items.Count == 0) {
+        return TweetableStatus.TooLong;
+      } else if (TweetHelper.IsEmpty(text) && imageList.Items.Count == 0) {
         sendBtn.Enabled = false;
+        lengthLabel1.ForeColor = SystemColors.WindowText;
+        return TweetableStatus.Empty;
       } else {
         sendBtn.Enabled = true;
         lengthLabel1.ForeColor = SystemColors.WindowText;
+        return TweetableStatus.OK;
       }
     }
   }

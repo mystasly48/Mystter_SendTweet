@@ -21,6 +21,15 @@ namespace Mystter_SendTweet.Entities {
       }
     }
 
+    public Account() { }
+
+    public Account(string AccessToken, string AccessSecret, string ScreenName, long UserId) {
+      this.AccessToken = AccessToken;
+      this.AccessSecret = AccessSecret;
+      this.ScreenName = ScreenName;
+      this.UserId = UserId;
+    }
+
     public override string ToString() {
       return UserId.ToString();
     }

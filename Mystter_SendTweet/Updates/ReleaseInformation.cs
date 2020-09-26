@@ -34,7 +34,7 @@ namespace Mystter_SendTweet {
     // ReleaseNotes_ja.txt
     public string ReleaseNotes {
       get {
-        var asset = Release.Assets.Where(x => x.ContentType == "text/plain" && x.Name.Contains(Localization.CurrentLanguage)).FirstOrDefault();
+        var asset = Release.Assets.Where(x => x.ContentType == "text/plain" && x.Name.Contains(LocalizeHelper.CurrentLanguage)).FirstOrDefault();
         using (var wc = new WebClient()) {
           wc.Encoding = Encoding.UTF8;
           return wc.DownloadString(asset.BrowserDownloadUrl).Trim();

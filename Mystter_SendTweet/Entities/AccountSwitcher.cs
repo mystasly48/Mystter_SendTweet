@@ -27,10 +27,14 @@ namespace Mystter_SendTweet.Entities {
     [XmlIgnore]
     public Tokens SelectedTokens { get; private set; }
 
+    public AccountSwitcher() {
+      Accounts = new List<Account>();
+    }
+
     public void Add() {
       START:
       var s = OAuth.Authorize(SecretKeys.ConsumerKey, SecretKeys.ConsumerSecret);
-      var form = new AuthBrowser(s.AuthorizeUri.AbsoluteUri + "&lang=" + Localization.CurrentLanguage);
+      var form = new AuthBrowser(s.AuthorizeUri.AbsoluteUri + "&lang=" + LocalizeHelper.CurrentLanguage);
       form.ShowDialog();
       if (form.Success) {
         var _tokens = s.GetTokens(form.PIN);
@@ -58,12 +62,7 @@ namespace Mystter_SendTweet.Entities {
         return;
       }
 
-      var account = new Account();
-      account.AccessToken = accessToken;
-      account.AccessSecret = accessSecret;
-      account.ScreenName = screenName;
-      account.UserId = userId;
-
+      var account = new Account(accessToken, accessSecret, screenName, userId);
       Accounts.Add(account);
       SelectedAccount = account;
     }
@@ -72,8 +71,21 @@ namespace Mystter_SendTweet.Entities {
       return Accounts.Any(account => account.UserId == userId);
     }
 
-    public void Logout() {
-      throw new NotImplementedException();
+    public bool Remove(Account selected) {
+      if (!Accounts.Contains(selected))
+        return false;
+
+      Accounts.Remove(selected);
+      if (Accounts.Count == 0) {
+        if (MessageHelper.RetryAddingAccount()) {
+          Add();
+        } else {
+          Environment.Exit(0);
+        }
+      } else {
+        SelectedAccount = Accounts.FirstOrDefault();
+      }
+      return true;
     }
   }
 }
