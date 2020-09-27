@@ -31,7 +31,7 @@ namespace Mystter_SendTweet.Entities {
     }
 
     public override string ToString() {
-      return UserId.ToString();
+      return ScreenName;
     }
   }
 }

@@ -46,7 +46,7 @@ namespace Mystter_SendTweet.Entities {
           Environment.Exit(0);
         }
       } else {
-        MessageBox.Show(Resources.FailedToAddAccount);
+        MessageHelper.Show(Resources.FailedToAddAccount);
       }
       form.Dispose();
     }
@@ -58,7 +58,7 @@ namespace Mystter_SendTweet.Entities {
       var userId = _tokens.UserId;
 
       if (IsDuplicateAccount(userId)) {
-        MessageBox.Show(Resources.alreadyAdded);
+        MessageHelper.Show(Resources.alreadyAdded);
         return;
       }
 

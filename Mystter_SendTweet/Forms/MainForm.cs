@@ -19,9 +19,21 @@ namespace Mystter_SendTweet {
     private Settings settings;
 
     private void MainForm_Load(object sender, EventArgs e) {
+      // Settings init
       settings = Settings.Load();
-      SettingsInit();
-      TwitterInit();
+      ChangeLanguage(settings.Language);
+      ChangeTopMost(settings.TopMost);
+      ChangeWordWrap(settings.WordWrap);
+      ChangeLocation(settings.Location);
+      
+      // Twitter init
+      if (settings.AccountSwitcher.Accounts.Count == 0) {
+        settings.AccountSwitcher.Add();
+        settings.Save();
+      }
+      UpdateAccountsList();
+
+      // Controls init
       ActiveControl = textBox1;
       EnableImageListView(false);
     }
@@ -65,6 +77,7 @@ namespace Mystter_SendTweet {
     private void addAccountMenuItem_Click(object sender, EventArgs e) {
       settings.AccountSwitcher.Add();
       settings.Save();
+      UpdateAccountsList();
     }
 
     // Switch account
@@ -85,8 +98,7 @@ namespace Mystter_SendTweet {
 
     // About
     private void aboutMenuItem_Click(object sender, EventArgs e) {
-      var form = new AboutForm();
-      form.ShowDialog();
+      new AboutForm().ShowDialog();
     }
 
     // Language
@@ -109,6 +121,7 @@ namespace Mystter_SendTweet {
 
       settings.AccountSwitcher.Remove(settings.AccountSwitcher.SelectedAccount);
       settings.Save();
+      UpdateAccountsList();
       ChangeSelectedAccount(settings.AccountSwitcher.SelectedAccount);
     }
 
@@ -155,7 +168,7 @@ namespace Mystter_SendTweet {
     }
 
     private void imageList_ItemDoubleClick(object sender, ItemClickEventArgs e) {
-      Process.Start(Path.Combine(e.Item.FilePath, e.Item.FileName));
+      Process.Start(ImageHelper.GetFullPath(e.Item));
     }
 
     private void imageList_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs e) {
@@ -212,6 +225,7 @@ namespace Mystter_SendTweet {
     }
 
     private void UpdateAccountsList() {
+      accountsComboBox.Items.Clear();
       accountsComboBox.Items.AddRange(settings.AccountSwitcher.Accounts.ToArray());
       ChangeSelectedAccount(settings.AccountSwitcher.SelectedAccount);
     }
@@ -260,13 +274,6 @@ namespace Mystter_SendTweet {
       }
     }
 
-    private void SettingsInit() {
-      ChangeLanguage(settings.Language);
-      ChangeTopMost(settings.TopMost);
-      ChangeWordWrap(settings.WordWrap);
-      ChangeLocation(settings.Location);
-    }
-
     private bool IsAccessibleForm(Point location, Size size) {
       foreach (Screen sc in Screen.AllScreens) {
         if (sc.WorkingArea.Contains(new Rectangle(location, size))) {
@@ -287,16 +294,6 @@ namespace Mystter_SendTweet {
         Height -= imageList.Height;
         textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left;
         imageList.Visible = false;
-      }
-    }
-
-    private void TwitterInit() {
-      if (settings.AccountSwitcher.Accounts.Count > 0) {
-        UpdateAccountsList();
-      } else {
-        settings.AccountSwitcher.Add();
-        settings.Save();
-        UpdateAccountsList();
       }
     }
 
@@ -327,7 +324,7 @@ namespace Mystter_SendTweet {
       try {
         var tokens = settings.AccountSwitcher.SelectedTokens;
         if (imageList.Items.Count > 0) {
-          var ids = imageList.Items.Select(x => tokens.Media.Upload(new FileInfo(Path.Combine(x.FilePath, x.FileName))).MediaId);
+          var ids = imageList.Items.Select(x => tokens.Media.Upload(ImageHelper.GetFileInfo(x)).MediaId);
           tokens.Statuses.Update(status: msg, media_ids: ids);
           imageList.Items.Clear();
         } else {

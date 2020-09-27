@@ -14,21 +14,13 @@ namespace Mystter_SendTweet {
     public AccountSwitcher AccountSwitcher { get; set; }
 
     [XmlIgnore]
-    public static bool DefaultTopMost {
-      get => false;
-    }
+    public static bool DefaultTopMost { get => false; }
     [XmlIgnore]
-    public static bool DefaultWordWrap {
-      get => true;
-    }
+    public static bool DefaultWordWrap { get => true; }
     [XmlIgnore]
-    public static Point DefaultLocation {
-      get => new Point(200, 100);
-    }
+    public static Point DefaultLocation { get => new Point(200, 100); }
     [XmlIgnore]
-    public static string DefaultLanguage {
-      get => CultureInfo.CurrentCulture.Parent.ToString();
-    }
+    public static string DefaultLanguage { get => CultureInfo.CurrentCulture.Parent.ToString(); }
 
     public Settings() {
       TopMost = DefaultTopMost;

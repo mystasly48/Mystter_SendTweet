@@ -1,6 +1,8 @@
 ﻿using ImageMagick;
+using Manina.Windows.Forms;
 using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace Mystter_SendTweet.Helpers {
   public static class ImageHelper {
@@ -19,6 +21,14 @@ namespace Mystter_SendTweet.Helpers {
         Debug.WriteLine("[Exception on creating MagickImageInfo instance] Message: {0}, Path: {1}", ex.Message, path);
         return false;
       }
+    }
+
+    public static FileInfo GetFileInfo(ImageListViewItem item) {
+      return new FileInfo(GetFullPath(item));
+    }
+
+    public static string GetFullPath(ImageListViewItem item) {
+      return Path.Combine(item.FilePath, item.FileName);
     }
   }
 }

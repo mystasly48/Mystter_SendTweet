@@ -14,7 +14,7 @@ namespace Mystter_SendTweet.Helpers {
     }
 
     public static bool RetryAddingAccount() {
-      return ShowYesNo(Resources.yetAdded1 + Environment.NewLine + Resources.yetAdded2);
+      return ShowYesNo(Resources.yetAdded1, Resources.yetAdded2);
     }
 
     public static bool ShowYesNo(string message) {
