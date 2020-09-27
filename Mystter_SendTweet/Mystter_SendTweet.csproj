@@ -98,36 +98,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\AccountSwitcher.cs" />
+    <Compile Include="Entities\TweetableStatus.cs" />
+    <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthBrowser.cs">
+    <Compile Include="Forms\AuthBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthBrowser.Designer.cs">
+    <Compile Include="Forms\AuthBrowser.Designer.cs">
       <DependentUpon>AuthBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="CheckingUpdatesForm.cs">
+    <Compile Include="Forms\CheckingUpdatesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CheckingUpdatesForm.Designer.cs">
+    <Compile Include="Forms\CheckingUpdatesForm.Designer.cs">
       <DependentUpon>CheckingUpdatesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GitHubAsset.cs" />
-    <Compile Include="GitHubAuthor.cs" />
-    <Compile Include="GitHubRelease.cs" />
-    <Compile Include="GitHubUploader.cs" />
-    <Compile Include="Information.cs" />
-    <Compile Include="Localization.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\MessageHelper.cs" />
+    <Compile Include="Helpers\NetworkHelper.cs" />
+    <Compile Include="Helpers\TweetHelper.cs" />
+    <Compile Include="Updates\GitHubAsset.cs" />
+    <Compile Include="Updates\GitHubAuthor.cs" />
+    <Compile Include="Updates\GitHubRelease.cs" />
+    <Compile Include="Updates\GitHubUploader.cs" />
+    <Compile Include="Entities\Information.cs" />
+    <Compile Include="Helpers\LocalizeHelper.cs" />
     <Compile Include="Languages\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,33 +142,33 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReleaseInformation.cs" />
-    <Compile Include="SecretKeys.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="Updater.cs" />
-    <Compile Include="UpdatesAvailableForm.cs">
+    <Compile Include="Updates\ReleaseInformation.cs" />
+    <Compile Include="Entities\SecretKeys.cs" />
+    <Compile Include="Entities\Settings.cs" />
+    <Compile Include="Updates\Updater.cs" />
+    <Compile Include="Forms\UpdatesAvailableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdatesAvailableForm.Designer.cs">
+    <Compile Include="Forms\UpdatesAvailableForm.Designer.cs">
       <DependentUpon>UpdatesAvailableForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdatesUnavailableForm.cs">
+    <Compile Include="Forms\UpdatesUnavailableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdatesUnavailableForm.Designer.cs">
+    <Compile Include="Forms\UpdatesUnavailableForm.Designer.cs">
       <DependentUpon>UpdatesUnavailableForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AboutForm.resx">
+    <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AuthBrowser.resx">
+    <EmbeddedResource Include="Forms\AuthBrowser.resx">
       <DependentUpon>AuthBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CheckingUpdatesForm.resx">
+    <EmbeddedResource Include="Forms\CheckingUpdatesForm.resx">
       <DependentUpon>CheckingUpdatesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Languages\Resources.ja.resx" />
     <EmbeddedResource Include="Languages\Resources.resx">
@@ -178,10 +185,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UpdatesAvailableForm.resx">
+    <EmbeddedResource Include="Forms\UpdatesAvailableForm.resx">
       <DependentUpon>UpdatesAvailableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdatesUnavailableForm.resx">
+    <EmbeddedResource Include="Forms\UpdatesUnavailableForm.resx">
       <DependentUpon>UpdatesUnavailableForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -232,6 +239,7 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

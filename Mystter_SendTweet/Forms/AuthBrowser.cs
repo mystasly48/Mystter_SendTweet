@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -31,7 +32,7 @@ namespace Mystter_SendTweet {
         }
         authorizingLabel.Visible = true;
         webBrowser1.Visible = false;
-        webBrowser1.Navigate(LogoutUrl);
+        //webBrowser1.Navigate(LogoutUrl);
       } else if (webBrowser1.Url.OriginalString == LogoutUrl) {
         // logout
         var logout = webBrowser1.Document.GetElementsByTagName("button").OfType<HtmlElement>()
