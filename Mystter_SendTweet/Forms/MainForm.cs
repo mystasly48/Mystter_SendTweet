@@ -25,9 +25,10 @@ namespace Mystter_SendTweet {
       ChangeTopMost(settings.TopMost);
       ChangeWordWrap(settings.WordWrap);
       ChangeLocation(settings.Location);
+      ChangeSize(settings.Size);
       
       // Twitter init
-      if (settings.AccountSwitcher.Accounts.Count == 0) {
+      if (settings.AccountSwitcher.IsEmpty()) {
         settings.AccountSwitcher.Add();
         settings.Save();
       }
@@ -121,6 +122,14 @@ namespace Mystter_SendTweet {
 
       settings.AccountSwitcher.Remove(settings.AccountSwitcher.SelectedAccount);
       settings.Save();
+      if (settings.AccountSwitcher.IsEmpty()) {
+        if (MessageHelper.RetryAddingAccount()) {
+          settings.AccountSwitcher.Add();
+          settings.Save();
+        } else {
+          Environment.Exit(0);
+        }
+      }
       UpdateAccountsList();
       ChangeSelectedAccount(settings.AccountSwitcher.SelectedAccount);
     }
@@ -211,7 +220,7 @@ namespace Mystter_SendTweet {
     }
 
     private void UpdateLogoutMenu() {
-      if (settings.AccountSwitcher.Accounts.Count == 0 || settings.AccountSwitcher.SelectedAccount == null) {
+      if (settings.AccountSwitcher.IsEmpty()) {
         logoutMenuItem.Text = Resources.Logout;
         logoutMenuItem.Enabled = false;
       } else {
@@ -298,7 +307,7 @@ namespace Mystter_SendTweet {
     }
 
     private void DeleteLatestTweet() {
-      var tokens = settings.AccountSwitcher.SelectedTokens;
+      var tokens = settings.AccountSwitcher.SelectedAccount.Tokens;
       var latest = tokens.Account.UpdateProfile().Status;
       var result = MessageHelper.ShowYesNo(Resources.deleteComfirm, latest.Text);
       if (result) {
@@ -322,7 +331,7 @@ namespace Mystter_SendTweet {
         return;
       }
       try {
-        var tokens = settings.AccountSwitcher.SelectedTokens;
+        var tokens = settings.AccountSwitcher.SelectedAccount.Tokens;
         if (imageList.Items.Count > 0) {
           var ids = imageList.Items.Select(x => tokens.Media.Upload(ImageHelper.GetFileInfo(x)).MediaId);
           tokens.Statuses.Update(status: msg, media_ids: ids);
