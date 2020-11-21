@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Forms {
   public partial class UpdatesAvailableForm : Form {
     Updater updater;
     string installerDestination;
@@ -20,7 +20,7 @@ namespace Mystter_SendTweet {
       availableLabel.Text = Resources.updatesAvailableLabel;
       // "Release notes 1.4.1 (04/25/2020)"
       var notes = updater.NewerReleases
-        .Select(x => $"{Resources.ReleaseNotes} {x.Version} ({x.ReleasedAt.ToString("MM/dd/yyyy")}){Environment.NewLine}{x.ReleaseNotes}{Environment.NewLine}");
+        .Select(x => $"{Resources.ReleaseNotes} {x.Version} ({x.ReleasedAt:MM/dd/yyyy}){Environment.NewLine}{x.ReleaseNotes}{Environment.NewLine}");
       textBox1.Text = string.Join(Environment.NewLine, notes);
       updateButton.Text = Resources.Update;
       laterButton.Text = Resources.Later;

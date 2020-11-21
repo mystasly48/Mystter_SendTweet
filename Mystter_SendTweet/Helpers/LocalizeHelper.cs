@@ -2,7 +2,7 @@
 using System.Threading;
 using Mystter_SendTweet.Languages;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Helpers {
   public static class LocalizeHelper {
     public static string CurrentLanguage { get; private set; }
     public static bool ChangeLanguage(string lang) {

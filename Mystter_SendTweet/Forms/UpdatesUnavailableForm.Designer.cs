@@ -1,4 +1,4 @@
-﻿namespace Mystter_SendTweet {
+﻿namespace Mystter_SendTweet.Forms {
   partial class UpdatesUnavailableForm {
     /// <summary>
     /// Required designer variable.

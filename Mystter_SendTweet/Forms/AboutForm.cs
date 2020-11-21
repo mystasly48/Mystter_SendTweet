@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Mystter_SendTweet.Entities;
 using Mystter_SendTweet.Languages;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Forms {
   public partial class AboutForm : Form {
     public AboutForm() {
       InitializeComponent();
@@ -31,7 +32,7 @@ namespace Mystter_SendTweet {
     }
 
     private void ApplyLocalization() {
-      this.Text = Information.Title + " - " + Resources.About;
+      this.Text = Information.GetConcatTitle(Resources.About);
       verLabelTitle.Text = Resources.Version + ":";
       developerLabelTitle.Text = Resources.Developer + ":";
       repoLinkLabelTitle.Text = Resources.ProjectRepository + ":";

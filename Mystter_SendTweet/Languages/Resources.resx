@@ -258,4 +258,22 @@
   <data name="OpenSettingsFolder" xml:space="preserve">
     <value>Open Settings Folder</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="AutoAppendHashtags" xml:space="preserve">
+    <value>Auto Append Hashtags</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Hashtags" xml:space="preserve">
+    <value>Hashtags</value>
+  </data>
+  <data name="HashtagsSetting" xml:space="preserve">
+    <value>Hashtags Settings</value>
+  </data>
 </root>

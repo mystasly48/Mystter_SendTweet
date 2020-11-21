@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mystter_SendTweet.Entities;
+using Mystter_SendTweet.Helpers;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net;

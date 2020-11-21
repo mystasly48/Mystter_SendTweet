@@ -1,9 +1,10 @@
-﻿using Mystter_SendTweet.Languages;
+﻿using Mystter_SendTweet.Entities;
+using Mystter_SendTweet.Languages;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Forms {
   public partial class CheckingUpdatesForm : Form {
     public Updater Updater { get; private set; }
 
@@ -21,7 +22,8 @@ namespace Mystter_SendTweet {
     }
 
     private void CheckingUpdatesForm_Load(object sender, EventArgs e) {
-      label1.Text = Resources.checkingForUpdates;
+      this.Text = Information.GetConcatTitle(Resources.checkForUpdates);
+      checkingForUpdatesLabe.Text = Resources.checkingForUpdates;
       progressBar1.Enabled = true;
       backgroundWorker1.RunWorkerAsync();
     }
