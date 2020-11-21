@@ -11,5 +11,9 @@ namespace Mystter_SendTweet.Entities {
     public static string Twitter { get => "https://twitter.com/30msl"; }
     public static string SettingsFolder { get => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Title); }
     public static string SettingsFile { get => Path.Combine(SettingsFolder, "Settings.xml"); }
+
+    public static string GetConcatTitle(string title) {
+      return string.Join(" / ", Title, title);
+    }
   }
 }

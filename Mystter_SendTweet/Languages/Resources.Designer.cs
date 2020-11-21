@@ -88,6 +88,15 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add an account.
         /// </summary>
         internal static string addAccountMenuItem {
@@ -106,11 +115,38 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string Apply {
+            get {
+                return ResourceManager.GetString("Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Now authorizing....
         /// </summary>
         internal static string Authorizing {
             get {
                 return ResourceManager.GetString("Authorizing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Append Hashtags.
+        /// </summary>
+        internal static string AutoAppendHashtags {
+            get {
+                return ResourceManager.GetString("AutoAppendHashtags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -210,6 +246,24 @@ namespace Mystter_SendTweet.Languages {
         internal static string FailedToAddAccount {
             get {
                 return ResourceManager.GetString("FailedToAddAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string Hashtags {
+            get {
+                return ResourceManager.GetString("Hashtags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtags Settings.
+        /// </summary>
+        internal static string HashtagsSetting {
+            get {
+                return ResourceManager.GetString("HashtagsSetting", resourceCulture);
             }
         }
         

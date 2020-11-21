@@ -1,6 +1,7 @@
 ﻿using CoreTweet;
 using Manina.Windows.Forms;
 using Mystter_SendTweet.Entities;
+using Mystter_SendTweet.Forms;
 using Mystter_SendTweet.Helpers;
 using Mystter_SendTweet.Languages;
 using System;
@@ -26,6 +27,7 @@ namespace Mystter_SendTweet.Forms {
       ChangeWordWrap(settings.WordWrap);
       ChangeLocation(settings.Location);
       ChangeSize(settings.Size);
+      ChangeAppendHashtags(settings.AppendHashtags);
       
       // Twitter init
       if (settings.AccountSwitcher.IsEmpty()) {
@@ -208,6 +210,20 @@ namespace Mystter_SendTweet.Forms {
       Process.Start(Information.SettingsFolder);
     }
 
+    private void autoAppendHashtagsToolStripMenuItem_Click(object sender, EventArgs e) {
+      ChangeAppendHashtags(autoAppendHashtagsToolStripMenuItem.Checked);
+    }
+
+    private void hashtagsSettingToolStripMenuItem_Click(object sender, EventArgs e) {
+      HashtagsForm form = new HashtagsForm(settings.Hashtags);
+      form.ShowDialog();
+      if (!form.Canceled) {
+        settings.Hashtags = form.Hashtags;
+      }
+      settings.Save();
+      UpdateHashtagsStatus();
+    }
+
     private void ApplyLocalization() {
       sendBtn.Text = Resources.sendBtn;
       deleteBtn.Text = Resources.deleteBtn;
@@ -225,6 +241,8 @@ namespace Mystter_SendTweet.Forms {
       languagesComboBox.Items.Add(Resources.Japanese + " (日本語)");
       languagesComboBox.SelectedIndex = LocalizeHelper.GetLanguageIndex(LocalizeHelper.CurrentLanguage);
       openSettingsFolderToolStripMenuItem.Text = Resources.OpenSettingsFolder;
+      autoAppendHashtagsToolStripMenuItem.Text = Resources.AutoAppendHashtags;
+      hashtagsSettingToolStripMenuItem.Text = Resources.HashtagsSetting;
       removeContextMenuItem.Text = Resources.remove;
       checkForUpdatesMenuItem.Text = Resources.checkForUpdates;
       UpdateLogoutMenu();
@@ -321,6 +339,17 @@ namespace Mystter_SendTweet.Forms {
       }
     }
 
+    private void ChangeAppendHashtags(bool append) {
+      autoAppendHashtagsToolStripMenuItem.Checked = append;
+      settings.AppendHashtags = append;
+      settings.Save();
+      UpdateHashtagsStatus();
+    }
+
+    private void UpdateHashtagsStatus() {
+      hashtagsStatusLabel.Text = settings.AppendHashtags ? settings.CheckedHashtagsString : string.Empty;
+    }
+
     private bool IsAccessibleForm(Point location, Size size) {
       foreach (Screen sc in Screen.AllScreens) {
         if (sc.WorkingArea.Contains(new Rectangle(location, size))) {
@@ -364,7 +393,11 @@ namespace Mystter_SendTweet.Forms {
       if (TweetHelper.IsEmpty(msg) && imageList.Items.Count == 0) {
         MessageHelper.Show(Resources.tooShort);
         return;
-      } else if (TweetHelper.GetLength(msg) > 140) {
+      }
+      if (settings.AppendHashtags && settings.CheckedHashtags.Count > 0) {
+        msg = string.Join(" ", msg, settings.CheckedHashtagsString);
+      }
+      if (TweetHelper.GetLength(msg) > 140) {
         MessageHelper.Show(Resources.tooLong);
         return;
       }

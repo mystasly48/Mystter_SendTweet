@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\AccountSwitcher.cs" />
+    <Compile Include="Entities\Hashtag.cs" />
     <Compile Include="Entities\TweetableStatus.cs" />
     <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
@@ -118,6 +119,12 @@
     </Compile>
     <Compile Include="Forms\CheckingUpdatesForm.Designer.cs">
       <DependentUpon>CheckingUpdatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HashtagsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HashtagsForm.Designer.cs">
+      <DependentUpon>HashtagsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -166,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CheckingUpdatesForm.resx">
       <DependentUpon>CheckingUpdatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HashtagsForm.resx">
+      <DependentUpon>HashtagsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
