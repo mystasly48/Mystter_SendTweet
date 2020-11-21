@@ -299,6 +299,7 @@
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
       this.Load += new System.EventHandler(this.MainForm_Load);
       this.LocationChanged += new System.EventHandler(this.MainForm_LocationChanged);
+      this.Resize += new System.EventHandler(this.MainForm_Resize);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.imageListContextMenu.ResumeLayout(false);

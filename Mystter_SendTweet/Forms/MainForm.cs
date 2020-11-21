@@ -40,6 +40,7 @@ namespace Mystter_SendTweet {
     }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
+      settings.Size = GetActualSize();
       settings.Save();
     }
 
@@ -48,6 +49,11 @@ namespace Mystter_SendTweet {
         // don't save the settings every time because the event is invoked frequently
         settings.Location = Location;
       }
+    }
+
+    private void MainForm_Resize(object sender, EventArgs e) {
+      // don't save the settings every time because the event is invoked frequently
+      settings.Size = Size;
     }
 
     private void sendBtn_Click(object sender, EventArgs e) {
@@ -273,6 +279,33 @@ namespace Mystter_SendTweet {
         settings.Location = Location;
         settings.Save();
       }
+    }
+
+    private void ChangeSize(Size size) {
+      if (size != Size) {
+        if (IsAccessibleForm(Location, size)) {
+          Size = CalculateActualSize(size);
+        } else {
+          Size = CalculateActualSize(Settings.DefaultSize);
+        }
+        settings.Size = Size;
+        settings.Save();
+      }
+    }
+
+    private Size CalculateActualSize(Size size) {
+      if (imageList.Visible) {
+        size.Height += imageList.Height;
+      }
+      return size;
+    }
+
+    private Size GetActualSize() {
+      Size size = Size;
+      if (imageList.Visible) {
+        size.Height -= imageList.Height;
+      }
+      return size;
     }
 
     private void ChangeLanguage(string lang) {

@@ -21,6 +21,7 @@ namespace Mystter_SendTweet {
     [XmlIgnore]
     public static Point DefaultLocation { get => new Point(200, 100); }
     [XmlIgnore]
+    public static Size DefaultSize { get => new Size(400, 300); }
     [XmlIgnore]
     public static string DefaultLanguage { get => CultureInfo.CurrentCulture.Parent.ToString(); }
 
