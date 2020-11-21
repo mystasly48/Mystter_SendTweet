@@ -25,9 +25,10 @@ namespace Mystter_SendTweet {
       ChangeTopMost(settings.TopMost);
       ChangeWordWrap(settings.WordWrap);
       ChangeLocation(settings.Location);
+      ChangeSize(settings.Size);
       
       // Twitter init
-      if (settings.AccountSwitcher.Accounts.Count == 0) {
+      if (settings.AccountSwitcher.IsEmpty()) {
         settings.AccountSwitcher.Add();
         settings.Save();
       }
@@ -39,6 +40,7 @@ namespace Mystter_SendTweet {
     }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
+      settings.Size = GetActualSize();
       settings.Save();
     }
 
@@ -47,6 +49,11 @@ namespace Mystter_SendTweet {
         // don't save the settings every time because the event is invoked frequently
         settings.Location = Location;
       }
+    }
+
+    private void MainForm_Resize(object sender, EventArgs e) {
+      // don't save the settings every time because the event is invoked frequently
+      settings.Size = Size;
     }
 
     private void sendBtn_Click(object sender, EventArgs e) {
@@ -121,6 +128,14 @@ namespace Mystter_SendTweet {
 
       settings.AccountSwitcher.Remove(settings.AccountSwitcher.SelectedAccount);
       settings.Save();
+      if (settings.AccountSwitcher.IsEmpty()) {
+        if (MessageHelper.RetryAddingAccount()) {
+          settings.AccountSwitcher.Add();
+          settings.Save();
+        } else {
+          Environment.Exit(0);
+        }
+      }
       UpdateAccountsList();
       ChangeSelectedAccount(settings.AccountSwitcher.SelectedAccount);
     }
@@ -189,6 +204,10 @@ namespace Mystter_SendTweet {
       }
     }
 
+    private void openSettingsFolderToolStripMenuItem_Click(object sender, EventArgs e) {
+      Process.Start(Information.SettingsFolder);
+    }
+
     private void ApplyLocalization() {
       sendBtn.Text = Resources.sendBtn;
       deleteBtn.Text = Resources.deleteBtn;
@@ -205,13 +224,14 @@ namespace Mystter_SendTweet {
       languagesComboBox.Items.Add(Resources.English + " (English)");
       languagesComboBox.Items.Add(Resources.Japanese + " (日本語)");
       languagesComboBox.SelectedIndex = LocalizeHelper.GetLanguageIndex(LocalizeHelper.CurrentLanguage);
+      openSettingsFolderToolStripMenuItem.Text = Resources.OpenSettingsFolder;
       removeContextMenuItem.Text = Resources.remove;
       checkForUpdatesMenuItem.Text = Resources.checkForUpdates;
       UpdateLogoutMenu();
     }
 
     private void UpdateLogoutMenu() {
-      if (settings.AccountSwitcher.Accounts.Count == 0 || settings.AccountSwitcher.SelectedAccount == null) {
+      if (settings.AccountSwitcher.IsEmpty()) {
         logoutMenuItem.Text = Resources.Logout;
         logoutMenuItem.Enabled = false;
       } else {
@@ -266,6 +286,33 @@ namespace Mystter_SendTweet {
       }
     }
 
+    private void ChangeSize(Size size) {
+      if (size != Size) {
+        if (IsAccessibleForm(Location, size)) {
+          Size = CalculateActualSize(size);
+        } else {
+          Size = CalculateActualSize(Settings.DefaultSize);
+        }
+        settings.Size = Size;
+        settings.Save();
+      }
+    }
+
+    private Size CalculateActualSize(Size size) {
+      if (imageList.Visible) {
+        size.Height += imageList.Height;
+      }
+      return size;
+    }
+
+    private Size GetActualSize() {
+      Size size = Size;
+      if (imageList.Visible) {
+        size.Height -= imageList.Height;
+      }
+      return size;
+    }
+
     private void ChangeLanguage(string lang) {
       if (LocalizeHelper.ChangeLanguage(lang)) {
         settings.Language = lang;
@@ -298,7 +345,7 @@ namespace Mystter_SendTweet {
     }
 
     private void DeleteLatestTweet() {
-      var tokens = settings.AccountSwitcher.SelectedTokens;
+      var tokens = settings.AccountSwitcher.SelectedAccount.Tokens;
       var latest = tokens.Account.UpdateProfile().Status;
       var result = MessageHelper.ShowYesNo(Resources.deleteComfirm, latest.Text);
       if (result) {
@@ -322,7 +369,7 @@ namespace Mystter_SendTweet {
         return;
       }
       try {
-        var tokens = settings.AccountSwitcher.SelectedTokens;
+        var tokens = settings.AccountSwitcher.SelectedAccount.Tokens;
         if (imageList.Items.Count > 0) {
           var ids = imageList.Items.Select(x => tokens.Media.Upload(ImageHelper.GetFileInfo(x)).MediaId);
           tokens.Statuses.Update(status: msg, media_ids: ids);
