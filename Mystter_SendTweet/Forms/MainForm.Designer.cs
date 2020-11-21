@@ -48,6 +48,7 @@
       this.imageList = new Manina.Windows.Forms.ImageListView();
       this.imageListContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.removeContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.openSettingsFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.imageListContextMenu.SuspendLayout();
       this.SuspendLayout();
@@ -183,7 +184,8 @@
       this.settingsMenuTitle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.topMostMenuItem,
             this.wordWrapMenuItem,
-            this.languageMenuItem});
+            this.languageMenuItem,
+            this.openSettingsFolderToolStripMenuItem});
       this.settingsMenuTitle.Name = "settingsMenuTitle";
       this.settingsMenuTitle.Size = new System.Drawing.Size(61, 20);
       this.settingsMenuTitle.Text = "Settings";
@@ -192,7 +194,7 @@
       // 
       this.topMostMenuItem.CheckOnClick = true;
       this.topMostMenuItem.Name = "topMostMenuItem";
-      this.topMostMenuItem.Size = new System.Drawing.Size(134, 22);
+      this.topMostMenuItem.Size = new System.Drawing.Size(184, 22);
       this.topMostMenuItem.Text = "Top Most";
       this.topMostMenuItem.Click += new System.EventHandler(this.topMostMenuItem_Click);
       // 
@@ -200,7 +202,7 @@
       // 
       this.wordWrapMenuItem.CheckOnClick = true;
       this.wordWrapMenuItem.Name = "wordWrapMenuItem";
-      this.wordWrapMenuItem.Size = new System.Drawing.Size(134, 22);
+      this.wordWrapMenuItem.Size = new System.Drawing.Size(184, 22);
       this.wordWrapMenuItem.Text = "Word Wrap";
       this.wordWrapMenuItem.Click += new System.EventHandler(this.wordWrapMenuItem_Click);
       // 
@@ -209,7 +211,7 @@
       this.languageMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languagesComboBox});
       this.languageMenuItem.Name = "languageMenuItem";
-      this.languageMenuItem.Size = new System.Drawing.Size(134, 22);
+      this.languageMenuItem.Size = new System.Drawing.Size(184, 22);
       this.languageMenuItem.Text = "Language";
       // 
       // languagesComboBox
@@ -231,14 +233,14 @@
       // aboutMenuItem
       // 
       this.aboutMenuItem.Name = "aboutMenuItem";
-      this.aboutMenuItem.Size = new System.Drawing.Size(170, 22);
+      this.aboutMenuItem.Size = new System.Drawing.Size(180, 22);
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
       // 
       // checkForUpdatesMenuItem
       // 
       this.checkForUpdatesMenuItem.Name = "checkForUpdatesMenuItem";
-      this.checkForUpdatesMenuItem.Size = new System.Drawing.Size(170, 22);
+      this.checkForUpdatesMenuItem.Size = new System.Drawing.Size(180, 22);
       this.checkForUpdatesMenuItem.Text = "Check for Updates";
       this.checkForUpdatesMenuItem.Click += new System.EventHandler(this.checkForUpdatesMenuItem_Click);
       // 
@@ -275,6 +277,13 @@
       this.removeContextMenuItem.Size = new System.Drawing.Size(116, 22);
       this.removeContextMenuItem.Text = "Remove";
       this.removeContextMenuItem.Click += new System.EventHandler(this.removeContextMenuItem_Click);
+      // 
+      // openSettingsFolderToolStripMenuItem
+      // 
+      this.openSettingsFolderToolStripMenuItem.Name = "openSettingsFolderToolStripMenuItem";
+      this.openSettingsFolderToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+      this.openSettingsFolderToolStripMenuItem.Text = "Open Settings Folder";
+      this.openSettingsFolderToolStripMenuItem.Click += new System.EventHandler(this.openSettingsFolderToolStripMenuItem_Click);
       // 
       // MainForm
       // 
@@ -332,6 +341,7 @@
     private System.Windows.Forms.ToolStripMenuItem removeContextMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesMenuItem;
-    }
+    private System.Windows.Forms.ToolStripMenuItem openSettingsFolderToolStripMenuItem;
+  }
 }
 

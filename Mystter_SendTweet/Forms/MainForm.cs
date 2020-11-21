@@ -204,6 +204,10 @@ namespace Mystter_SendTweet {
       }
     }
 
+    private void openSettingsFolderToolStripMenuItem_Click(object sender, EventArgs e) {
+      Process.Start(Information.SettingsFolder);
+    }
+
     private void ApplyLocalization() {
       sendBtn.Text = Resources.sendBtn;
       deleteBtn.Text = Resources.deleteBtn;
@@ -220,6 +224,7 @@ namespace Mystter_SendTweet {
       languagesComboBox.Items.Add(Resources.English + " (English)");
       languagesComboBox.Items.Add(Resources.Japanese + " (日本語)");
       languagesComboBox.SelectedIndex = LocalizeHelper.GetLanguageIndex(LocalizeHelper.CurrentLanguage);
+      openSettingsFolderToolStripMenuItem.Text = Resources.OpenSettingsFolder;
       removeContextMenuItem.Text = Resources.remove;
       checkForUpdatesMenuItem.Text = Resources.checkForUpdates;
       UpdateLogoutMenu();

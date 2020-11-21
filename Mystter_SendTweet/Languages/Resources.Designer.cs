@@ -304,6 +304,15 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Settings Folder.
+        /// </summary>
+        internal static string OpenSettingsFolder {
+            get {
+                return ResourceManager.GetString("OpenSettingsFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Repository.
         /// </summary>
         internal static string ProjectRepository {

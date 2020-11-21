@@ -255,4 +255,7 @@
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="OpenSettingsFolder" xml:space="preserve">
+    <value>Open Settings Folder</value>
+  </data>
 </root>
