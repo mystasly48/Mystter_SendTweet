@@ -48,7 +48,7 @@ namespace Mystter_SendTweet.Entities {
           Environment.Exit(0);
         }
       } else {
-        MessageHelper.Show(Resources.FailedToAddAccount);
+        MessageHelper.Show(Resources.FailedToAddAccountMessage);
       }
       form.Dispose();
     }
@@ -59,7 +59,7 @@ namespace Mystter_SendTweet.Entities {
 
       var account = new Account(accessToken, accessSecret);
       if (Accounts.Contains(account)) {
-        MessageHelper.Show(Resources.alreadyAdded);
+        MessageHelper.Show(Resources.AccountAlreadyAddedMessage);
         return;
       }
       Accounts.Add(account);

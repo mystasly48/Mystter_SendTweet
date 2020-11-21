@@ -22,8 +22,8 @@ namespace Mystter_SendTweet.Forms {
     }
 
     private void CheckingUpdatesForm_Load(object sender, EventArgs e) {
-      this.Text = Information.GetConcatTitle(Resources.checkForUpdates);
-      checkingForUpdatesLabe.Text = Resources.checkingForUpdates;
+      this.Text = Information.GetConcatTitle(Resources.CheckForUpdates);
+      checkingForUpdatesLabe.Text = Resources.CheckingForUpdates;
       progressBar1.Enabled = true;
       backgroundWorker1.RunWorkerAsync();
     }

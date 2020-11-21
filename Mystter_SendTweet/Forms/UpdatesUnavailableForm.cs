@@ -17,8 +17,8 @@ namespace Mystter_SendTweet.Forms {
     }
 
     private void UpdatesUnavailableForm_Load(object sender, EventArgs e) {
-      latestLabel.Text = Resources.onTheLatestLabel;
-      versionLabel.Text = Resources.latestVersionLabel.Replace("{version}", info.Version);
+      latestLabel.Text = Resources.OnTheLatestMessage;
+      versionLabel.Text = Resources.LatestVersion.Replace("{version}", info.Version);
       releaseNotesLink.Text = Resources.ReleaseNotes;
     }
 

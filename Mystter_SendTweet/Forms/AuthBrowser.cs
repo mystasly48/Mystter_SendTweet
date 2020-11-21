@@ -18,7 +18,7 @@ namespace Mystter_SendTweet.Forms {
     public AuthBrowser(string URL) {
       InitializeComponent();
       this.URL = URL;
-      authorizingLabel.Text = MessageHelper.ConcatWithNewLine(Resources.Authorizing, Resources.WindowClosing);
+      authorizingLabel.Text = MessageHelper.ConcatWithNewLine(Resources.Authorizing, Resources.WindowClosingMessage);
       Success = false;
     }
 
