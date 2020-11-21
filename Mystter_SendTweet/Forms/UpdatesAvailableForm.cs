@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Forms {
   public partial class UpdatesAvailableForm : Form {
     Updater updater;
     string installerDestination;

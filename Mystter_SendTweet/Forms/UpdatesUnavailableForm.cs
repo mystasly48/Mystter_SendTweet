@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Forms {
   public partial class UpdatesUnavailableForm : Form {
     ReleaseInformation info;
 

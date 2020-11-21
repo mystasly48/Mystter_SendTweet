@@ -1,4 +1,4 @@
-﻿namespace Mystter_SendTweet {
+﻿namespace Mystter_SendTweet.Forms {
   partial class UpdatesAvailableForm {
     /// <summary>
     /// Required designer variable.
@@ -127,7 +127,7 @@
     private System.Windows.Forms.Button updateButton;
     private System.Windows.Forms.Button laterButton;
     private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-    }
+    private System.Windows.Forms.ProgressBar progressBar1;
+    private System.ComponentModel.BackgroundWorker backgroundWorker1;
+  }
 }

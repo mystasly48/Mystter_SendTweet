@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Mystter_SendTweet.Entities;
 using Mystter_SendTweet.Languages;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Forms {
   public partial class AboutForm : Form {
     public AboutForm() {
       InitializeComponent();

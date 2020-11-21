@@ -1,4 +1,4 @@
-﻿namespace Mystter_SendTweet {
+﻿namespace Mystter_SendTweet.Forms {
   partial class CheckingUpdatesForm {
     /// <summary>
     /// Required designer variable.

@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Forms {
   public partial class CheckingUpdatesForm : Form {
     public Updater Updater { get; private set; }
 

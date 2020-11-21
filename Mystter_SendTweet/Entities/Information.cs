@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Entities {
   public static class Information {
     public static string Title { get => "Mystter"; }
     public static string Version { get => Assembly.GetExecutingAssembly().GetName().Version.ToString(3); }

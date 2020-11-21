@@ -1,4 +1,5 @@
-﻿using Mystter_SendTweet.Languages;
+﻿using Mystter_SendTweet.Entities;
+using Mystter_SendTweet.Languages;
 using System;
 using System.Windows.Forms;
 

@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Mystter_SendTweet {
+namespace Mystter_SendTweet.Entities {
   public class Settings {
     public bool TopMost { get; set; }
     public bool WordWrap { get; set; }

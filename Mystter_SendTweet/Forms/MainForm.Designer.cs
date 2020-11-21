@@ -1,4 +1,4 @@
-﻿namespace Mystter_SendTweet {
+﻿namespace Mystter_SendTweet.Forms {
   partial class MainForm {
     /// <summary>
     /// 必要なデザイナー変数です。
