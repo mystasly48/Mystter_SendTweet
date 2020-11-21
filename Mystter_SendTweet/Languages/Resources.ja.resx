@@ -117,49 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="aboutMenuItem" xml:space="preserve">
-    <value>情報</value>
-  </data>
-  <data name="accountMenuTitle" xml:space="preserve">
+  <data name="Account" xml:space="preserve">
     <value>アカウント</value>
   </data>
-  <data name="addAccountMenuItem" xml:space="preserve">
+  <data name="AddAccount" xml:space="preserve">
     <value>アカウントを追加</value>
   </data>
-  <data name="alreadyAdded" xml:space="preserve">
+  <data name="AccountAlreadyAddedMessage" xml:space="preserve">
     <value>このアカウントは既に追加されています。</value>
   </data>
-  <data name="deleteBtn" xml:space="preserve">
+  <data name="DeleteLastTweet" xml:space="preserve">
     <value>最新のツイートを削除</value>
   </data>
-  <data name="deleteComfirm" xml:space="preserve">
+  <data name="DeleteConfirmMessage" xml:space="preserve">
     <value>本当にこのツイートを削除してもよろしいですか？</value>
   </data>
-  <data name="deleteNo" xml:space="preserve">
+  <data name="DeleteCanceledMessage" xml:space="preserve">
     <value>削除はキャンセルされました。</value>
   </data>
-  <data name="deleteYes" xml:space="preserve">
+  <data name="DeleteSuccessMessage" xml:space="preserve">
     <value>ツイートは削除されました。</value>
   </data>
-  <data name="duplicate" xml:space="preserve">
+  <data name="StatusDuplicateMessage" xml:space="preserve">
     <value>ツイートが重複しています。</value>
   </data>
-  <data name="helpMenuTitle" xml:space="preserve">
+  <data name="Help" xml:space="preserve">
     <value>ヘルプ</value>
   </data>
-  <data name="sendBtn" xml:space="preserve">
+  <data name="Send" xml:space="preserve">
     <value>ツイート</value>
   </data>
-  <data name="settingsMenuTitle" xml:space="preserve">
+  <data name="Settings" xml:space="preserve">
     <value>設定</value>
   </data>
-  <data name="tooLong" xml:space="preserve">
+  <data name="StatusTooLongMessage" xml:space="preserve">
     <value>ツイートが長すぎます。</value>
   </data>
-  <data name="tooShort" xml:space="preserve">
+  <data name="StatusTooShortMessage" xml:space="preserve">
     <value>ツイートが短すぎます。</value>
   </data>
-  <data name="topMostMenuItem" xml:space="preserve">
+  <data name="TopMost" xml:space="preserve">
     <value>最前面に表示</value>
   </data>
   <data name="TwitterException" xml:space="preserve">
@@ -168,10 +165,10 @@
   <data name="UnknownException" xml:space="preserve">
     <value>不明な例外が発生しました。</value>
   </data>
-  <data name="wordWrapMenuItem" xml:space="preserve">
+  <data name="WordWrap" xml:space="preserve">
     <value>右端で折り返す</value>
   </data>
-  <data name="yetAdded2" xml:space="preserve">
+  <data name="ApplicationExitIfSelectNoMessage" xml:space="preserve">
     <value>いいえを選択するとアプリケーションは終了されます。</value>
   </data>
   <data name="About" xml:space="preserve">
@@ -201,52 +198,52 @@
   <data name="Version" xml:space="preserve">
     <value>バージョン</value>
   </data>
-  <data name="yetAdded1" xml:space="preserve">
+  <data name="AccountNotAddedYetMessage" xml:space="preserve">
     <value>アカウントが追加されていません。アカウントを追加してください。</value>
   </data>
-  <data name="networkNotAvailable" xml:space="preserve">
+  <data name="NetworkNotAvailableMessage" xml:space="preserve">
     <value>インターネットに接続されていません。</value>
   </data>
-  <data name="showProfileMenuItem" xml:space="preserve">
+  <data name="ShowProfile" xml:space="preserve">
     <value>プロフィールを表示</value>
   </data>
-  <data name="upTo4Images" xml:space="preserve">
+  <data name="TooManyImagesMessage" xml:space="preserve">
     <value>画像は４枚まで追加することができます。</value>
   </data>
-  <data name="remove" xml:space="preserve">
+  <data name="Remove" xml:space="preserve">
     <value>削除</value>
   </data>
   <data name="Authorizing" xml:space="preserve">
     <value>認証中です...</value>
   </data>
-  <data name="WindowClosing" xml:space="preserve">
+  <data name="WindowClosingMessage" xml:space="preserve">
     <value>このウィンドウはまもなく自動で閉じられます...</value>
   </data>
-  <data name="FailedToAddAccount" xml:space="preserve">
+  <data name="FailedToAddAccountMessage" xml:space="preserve">
     <value>アカウントの追加に失敗しました。アカウントが有効であることを確認してください。</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>ログアウト</value>
   </data>
-  <data name="LogoutConfirm" xml:space="preserve">
+  <data name="LogoutConfirmMessage" xml:space="preserve">
     <value>選択中のアカウントを一覧から削除しますか？</value>
   </data>
-  <data name="latestVersionLabel" xml:space="preserve">
+  <data name="LatestVersion" xml:space="preserve">
     <value>最新版： {version}</value>
   </data>
-  <data name="onTheLatestLabel" xml:space="preserve">
+  <data name="OnTheLatestMessage" xml:space="preserve">
     <value>最新版を利用中です。</value>
   </data>
   <data name="ReleaseNotes" xml:space="preserve">
     <value>リリースノート</value>
   </data>
-  <data name="updatesAvailableLabel" xml:space="preserve">
+  <data name="UpdatesAvailableMessage" xml:space="preserve">
     <value>更新が利用可能です！</value>
   </data>
-  <data name="checkForUpdates" xml:space="preserve">
+  <data name="CheckForUpdates" xml:space="preserve">
     <value>更新を確認</value>
   </data>
-  <data name="checkingForUpdates" xml:space="preserve">
+  <data name="CheckingForUpdates" xml:space="preserve">
     <value>更新を確認しています...</value>
   </data>
   <data name="Later" xml:space="preserve">

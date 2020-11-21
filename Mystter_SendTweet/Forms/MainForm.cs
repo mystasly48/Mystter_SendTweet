@@ -124,7 +124,7 @@ namespace Mystter_SendTweet.Forms {
 
     // Logout @ScreenName
     private void logoutMenuItem_Click(object sender, EventArgs e) {
-      var result = MessageHelper.ShowYesNo(Resources.LogoutConfirm);
+      var result = MessageHelper.ShowYesNo(Resources.LogoutConfirmMessage);
       if (!result)
         return;
 
@@ -158,7 +158,7 @@ namespace Mystter_SendTweet.Forms {
     private void ImagesDragDrop(object sender, DragEventArgs e) {
       var files = (string[])e.Data.GetData(DataFormats.FileDrop);
       if (files.Length + imageList.Items.Count > 4) {
-        MessageHelper.Show(Resources.upTo4Images);
+        MessageHelper.Show(Resources.TooManyImagesMessage);
       } else {
         imageList.Items.AddRange(files);
         EnableImageListView(true);
@@ -225,16 +225,16 @@ namespace Mystter_SendTweet.Forms {
     }
 
     private void ApplyLocalization() {
-      sendBtn.Text = Resources.sendBtn;
-      deleteBtn.Text = Resources.deleteBtn;
-      accountsMenuTitle.Text = Resources.accountMenuTitle;
-      addAccountMenuItem.Text = Resources.addAccountMenuItem;
-      showProfileMenuItem.Text = Resources.showProfileMenuItem;
-      settingsMenuTitle.Text = Resources.settingsMenuTitle;
-      topMostMenuItem.Text = Resources.topMostMenuItem;
-      wordWrapMenuItem.Text = Resources.wordWrapMenuItem;
-      helpMenuTitle.Text = Resources.helpMenuTitle;
-      aboutMenuItem.Text = Resources.aboutMenuItem;
+      sendBtn.Text = Resources.Send;
+      deleteBtn.Text = Resources.DeleteLastTweet;
+      accountsMenuTitle.Text = Resources.Account;
+      addAccountMenuItem.Text = Resources.AddAccount;
+      showProfileMenuItem.Text = Resources.ShowProfile;
+      settingsMenuTitle.Text = Resources.Settings;
+      topMostMenuItem.Text = Resources.TopMost;
+      wordWrapMenuItem.Text = Resources.WordWrap;
+      helpMenuTitle.Text = Resources.Help;
+      aboutMenuItem.Text = Resources.About;
       languageMenuItem.Text = Resources.Language;
       languagesComboBox.Items.Clear();
       languagesComboBox.Items.Add(Resources.English + " (English)");
@@ -243,8 +243,8 @@ namespace Mystter_SendTweet.Forms {
       openSettingsFolderToolStripMenuItem.Text = Resources.OpenSettingsFolder;
       autoAppendHashtagsToolStripMenuItem.Text = Resources.AutoAppendHashtags;
       hashtagsSettingToolStripMenuItem.Text = Resources.HashtagsSetting;
-      removeContextMenuItem.Text = Resources.remove;
-      checkForUpdatesMenuItem.Text = Resources.checkForUpdates;
+      removeContextMenuItem.Text = Resources.Remove;
+      checkForUpdatesMenuItem.Text = Resources.CheckForUpdates;
       UpdateLogoutMenu();
     }
 
@@ -376,29 +376,29 @@ namespace Mystter_SendTweet.Forms {
     private void DeleteLatestTweet() {
       var tokens = settings.AccountSwitcher.SelectedAccount.Tokens;
       var latest = tokens.Account.UpdateProfile().Status;
-      var result = MessageHelper.ShowYesNo(Resources.deleteComfirm, latest.Text);
+      var result = MessageHelper.ShowYesNo(Resources.DeleteConfirmMessage, latest.Text);
       if (result) {
         tokens.Statuses.Destroy(latest.Id);
-        MessageHelper.Show(Resources.deleteYes);
+        MessageHelper.Show(Resources.DeleteSuccessMessage);
       } else {
-        MessageHelper.Show(Resources.deleteNo);
+        MessageHelper.Show(Resources.DeleteCanceledMessage);
       }
     }
 
     private void SendTweet(string msg) {
       if (!NetworkHelper.IsAvailable()) {
-        MessageHelper.Show(Resources.networkNotAvailable);
+        MessageHelper.Show(Resources.NetworkNotAvailableMessage);
         return;
       }
       if (TweetHelper.IsEmpty(msg) && imageList.Items.Count == 0) {
-        MessageHelper.Show(Resources.tooShort);
+        MessageHelper.Show(Resources.StatusTooShortMessage);
         return;
       }
       if (settings.AppendHashtags && settings.CheckedHashtags.Count > 0) {
         msg = string.Join(" ", msg, settings.CheckedHashtagsString);
       }
       if (TweetHelper.GetLength(msg) > 140) {
-        MessageHelper.Show(Resources.tooLong);
+        MessageHelper.Show(Resources.StatusTooLongMessage);
         return;
       }
       try {
@@ -412,7 +412,7 @@ namespace Mystter_SendTweet.Forms {
         }
       } catch (TwitterException ex) {
         if (ex.Message.Contains("Status is a duplicate")) {
-          MessageHelper.Show(Resources.duplicate);
+          MessageHelper.Show(Resources.StatusDuplicateMessage);
           return;
         }
         MessageHelper.Show(Resources.TwitterException);

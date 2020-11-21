@@ -70,20 +70,29 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to Accounts.
         /// </summary>
-        internal static string aboutMenuItem {
+        internal static string Account {
             get {
-                return ResourceManager.GetString("aboutMenuItem", resourceCulture);
+                return ResourceManager.GetString("Account", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accounts.
+        ///   Looks up a localized string similar to This account has already added..
         /// </summary>
-        internal static string accountMenuTitle {
+        internal static string AccountAlreadyAddedMessage {
             get {
-                return ResourceManager.GetString("accountMenuTitle", resourceCulture);
+                return ResourceManager.GetString("AccountAlreadyAddedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no account. Please add a twitter account..
+        /// </summary>
+        internal static string AccountNotAddedYetMessage {
+            get {
+                return ResourceManager.GetString("AccountNotAddedYetMessage", resourceCulture);
             }
         }
         
@@ -99,18 +108,18 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Add an account.
         /// </summary>
-        internal static string addAccountMenuItem {
+        internal static string AddAccount {
             get {
-                return ResourceManager.GetString("addAccountMenuItem", resourceCulture);
+                return ResourceManager.GetString("AddAccount", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account has already added..
+        ///   Looks up a localized string similar to This application will exit if you select No..
         /// </summary>
-        internal static string alreadyAdded {
+        internal static string ApplicationExitIfSelectNoMessage {
             get {
-                return ResourceManager.GetString("alreadyAdded", resourceCulture);
+                return ResourceManager.GetString("ApplicationExitIfSelectNoMessage", resourceCulture);
             }
         }
         
@@ -153,54 +162,54 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Check for Updates.
         /// </summary>
-        internal static string checkForUpdates {
+        internal static string CheckForUpdates {
             get {
-                return ResourceManager.GetString("checkForUpdates", resourceCulture);
+                return ResourceManager.GetString("CheckForUpdates", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Checking for updates....
         /// </summary>
-        internal static string checkingForUpdates {
+        internal static string CheckingForUpdates {
             get {
-                return ResourceManager.GetString("checkingForUpdates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete Last Tweet.
-        /// </summary>
-        internal static string deleteBtn {
-            get {
-                return ResourceManager.GetString("deleteBtn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete this tweet?.
-        /// </summary>
-        internal static string deleteComfirm {
-            get {
-                return ResourceManager.GetString("deleteComfirm", resourceCulture);
+                return ResourceManager.GetString("CheckingForUpdates", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Delete has been cancelled..
         /// </summary>
-        internal static string deleteNo {
+        internal static string DeleteCanceledMessage {
             get {
-                return ResourceManager.GetString("deleteNo", resourceCulture);
+                return ResourceManager.GetString("DeleteCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this tweet?.
+        /// </summary>
+        internal static string DeleteConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Last Tweet.
+        /// </summary>
+        internal static string DeleteLastTweet {
+            get {
+                return ResourceManager.GetString("DeleteLastTweet", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tweet has been deleted..
         /// </summary>
-        internal static string deleteYes {
+        internal static string DeleteSuccessMessage {
             get {
-                return ResourceManager.GetString("deleteYes", resourceCulture);
+                return ResourceManager.GetString("DeleteSuccessMessage", resourceCulture);
             }
         }
         
@@ -223,15 +232,6 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status is a duplicate..
-        /// </summary>
-        internal static string duplicate {
-            get {
-                return ResourceManager.GetString("duplicate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         internal static string English {
@@ -243,9 +243,9 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Failed to add an account. Please check if your account is valid and try again later..
         /// </summary>
-        internal static string FailedToAddAccount {
+        internal static string FailedToAddAccountMessage {
             get {
-                return ResourceManager.GetString("FailedToAddAccount", resourceCulture);
+                return ResourceManager.GetString("FailedToAddAccountMessage", resourceCulture);
             }
         }
         
@@ -270,9 +270,9 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
-        internal static string helpMenuTitle {
+        internal static string Help {
             get {
-                return ResourceManager.GetString("helpMenuTitle", resourceCulture);
+                return ResourceManager.GetString("Help", resourceCulture);
             }
         }
         
@@ -306,9 +306,9 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Latest Version: {version}.
         /// </summary>
-        internal static string latestVersionLabel {
+        internal static string LatestVersion {
             get {
-                return ResourceManager.GetString("latestVersionLabel", resourceCulture);
+                return ResourceManager.GetString("LatestVersion", resourceCulture);
             }
         }
         
@@ -324,18 +324,18 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to remove the selected account from the list?.
         /// </summary>
-        internal static string LogoutConfirm {
+        internal static string LogoutConfirmMessage {
             get {
-                return ResourceManager.GetString("LogoutConfirm", resourceCulture);
+                return ResourceManager.GetString("LogoutConfirmMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to An internet is not available..
         /// </summary>
-        internal static string networkNotAvailable {
+        internal static string NetworkNotAvailableMessage {
             get {
-                return ResourceManager.GetString("networkNotAvailable", resourceCulture);
+                return ResourceManager.GetString("NetworkNotAvailableMessage", resourceCulture);
             }
         }
         
@@ -351,9 +351,9 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to You are up to date..
         /// </summary>
-        internal static string onTheLatestLabel {
+        internal static string OnTheLatestMessage {
             get {
-                return ResourceManager.GetString("onTheLatestLabel", resourceCulture);
+                return ResourceManager.GetString("OnTheLatestMessage", resourceCulture);
             }
         }
         
@@ -387,63 +387,81 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string remove {
+        internal static string Remove {
             get {
-                return ResourceManager.GetString("remove", resourceCulture);
+                return ResourceManager.GetString("Remove", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Send.
         /// </summary>
-        internal static string sendBtn {
+        internal static string Send {
             get {
-                return ResourceManager.GetString("sendBtn", resourceCulture);
+                return ResourceManager.GetString("Send", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
-        internal static string settingsMenuTitle {
+        internal static string Settings {
             get {
-                return ResourceManager.GetString("settingsMenuTitle", resourceCulture);
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Show profile.
         /// </summary>
-        internal static string showProfileMenuItem {
+        internal static string ShowProfile {
             get {
-                return ResourceManager.GetString("showProfileMenuItem", resourceCulture);
+                return ResourceManager.GetString("ShowProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status is a duplicate..
+        /// </summary>
+        internal static string StatusDuplicateMessage {
+            get {
+                return ResourceManager.GetString("StatusDuplicateMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tweet is too long..
         /// </summary>
-        internal static string tooLong {
+        internal static string StatusTooLongMessage {
             get {
-                return ResourceManager.GetString("tooLong", resourceCulture);
+                return ResourceManager.GetString("StatusTooLongMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tweet is too short..
         /// </summary>
-        internal static string tooShort {
+        internal static string StatusTooShortMessage {
             get {
-                return ResourceManager.GetString("tooShort", resourceCulture);
+                return ResourceManager.GetString("StatusTooShortMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can only upload up to 4 images..
+        /// </summary>
+        internal static string TooManyImagesMessage {
+            get {
+                return ResourceManager.GetString("TooManyImagesMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Top Most.
         /// </summary>
-        internal static string topMostMenuItem {
+        internal static string TopMost {
             get {
-                return ResourceManager.GetString("topMostMenuItem", resourceCulture);
+                return ResourceManager.GetString("TopMost", resourceCulture);
             }
         }
         
@@ -477,18 +495,9 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Updates Available!.
         /// </summary>
-        internal static string updatesAvailableLabel {
+        internal static string UpdatesAvailableMessage {
             get {
-                return ResourceManager.GetString("updatesAvailableLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can only upload up to 4 images..
-        /// </summary>
-        internal static string upTo4Images {
-            get {
-                return ResourceManager.GetString("upTo4Images", resourceCulture);
+                return ResourceManager.GetString("UpdatesAvailableMessage", resourceCulture);
             }
         }
         
@@ -504,36 +513,18 @@ namespace Mystter_SendTweet.Languages {
         /// <summary>
         ///   Looks up a localized string similar to This window will be closed shortly....
         /// </summary>
-        internal static string WindowClosing {
+        internal static string WindowClosingMessage {
             get {
-                return ResourceManager.GetString("WindowClosing", resourceCulture);
+                return ResourceManager.GetString("WindowClosingMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Word Wrap.
         /// </summary>
-        internal static string wordWrapMenuItem {
+        internal static string WordWrap {
             get {
-                return ResourceManager.GetString("wordWrapMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is no account. Please add a twitter account..
-        /// </summary>
-        internal static string yetAdded1 {
-            get {
-                return ResourceManager.GetString("yetAdded1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This application will exit if you select No..
-        /// </summary>
-        internal static string yetAdded2 {
-            get {
-                return ResourceManager.GetString("yetAdded2", resourceCulture);
+                return ResourceManager.GetString("WordWrap", resourceCulture);
             }
         }
     }

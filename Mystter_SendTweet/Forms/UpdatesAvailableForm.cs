@@ -17,7 +17,7 @@ namespace Mystter_SendTweet.Forms {
     }
 
     private void UpdatesAvailableForm_Load(object sender, EventArgs e) {
-      availableLabel.Text = Resources.updatesAvailableLabel;
+      availableLabel.Text = Resources.UpdatesAvailableMessage;
       // "Release notes 1.4.1 (04/25/2020)"
       var notes = updater.NewerReleases
         .Select(x => $"{Resources.ReleaseNotes} {x.Version} ({x.ReleasedAt:MM/dd/yyyy}){Environment.NewLine}{x.ReleaseNotes}{Environment.NewLine}");
