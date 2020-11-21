@@ -32,7 +32,7 @@ namespace Mystter_SendTweet.Forms {
     }
 
     private void ApplyLocalization() {
-      this.Text = Information.Title + " - " + Resources.About;
+      this.Text = Information.GetConcatTitle(Resources.About);
       verLabelTitle.Text = Resources.Version + ":";
       developerLabelTitle.Text = Resources.Developer + ":";
       repoLinkLabelTitle.Text = Resources.ProjectRepository + ":";

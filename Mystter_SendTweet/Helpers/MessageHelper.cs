@@ -5,13 +5,16 @@ using System.Windows.Forms;
 
 namespace Mystter_SendTweet.Helpers {
   public class MessageHelper {
+    public static string ConcatWithNewLine(params string[] messages) {
+      return string.Join(Environment.NewLine, messages);
+    }
+
     public static void Show(string message) {
       MessageBox.Show(message, Information.Title);
     }
 
     public static void Show(params string[] messages) {
-      string message = string.Join(Environment.NewLine, messages);
-      Show(message);
+      Show(ConcatWithNewLine(messages));
     }
 
     public static bool RetryAddingAccount() {
@@ -24,8 +27,7 @@ namespace Mystter_SendTweet.Helpers {
     }
 
     public static bool ShowYesNo(params string[] messages) {
-      string message = string.Join(Environment.NewLine, messages);
-      return ShowYesNo(message);
+      return ShowYesNo(ConcatWithNewLine(messages));
     }
   }
 }

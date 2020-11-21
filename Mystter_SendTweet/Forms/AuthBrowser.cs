@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Mystter_SendTweet.Entities;
+using Mystter_SendTweet.Helpers;
 using Mystter_SendTweet.Languages;
 
 namespace Mystter_SendTweet.Forms {
@@ -17,7 +18,7 @@ namespace Mystter_SendTweet.Forms {
     public AuthBrowser(string URL) {
       InitializeComponent();
       this.URL = URL;
-      authorizingLabel.Text = Resources.Authorizing + Environment.NewLine + Resources.WindowClosing;
+      authorizingLabel.Text = MessageHelper.ConcatWithNewLine(Resources.Authorizing, Resources.WindowClosing);
       Success = false;
     }
 
@@ -49,7 +50,7 @@ namespace Mystter_SendTweet.Forms {
     }
 
     private void AuthBrowser_Load(object sender, EventArgs e) {
-      Text = Information.Title + " - " + Resources.OAuth;
+      Text = Information.GetConcatTitle(Resources.OAuth);
       webBrowser1.Navigate(URL);
     }
 
