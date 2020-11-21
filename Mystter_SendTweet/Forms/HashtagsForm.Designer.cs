@@ -51,6 +51,8 @@
       // 
       // hashtagsListBox
       // 
+      this.hashtagsListBox.CheckOnClick = true;
+      this.hashtagsListBox.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
       this.hashtagsListBox.FormattingEnabled = true;
       this.hashtagsListBox.Location = new System.Drawing.Point(22, 65);
       this.hashtagsListBox.Name = "hashtagsListBox";
