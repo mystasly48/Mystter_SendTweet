@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Mystter_SendTweet.Forms {
@@ -68,6 +69,38 @@ namespace Mystter_SendTweet.Forms {
       if (e.Control && e.KeyCode == Keys.Enter) {
         e.SuppressKeyPress = true;
         sendBtn.PerformClick();
+      }
+      if (e.Control && e.KeyCode == Keys.V && !Clipboard.ContainsText()) {
+        e.SuppressKeyPress = true;
+        if (Clipboard.ContainsImage()) {
+          Image image = Clipboard.GetImage();
+          if (!ImageHelper.IsSupported(image)) {
+            SystemSounds.Beep.Play();
+            return;
+          }
+          // TODO
+          MessageHelper.Show("We are now implementing the feature to add image from clipboard.");
+          //imageList.Items.Add(image.);
+          //EnableImageListView(true);
+          //UpdateTweetableStatus();
+        } else if (Clipboard.ContainsFileDropList()) {
+          string[] files = Clipboard.GetFileDropList().Cast<string>().ToArray();
+          bool isContainsNonImage = files.Any(file => !File.Exists(file) || !ImageHelper.IsSupported(file));
+          if (isContainsNonImage) {
+            SystemSounds.Beep.Play();
+            return;
+          }
+          if (files.Length + imageList.Items.Count > 4) {
+            MessageHelper.Show(Resources.TooManyImagesMessage);
+          } else {
+            imageList.Items.AddRange(files);
+            EnableImageListView(true);
+            UpdateTweetableStatus();
+          }
+        } else {
+          SystemSounds.Beep.Play();
+          return;
+        }
       }
     }
 

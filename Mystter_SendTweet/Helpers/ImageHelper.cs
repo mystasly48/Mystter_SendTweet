@@ -2,6 +2,8 @@
 using Manina.Windows.Forms;
 using System;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace Mystter_SendTweet.Helpers {
@@ -19,6 +21,16 @@ namespace Mystter_SendTweet.Helpers {
         }
       } catch (Exception ex) {
         Debug.WriteLine("[Exception on creating MagickImageInfo instance] Message: {0}, Path: {1}", ex.Message, path);
+        return false;
+      }
+    }
+
+    public static bool IsSupported(Image image) {
+      ImageFormat format = image.RawFormat;
+      if (format == ImageFormat.Jpeg || format == ImageFormat.Png || format == ImageFormat.Gif) {
+        return true;
+      } else {
+        Debug.WriteLine("[Incompatible image] Format: {0}", format);
         return false;
       }
     }
