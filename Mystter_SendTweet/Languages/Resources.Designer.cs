@@ -259,7 +259,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hashtags Settings.
+        ///   Looks up a localized string similar to Hashtags Setting.
         /// </summary>
         internal static string HashtagsSetting {
             get {
