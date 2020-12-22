@@ -38,11 +38,10 @@ namespace Mystter_SendTweet.Forms {
 
       // Controls init
       ActiveControl = textBox1;
-      EnableImageListView(false);
     }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
-      settings.Size = GetActualSize();
+      // to save Location and Size
       settings.Save();
     }
 
@@ -54,8 +53,10 @@ namespace Mystter_SendTweet.Forms {
     }
 
     private void MainForm_Resize(object sender, EventArgs e) {
-      // don't save the settings every time because the event is invoked frequently
-      settings.Size = Size;
+      if (WindowState != FormWindowState.Minimized) {
+        // don't save the settings every time because the event is invoked frequently
+        settings.Size = GetActualSize();
+      }
     }
 
     private void sendBtn_Click(object sender, EventArgs e) {
