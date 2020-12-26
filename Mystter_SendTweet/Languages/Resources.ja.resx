@@ -273,4 +273,10 @@
   <data name="HashtagsSetting" xml:space="preserve">
     <value>ハッシュタグの設定</value>
   </data>
+  <data name="FailedToConvertSettings" xml:space="preserve">
+    <value>設定ファイルが破損しています。初期化をしてよろしいでしょうか？</value>
+  </data>
+  <data name="SuccessToConvertSettings" xml:space="preserve">
+    <value>旧形式の設定ファイルを新形式に更新しました。</value>
+  </data>
 </root>

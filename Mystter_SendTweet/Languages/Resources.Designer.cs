@@ -250,6 +250,15 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The settings file is broken. Do you want to initialize older settings?.
+        /// </summary>
+        internal static string FailedToConvertSettings {
+            get {
+                return ResourceManager.GetString("FailedToConvertSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hashtags.
         /// </summary>
         internal static string Hashtags {
@@ -259,7 +268,7 @@ namespace Mystter_SendTweet.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hashtags Settings.
+        ///   Looks up a localized string similar to Hashtags Setting.
         /// </summary>
         internal static string HashtagsSetting {
             get {
@@ -444,6 +453,15 @@ namespace Mystter_SendTweet.Languages {
         internal static string StatusTooShortMessage {
             get {
                 return ResourceManager.GetString("StatusTooShortMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully converted older settings to newer version..
+        /// </summary>
+        internal static string SuccessToConvertSettings {
+            get {
+                return ResourceManager.GetString("SuccessToConvertSettings", resourceCulture);
             }
         }
         

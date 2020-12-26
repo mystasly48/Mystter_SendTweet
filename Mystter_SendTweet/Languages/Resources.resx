@@ -271,6 +271,12 @@
     <value>Hashtags</value>
   </data>
   <data name="HashtagsSetting" xml:space="preserve">
-    <value>Hashtags Settings</value>
+    <value>Hashtags Setting</value>
+  </data>
+  <data name="FailedToConvertSettings" xml:space="preserve">
+    <value>The settings file is broken. Do you want to initialize older settings?</value>
+  </data>
+  <data name="SuccessToConvertSettings" xml:space="preserve">
+    <value>Successfully converted older settings to newer version.</value>
   </data>
 </root>

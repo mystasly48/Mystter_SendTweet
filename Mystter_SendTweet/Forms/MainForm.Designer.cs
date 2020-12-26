@@ -81,7 +81,7 @@
       // 
       this.sendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.sendBtn.Enabled = false;
-      this.sendBtn.Location = new System.Drawing.Point(320, 338);
+      this.sendBtn.Location = new System.Drawing.Point(320, 231);
       this.sendBtn.Name = "sendBtn";
       this.sendBtn.Size = new System.Drawing.Size(75, 23);
       this.sendBtn.TabIndex = 2;
@@ -94,7 +94,7 @@
       this.lengthLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel1.BackColor = System.Drawing.SystemColors.Control;
       this.lengthLabel1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel1.Location = new System.Drawing.Point(136, 342);
+      this.lengthLabel1.Location = new System.Drawing.Point(136, 235);
       this.lengthLabel1.Name = "lengthLabel1";
       this.lengthLabel1.Size = new System.Drawing.Size(121, 19);
       this.lengthLabel1.TabIndex = 3;
@@ -106,7 +106,7 @@
       this.lengthLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel2.AutoSize = true;
       this.lengthLabel2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel2.Location = new System.Drawing.Point(257, 342);
+      this.lengthLabel2.Location = new System.Drawing.Point(257, 235);
       this.lengthLabel2.Name = "lengthLabel2";
       this.lengthLabel2.Size = new System.Drawing.Size(19, 19);
       this.lengthLabel2.TabIndex = 4;
@@ -117,7 +117,7 @@
       this.lengthLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.lengthLabel3.AutoSize = true;
       this.lengthLabel3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F);
-      this.lengthLabel3.Location = new System.Drawing.Point(275, 342);
+      this.lengthLabel3.Location = new System.Drawing.Point(275, 235);
       this.lengthLabel3.Name = "lengthLabel3";
       this.lengthLabel3.Size = new System.Drawing.Size(39, 19);
       this.lengthLabel3.TabIndex = 5;
@@ -126,7 +126,7 @@
       // deleteBtn
       // 
       this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.deleteBtn.Location = new System.Drawing.Point(10, 338);
+      this.deleteBtn.Location = new System.Drawing.Point(10, 231);
       this.deleteBtn.Name = "deleteBtn";
       this.deleteBtn.Size = new System.Drawing.Size(123, 23);
       this.deleteBtn.TabIndex = 7;
@@ -276,14 +276,14 @@
       // aboutMenuItem
       // 
       this.aboutMenuItem.Name = "aboutMenuItem";
-      this.aboutMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.aboutMenuItem.Size = new System.Drawing.Size(170, 22);
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
       // 
       // checkForUpdatesMenuItem
       // 
       this.checkForUpdatesMenuItem.Name = "checkForUpdatesMenuItem";
-      this.checkForUpdatesMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.checkForUpdatesMenuItem.Size = new System.Drawing.Size(170, 22);
       this.checkForUpdatesMenuItem.Text = "Check for Updates";
       this.checkForUpdatesMenuItem.Click += new System.EventHandler(this.checkForUpdatesMenuItem_Click);
       // 
@@ -292,7 +292,7 @@
       this.imageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.imageList.ContextMenuStrip = this.imageListContextMenu;
-      this.imageList.Location = new System.Drawing.Point(12, 232);
+      this.imageList.Location = new System.Drawing.Point(12, 125);
       this.imageList.Name = "imageList";
       this.imageList.PersistentCacheDirectory = "";
       this.imageList.PersistentCacheSize = ((long)(100));
@@ -300,6 +300,7 @@
       this.imageList.TabIndex = 10;
       this.imageList.ThumbnailSize = new System.Drawing.Size(70, 70);
       this.imageList.UseWIC = true;
+      this.imageList.Visible = false;
       this.imageList.ItemHover += new Manina.Windows.Forms.ItemHoverEventHandler(this.imageList_ItemHover);
       this.imageList.ItemDoubleClick += new Manina.Windows.Forms.ItemDoubleClickEventHandler(this.imageList_ItemDoubleClick);
       this.imageList.ItemCollectionChanged += new Manina.Windows.Forms.ItemCollectionChangedEventHandler(this.imageList_ItemCollectionChanged);
@@ -325,7 +326,7 @@
       // 
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hashtagsStatusLabel});
-      this.statusStrip1.Location = new System.Drawing.Point(0, 364);
+      this.statusStrip1.Location = new System.Drawing.Point(0, 257);
       this.statusStrip1.Name = "statusStrip1";
       this.statusStrip1.Size = new System.Drawing.Size(410, 22);
       this.statusStrip1.TabIndex = 11;
@@ -340,7 +341,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(410, 386);
+      this.ClientSize = new System.Drawing.Size(410, 279);
       this.Controls.Add(this.statusStrip1);
       this.Controls.Add(this.imageList);
       this.Controls.Add(this.menuStrip1);
