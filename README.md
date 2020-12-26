@@ -10,6 +10,7 @@
 
 * Send tweet.
 * Send image tweet.
+* Append hashtags.
 * Delete latest tweet.
 * Switch multiple accounts.
 
@@ -19,7 +20,7 @@
 
 ## Translation
 
-This application supports to Japanese and English.  
+This application supports Japanese and English.  
 We welcome your translation if you want to translate this application to your language.  
-So you create a new issue with the translate data such as raw text, text file or google spreadsheet etc... and we will add the language after a little checking with Google Translate!  
-Thank you for your cooperation!
+We will add the language after a little checking with online translator if you could create a issue with the translate data such as plain text, Google Spreadsheet, etc, or create a pull request.  
+Thank you for your cooperation.  
