@@ -38,11 +38,11 @@ namespace Mystter_SendTweet.Helpers {
       newSettings.Location = oldSettings.Location;
       newSettings.Language = oldSettings.Language;
 
-      List<Entities.Account> accounts = oldSettings.Twitter
-        .Select(account => new Entities.Account(account.AccessToken, account.AccessSecret)).ToList();
+      List<Account> accounts = oldSettings.Twitter
+        .Select(account => new Account(account.AccessToken, account.AccessSecret)).ToList();
       newSettings.AccountSwitcher.Accounts = accounts;
 
-      Entities.Account selectedAccount = newSettings.AccountSwitcher.Accounts
+      Account selectedAccount = newSettings.AccountSwitcher.Accounts
         .Where(account => account.ScreenName == oldSettings.SelectedItem).FirstOrDefault();
       if (selectedAccount != null) {
         newSettings.AccountSwitcher.SelectedAccount = selectedAccount;
