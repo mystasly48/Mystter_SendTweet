@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -49,6 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
@@ -101,6 +103,7 @@
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\AccountSwitcher.cs" />
     <Compile Include="Entities\Hashtag.cs" />
+    <Compile Include="Entities\Older\Account1.cs" />
     <Compile Include="Entities\TweetableStatus.cs" />
     <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
@@ -135,7 +138,11 @@
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="Helpers\NetworkHelper.cs" />
+    <Compile Include="Helpers\SettingsHelper.cs" />
+    <Compile Include="Helpers\SettingsParser.cs" />
     <Compile Include="Helpers\TweetHelper.cs" />
+    <Compile Include="Entities\SettingsBase.cs" />
+    <Compile Include="Entities\Older\Settings1.cs" />
     <Compile Include="Updates\GitHubAsset.cs" />
     <Compile Include="Updates\GitHubAuthor.cs" />
     <Compile Include="Updates\GitHubRelease.cs" />
