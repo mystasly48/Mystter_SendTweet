@@ -1,5 +1,6 @@
 ﻿using Mystter_SendTweet.Entities;
 using Mystter_SendTweet.Entities.Older;
+using Mystter_SendTweet.Languages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,16 +19,16 @@ namespace Mystter_SendTweet.Helpers {
 
       Settings1 settings1 = LoadNullable<Settings1>();
       if (settings1 != null && !IsCanceled) {
-        // TODO parse succeed message
-        // 旧形式の設定ファイルを新形式に変換しました。
-        // Successfully converted from older settings to newer.
+        MessageHelper.Show(Resources.SuccessToConvertSettings);
         return ParseSettings(settings1);
       }
 
-      // TODO load failed message
-      // 設定ファイルが破損しています。初期化してよろしいですか？いいえを選択するとアプリケーションは終了します。
-      // The settings file is broken. Would you like to initialize? The application will be closed if you choose No.
-      return SettingsHelper.Create();
+      if (MessageHelper.ShowYesNo(Resources.FailedToConvertSettings, Resources.ApplicationExitIfSelectNoMessage)) {
+        return SettingsHelper.Create();
+      } else {
+        Environment.Exit(0);
+        return null;
+      }
     }
 
     private Settings ParseSettings(Settings1 oldSettings) {
