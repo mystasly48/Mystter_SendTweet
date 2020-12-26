@@ -21,7 +21,7 @@ namespace Mystter_SendTweet.Forms {
 
     private void MainForm_Load(object sender, EventArgs e) {
       // Settings init
-      settings = Settings.Load();
+      settings = SettingsHelper.Load();
       ChangeLanguage(settings.Language);
       ChangeTopMost(settings.TopMost);
       ChangeWordWrap(settings.WordWrap);
