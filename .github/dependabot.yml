@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "20:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Magick.NET-Q16-AnyCPU
+    versions:
+    - 7.23.1
+    - 7.23.2
+    - 7.23.2.1
+    - 7.23.3
